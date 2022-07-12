@@ -1,0 +1,62 @@
+
+001_mushBomber.png
+size: 256,256
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+body
+  rotate: false
+  xy: 0, 0
+  size: 122, 129
+  orig: 122, 129
+  offset: 0, 0
+  index: -1
+face_dead
+  rotate: true
+  xy: 122, 58
+  size: 71, 47
+  orig: 71, 47
+  offset: 0, 0
+  index: -1
+face_normal
+  rotate: true
+  xy: 186, 126
+  size: 71, 47
+  orig: 71, 47
+  offset: 0, 0
+  index: -1
+face_stun
+  rotate: true
+  xy: 169, 55
+  size: 71, 47
+  orig: 71, 47
+  offset: 0, 0
+  index: -1
+fire
+  rotate: false
+  xy: 186, 197
+  size: 66, 54
+  orig: 66, 54
+  offset: 0, 0
+  index: -1
+hat
+  rotate: false
+  xy: 0, 129
+  size: 186, 122
+  orig: 186, 122
+  offset: 0, 0
+  index: -1
+leg_left
+  rotate: true
+  xy: 163, 22
+  size: 33, 49
+  orig: 33, 49
+  offset: 0, 0
+  index: -1
+leg_right
+  rotate: false
+  xy: 122, 12
+  size: 41, 46
+  orig: 41, 46
+  offset: 0, 0
+  index: -1

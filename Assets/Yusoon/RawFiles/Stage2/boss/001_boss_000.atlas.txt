@@ -1,0 +1,69 @@
+
+001_boss_000.png
+size: 1024,512
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+Body_Lower
+  rotate: false
+  xy: 0, 15
+  size: 365, 162
+  orig: 365, 162
+  offset: 0, 0
+  index: -1
+Body_Upper
+  rotate: true
+  xy: 759, 169
+  size: 333, 143
+  orig: 333, 143
+  offset: 0, 0
+  index: -1
+Eye
+  rotate: false
+  xy: 902, 434
+  size: 110, 68
+  orig: 110, 68
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 528, 0
+  size: 502, 231
+  orig: 502, 231
+  offset: 0, 0
+  index: -1
+Leg_Back_Left
+  rotate: false
+  xy: 365, 70
+  size: 77, 107
+  orig: 77, 107
+  offset: 0, 0
+  index: -1
+Leg_Back_Right
+  rotate: false
+  xy: 759, 62
+  size: 77, 107
+  orig: 77, 107
+  offset: 0, 0
+  index: -1
+Leg_Front_Left
+  rotate: false
+  xy: 442, 89
+  size: 85, 88
+  orig: 85, 88
+  offset: 0, 0
+  index: -1
+Leg_Front_Right
+  rotate: false
+  xy: 902, 346
+  size: 85, 88
+  orig: 85, 88
+  offset: 0, 0
+  index: -1
+Wood
+  rotate: false
+  xy: 0, 177
+  size: 528, 325
+  orig: 528, 325
+  offset: 0, 0
+  index: -1
