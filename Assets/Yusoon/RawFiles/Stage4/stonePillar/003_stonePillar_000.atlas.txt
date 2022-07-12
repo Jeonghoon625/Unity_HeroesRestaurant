@@ -1,0 +1,55 @@
+
+003_stonePillar_000.png
+size: 512,512
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+back_left
+  rotate: true
+  xy: 261, 64
+  size: 104, 95
+  orig: 104, 95
+  offset: 0, 0
+  index: -1
+back_right
+  rotate: true
+  xy: 356, 68
+  size: 104, 95
+  orig: 104, 95
+  offset: 0, 0
+  index: -1
+core
+  rotate: false
+  xy: 0, 145
+  size: 193, 361
+  orig: 193, 361
+  offset: 0, 0
+  index: -1
+eye
+  rotate: false
+  xy: 0, 0
+  size: 86, 50
+  orig: 86, 50
+  offset: 0, 0
+  index: -1
+left
+  rotate: false
+  xy: 317, 172
+  size: 122, 334
+  orig: 122, 334
+  offset: 0, 0
+  index: -1
+right
+  rotate: false
+  xy: 193, 168
+  size: 124, 338
+  orig: 124, 338
+  offset: 0, 0
+  index: -1
+root
+  rotate: false
+  xy: 0, 50
+  size: 261, 95
+  orig: 261, 95
+  offset: 0, 0
+  index: -1

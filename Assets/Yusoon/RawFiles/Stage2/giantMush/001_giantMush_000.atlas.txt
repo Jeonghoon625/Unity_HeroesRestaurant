@@ -1,0 +1,41 @@
+
+001_giantMush_000.png
+size: 512,512
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+Leg_Left
+  rotate: false
+  xy: 392, 347
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+Leg_Right
+  rotate: false
+  xy: 280, 208
+  size: 71, 63
+  orig: 71, 63
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 0, 0
+  size: 280, 271
+  orig: 280, 271
+  offset: 0, 0
+  index: -1
+face
+  rotate: false
+  xy: 392, 409
+  size: 100, 67
+  orig: 100, 67
+  offset: 0, 0
+  index: -1
+hat
+  rotate: false
+  xy: 0, 271
+  size: 392, 205
+  orig: 392, 205
+  offset: 0, 0
+  index: -1

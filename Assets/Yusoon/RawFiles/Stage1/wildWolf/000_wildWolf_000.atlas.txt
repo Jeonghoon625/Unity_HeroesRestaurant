@@ -1,0 +1,111 @@
+
+000_wildWolf_000.png
+size: 256,256
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+arm_in_under
+  rotate: false
+  xy: 186, 110
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+arm_in_upper
+  rotate: true
+  xy: 98, 0
+  size: 54, 53
+  orig: 54, 53
+  offset: 0, 0
+  index: -1
+arm_out_under
+  rotate: false
+  xy: 186, 76
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+arm_out_upper
+  rotate: true
+  xy: 151, 0
+  size: 54, 53
+  orig: 54, 53
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 0, 142
+  size: 178, 114
+  orig: 178, 114
+  offset: 0, 0
+  index: -1
+eyes_death
+  rotate: true
+  xy: 223, 117
+  size: 27, 26
+  orig: 27, 26
+  offset: 0, 0
+  index: -1
+eyes_normal
+  rotate: true
+  xy: 223, 90
+  size: 27, 26
+  orig: 27, 26
+  offset: 0, 0
+  index: -1
+eyes_stun
+  rotate: false
+  xy: 223, 64
+  size: 27, 26
+  orig: 27, 26
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 0, 48
+  size: 98, 94
+  orig: 98, 94
+  offset: 0, 0
+  index: -1
+jaw
+  rotate: true
+  xy: 231, 218
+  size: 38, 25
+  orig: 38, 25
+  offset: 0, 0
+  index: -1
+leg_back_in_under
+  rotate: true
+  xy: 0, 14
+  size: 34, 49
+  orig: 34, 49
+  offset: 0, 0
+  index: -1
+leg_back_in_upper
+  rotate: false
+  xy: 178, 197
+  size: 53, 59
+  orig: 53, 59
+  offset: 0, 0
+  index: -1
+leg_back_out_under
+  rotate: true
+  xy: 49, 14
+  size: 34, 49
+  orig: 34, 49
+  offset: 0, 0
+  index: -1
+leg_back_out_upper
+  rotate: true
+  xy: 178, 144
+  size: 53, 59
+  orig: 53, 59
+  offset: 0, 0
+  index: -1
+tail
+  rotate: false
+  xy: 98, 54
+  size: 88, 88
+  orig: 88, 88
+  offset: 0, 0
+  index: -1

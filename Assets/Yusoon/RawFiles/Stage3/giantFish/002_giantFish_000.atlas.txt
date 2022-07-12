@@ -1,0 +1,83 @@
+
+002_giantFish_000.png
+size: 512,512
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+body
+  rotate: false
+  xy: 0, 182
+  size: 304, 330
+  orig: 304, 330
+  offset: 0, 0
+  index: -1
+eye_dead
+  rotate: false
+  xy: 328, 111
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+eye_normal
+  rotate: false
+  xy: 402, 111
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 304, 185
+  size: 142, 149
+  orig: 142, 149
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 304, 334
+  size: 178, 208
+  orig: 178, 208
+  offset: 0, 0
+  index: -1
+in_leg_down
+  rotate: true
+  xy: 328, 62
+  size: 49, 96
+  orig: 49, 96
+  offset: 0, 0
+  index: -1
+in_leg_upper
+  rotate: false
+  xy: 446, 217
+  size: 66, 117
+  orig: 66, 117
+  offset: 0, 0
+  index: -1
+jaw
+  rotate: false
+  xy: 136, 73
+  size: 128, 109
+  orig: 128, 109
+  offset: 0, 0
+  index: -1
+out_leg_down
+  rotate: false
+  xy: 264, 75
+  size: 64, 107
+  orig: 64, 107
+  offset: 0, 0
+  index: -1
+out_leg_upper
+  rotate: true
+  xy: 136, 0
+  size: 73, 122
+  orig: 73, 122
+  offset: 0, 0
+  index: -1
+tail
+  rotate: false
+  xy: 0, 17
+  size: 136, 165
+  orig: 136, 165
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+003_stoneBug_000.png
+size: 256,256
+format: RGBA8888
+filter: MipMap,MipMap
+repeat: none
+Layer 1
+  rotate: false
+  xy: 81, 38
+  size: 25, 18
+  orig: 25, 18
+  offset: 0, 0
+  index: -1
+Layer 2
+  rotate: false
+  xy: 81, 56
+  size: 35, 19
+  orig: 35, 19
+  offset: 0, 0
+  index: -1
+body_under
+  rotate: false
+  xy: 81, 75
+  size: 148, 44
+  orig: 148, 44
+  offset: 0, 0
+  index: -1
+body_upper
+  rotate: false
+  xy: 0, 0
+  size: 81, 119
+  orig: 81, 119
+  offset: 0, 0
+  index: -1
+body_upper copy
+  rotate: false
+  xy: 0, 119
+  size: 112, 136
+  orig: 112, 136
+  offset: 0, 0
+  index: -1
+body_upper copy 2
+  rotate: false
+  xy: 112, 134
+  size: 127, 121
+  orig: 127, 121
+  offset: 0, 0
+  index: -1
