@@ -48,4 +48,3 @@ public class CameraMoveDrag : MonoBehaviour
         transform.position = position;
     }
 }
-
