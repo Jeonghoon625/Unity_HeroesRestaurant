@@ -250,7 +250,7 @@ TextureImporter:
         width: 126
         height: 126
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 42, y: 42, z: 42, w: 42}
       outline: []
       physicsShape: []
@@ -258,6 +258,48 @@ TextureImporter:
       bones: []
       spriteID: 54c52e8ef2d664144aa4e7489a7b2ae4
       internalID: 1741961699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_7
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 1050
+        width: 3
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30783e7628a617745a6bb13e69886315
+      internalID: 261411682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_8
+      rect:
+        serializedVersion: 2
+        x: 1479
+        y: 971
+        width: 126
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 42, y: 42, z: 42, w: 42}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 322b0b33e6dc8c54c8211a2007da0d08
+      internalID: 1786672565
       vertices: []
       indices: 
       edges: []
@@ -276,9 +318,11 @@ TextureImporter:
       sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_3: 1021839044
       sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_1: -439679255
       sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_2: -2065355496
+      sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_8: 1786672565
       sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_6: 1741961699
       sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_0: 1680572532
       sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_5: -1522663208
+      sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_7: 261411682
       sactx-1-2048x2048-ETC2-Atlas_UI-8116a832_4: -621969372
   spritePackingTag: 
   pSDRemoveMatte: 0
