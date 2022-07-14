@@ -5,21 +5,27 @@ using TMPro;
 
 public class s1wildBoar : MonoBehaviour
 {
-    public GameObject[] boarPrefab;
-    private MonsterController monsterController;
+    public GameObject boarPrefab;
+    private int count = 3;
     public float monsterHp = 100;
     public float monsterDamage = 1;
+    public float spawnTime;
     private TextMeshProUGUI damage;
-    private BoxCollider boarCollider;
 
     private void Awake()
     {
-        boarCollider = GetComponent<BoxCollider>();
-        for(int i = 0; i < boarPrefab.Length; i++)
+        StartCoroutine(Spawn());
+    }
+
+    IEnumerator Spawn()
+    {
+        var pos = transform.position;
+        for (int i = 0; i < count; i++)
         {
-            GameObject boar = Instantiate(boarPrefab[0], transform.position, Quaternion.identity);
+            pos.x += 0.5f * i;
+            transform.position = pos;
+            Instantiate(boarPrefab, transform.position, Quaternion.identity);
         }
-
-
+        yield return new WaitForSeconds(spawnTime);
     }
 }
