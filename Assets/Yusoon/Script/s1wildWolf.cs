@@ -1,23 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+
 public class s1wildWolf : MonoBehaviour
 {
-    public GameObject wolfPrefab;
-    public float monsterHp = 150;
-    public float monsterDamage = 3;
-    public float spawnTime;
-    private TextMeshProUGUI damage;
-
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        StartCoroutine(Spawn());
+        
     }
 
-    IEnumerator Spawn()
+    // Update is called once per frame
+    void Update()
     {
-        Instantiate(wolfPrefab, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(spawnTime);
+        
     }
 }

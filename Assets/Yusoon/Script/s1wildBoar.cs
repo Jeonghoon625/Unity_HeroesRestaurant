@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class s1wildBoar : MonoBehaviour
 {
     public GameObject boarPrefab;
-    private int count = 3;
+    public int count = 3;
     public float monsterHp = 100;
     public float monsterDamage = 1;
     public float spawnTime;
-    private TextMeshProUGUI damage;
+
+    private Transform target;
+    private float speed = 2f;
+
 
     private void Awake()
     {
@@ -19,13 +21,27 @@ public class s1wildBoar : MonoBehaviour
 
     IEnumerator Spawn()
     {
-        var pos = transform.position;
-        for (int i = 0; i < count; i++)
+        for(int i = 0; i < count; i++)
         {
-            pos.x += 0.5f * i;
+            Vector3 pos = transform.position;
+            pos.x = 0.5f * i;
             transform.position = pos;
-            Instantiate(boarPrefab, transform.position, Quaternion.identity);
+            Instantiate(boarPrefab, pos, Quaternion.identity);
         }
         yield return new WaitForSeconds(spawnTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            target = other.gameObject.transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        target = null;
+
     }
 }
