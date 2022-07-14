@@ -1,0 +1,201 @@
+
+hero.hero_000.kingdom.000.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arm_Left_Down
+  rotate: false
+  xy: 497, 187
+  size: 70, 97
+  orig: 70, 97
+  offset: 0, 0
+  index: -1
+Arm_Left_Upper
+  rotate: false
+  xy: 497, 286
+  size: 68, 86
+  orig: 68, 86
+  offset: 0, 0
+  index: -1
+Arm_Right_Down
+  rotate: true
+  xy: 825, 154
+  size: 70, 97
+  orig: 70, 97
+  offset: 0, 0
+  index: -1
+Arm_Right_Upper
+  rotate: false
+  xy: 924, 138
+  size: 68, 86
+  orig: 68, 86
+  offset: 0, 0
+  index: -1
+Body_Skirt
+  rotate: false
+  xy: 2, 255
+  size: 237, 251
+  orig: 237, 251
+  offset: 0, 0
+  index: -1
+Face_Angry
+  rotate: false
+  xy: 241, 281
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_Angry_02
+  rotate: false
+  xy: 369, 281
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_Basic
+  rotate: false
+  xy: 241, 188
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_Cry
+  rotate: false
+  xy: 369, 188
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_Embressed
+  rotate: false
+  xy: 218, 95
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_Happy
+  rotate: false
+  xy: 346, 95
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_Hard
+  rotate: false
+  xy: 218, 2
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_Hmmm
+  rotate: false
+  xy: 346, 2
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_OhNo
+  rotate: true
+  xy: 474, 59
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_Panic
+  rotate: false
+  xy: 569, 220
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_Smile
+  rotate: false
+  xy: 697, 220
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Face_Smile_02
+  rotate: false
+  xy: 825, 226
+  size: 126, 91
+  orig: 126, 91
+  offset: 0, 0
+  index: -1
+Hair_Back
+  rotate: false
+  xy: 568, 313
+  size: 228, 193
+  orig: 228, 193
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 2, 34
+  size: 214, 219
+  orig: 214, 219
+  offset: 0, 0
+  index: -1
+Leg_Left_Down
+  rotate: true
+  xy: 569, 142
+  size: 76, 124
+  orig: 76, 124
+  offset: 0, 0
+  index: -1
+Leg_Left_Upper
+  rotate: true
+  xy: 567, 67
+  size: 73, 122
+  orig: 73, 122
+  offset: 0, 0
+  index: -1
+Leg_Right_Down
+  rotate: true
+  xy: 695, 142
+  size: 76, 124
+  orig: 76, 124
+  offset: 0, 0
+  index: -1
+Leg_Right_Upper
+  rotate: true
+  xy: 691, 67
+  size: 73, 122
+  orig: 73, 122
+  offset: 0, 0
+  index: -1
+Shield
+  rotate: false
+  xy: 798, 319
+  size: 158, 187
+  orig: 158, 187
+  offset: 0, 0
+  index: -1
+Weapon
+  rotate: true
+  xy: 241, 374
+  size: 132, 325
+  orig: 132, 325
+  offset: 0, 0
+  index: -1
+
+hero.hero_000.kingdom.0002.png
+size: 128,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+subparts/Food_000_000
+  rotate: false
+  xy: 2, 2
+  size: 55, 53
+  orig: 55, 53
+  offset: 0, 0
+  index: -1
+subparts/Food_000_001
+  rotate: false
+  xy: 59, 2
+  size: 55, 53
+  orig: 55, 53
+  offset: 0, 0
+  index: -1

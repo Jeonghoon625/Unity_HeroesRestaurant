@@ -200,7 +200,9 @@ GameObject:
   - component: {fileID: 8077675859099664717}
   - component: {fileID: -4242439038259990237}
   - component: {fileID: -9052066274894024187}
+
   m_Layer: 8
+
   m_Name: s1_wildBoar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

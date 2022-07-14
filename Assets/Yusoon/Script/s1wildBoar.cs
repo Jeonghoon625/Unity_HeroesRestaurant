@@ -13,10 +13,12 @@ public class s1wildBoar : MonoBehaviour
     private Transform target;
     private float speed = 2f;
 
+
     private void Awake()
     {
         StartCoroutine(Spawn());
     }
+
     IEnumerator Spawn()
     {
         for(int i = 0; i < count; i++)
@@ -40,5 +42,6 @@ public class s1wildBoar : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         target = null;
+
     }
 }
