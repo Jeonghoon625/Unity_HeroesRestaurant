@@ -4,48 +4,55 @@ using UnityEngine;
 
 public class CameraMoveDrag : MonoBehaviour
 {
+    public float xmove = 0;
+    private float movespeed = 0.01f;
+    private float wheelspeed = 0.01f;
+    
+    private float verticalPosition = 0.45f;
 
-    Vector3 hitPosition = Vector3.zero;
-    Vector3 currentPosition = Vector3.zero;
-    Vector3 cameraPosition = Vector3.zero;
-    float z = 0.0f;
+    private Camera cam;
 
-    // Use this for initialization
-    void Start()
+    int minZoom = 10;
+    int maxZoom = 35;
+    int zoomValue = 25;
+
+    private void Start()
     {
-
+        cam = GetComponent<Camera>();
     }
-
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            hitPosition = Input.mousePosition;
-            cameraPosition = transform.position;
-        }
+        DragMouseMove();
+        ZoomMouseMove();
+    }
+    private void DragMouseMove()
+    {
         if (Input.GetMouseButton(0))
         {
-            currentPosition = Input.mousePosition;
-            LeftMouseDrag();
+            xmove += Input.GetAxis("Mouse X") * movespeed;
+        }
+        transform.position = new Vector3(xmove, 0.025f, -0.1f);
+        MoveLimit();
+    }
+    void MoveLimit()
+    {
+        Vector3 temp;
+        temp.x = Mathf.Clamp(transform.position.x, -verticalPosition, verticalPosition);
+        temp.y = 0.025f;
+        temp.z = -0.1f;
+
+        transform.position = temp;
+    }
+    private void ZoomMouseMove()
+    {
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            cam.fieldOfView = Mathf.Clamp(cam.fieldOfView -= zoomValue * wheelspeed, minZoom, maxZoom);
+        }
+        else if (Input.mouseScrollDelta.y < 0)
+        {
+            cam.fieldOfView = Mathf.Clamp(cam.fieldOfView += zoomValue * wheelspeed, minZoom, maxZoom);
         }
     }
 
-    void LeftMouseDrag()
-    {
-        // From the Unity3D docs: "The z position is in world units from the camera."  In my case I'm using the y-axis as height
-        // with my camera facing back down the y-axis.  You can ignore this when the camera is orthograhic.
-        currentPosition.z = hitPosition.z = cameraPosition.y;
-
-        // Get direction of movement.  (Note: Don't normalize, the magnitude of change is going to be Vector3.Distance(current_position-hit_position)
-        // anyways.  
-        Vector3 direction = Camera.main.ScreenToWorldPoint(currentPosition) - Camera.main.ScreenToWorldPoint(hitPosition);
-
-        // Invert direction to that terrain appears to move with the mouse.
-        direction = direction * -1;
-
-        Vector3 position = cameraPosition + direction;
-
-        transform.position = position;
-    }
 }
-
