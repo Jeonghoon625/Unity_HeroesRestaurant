@@ -12,8 +12,8 @@ public class CameraMoveDrag : MonoBehaviour
 
     private Camera cam;
 
-    int minZoom = 10;
-    int maxZoom = 35;
+    int minZoom = 20;
+    int maxZoom = 36;
     int zoomValue = 25;
 
     private void Start()
