@@ -123,69 +123,20 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-
---- !u!1 &409401309
-
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-
-  - component: {fileID: 409401311}
-  - component: {fileID: 409401310}
-  m_Layer: 0
-  m_Name: boarSpawner1
-
-  - component: {fileID: 141692029}
-  - component: {fileID: 141692028}
-  m_Layer: 0
-  m_Name: wolfSpawner
-
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
-
---- !u!114 &409401310
-
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-
-  m_GameObject: {fileID: 409401309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea0d4ff1386a4d344b7fcfeabd42a894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boarPrefab: {fileID: 8300786310853059293, guid: 71dfe9a63a6bfb543bcffef2f847d8c1, type: 3}
-  count: 3
-  monsterHp: 100
-  monsterDamage: 1
-  spawnTime: 3
 --- !u!4 &409401311
-
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-
-  m_GameObject: {fileID: 409401309}
+  m_GameObject: {fileID: 462783727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
-
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &417198354
 GameObject:
@@ -279,7 +230,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 62.081, y: -43.348, z: -15.972}
 --- !u!1 &442103886
 GameObject:
@@ -374,14 +325,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &483760695
+--- !u!1 &462783727
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,47 +340,14 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 483760697}
-  - component: {fileID: 483760696}
+  - component: {fileID: 409401311}
   m_Layer: 0
-  m_Name: boarSpawner2
+  m_Name: 'Recovery GameObject for Transform (ID in file: 409401311)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &483760696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483760695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea0d4ff1386a4d344b7fcfeabd42a894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boarPrefab: {fileID: 8300786310853059293, guid: 71dfe9a63a6bfb543bcffef2f847d8c1, type: 3}
-  count: 3
-  monsterHp: 100
-  monsterDamage: 1
-  spawnTime: 0
---- !u!4 &483760697
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483760695}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.78, y: 0.5250485, z: -4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &564184082
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +413,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &585235516
 PrefabInstance:
@@ -514,7 +432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1511299017338005648, guid: 56cc97726128a3f46b28373cc7e62418, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1511299017338005648, guid: 56cc97726128a3f46b28373cc7e62418, type: 3}
       propertyPath: m_LocalPosition.x
@@ -615,7 +533,6 @@ Transform:
   m_Father: {fileID: 2135580778}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
 --- !u!1 &1164362195
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +542,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1164362197}
-  - component: {fileID: 1164362196}
   m_Layer: 0
   m_Name: boarSpawner
   m_TagString: Untagged
@@ -633,22 +549,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1164362196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164362195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea0d4ff1386a4d344b7fcfeabd42a894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boarPrefab: {fileID: 8300786310853059293, guid: 71dfe9a63a6bfb543bcffef2f847d8c1, type: 3}
-  monsterHp: 100
-  monsterDamage: 1
-  spawnTime: 10
 --- !u!4 &1164362197
 Transform:
   m_ObjectHideFlags: 0
@@ -660,11 +560,60 @@ Transform:
   m_LocalPosition: {x: -0.47, y: -0.44, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1276115729}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
+--- !u!1 &1276115728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1276115729}
+  - component: {fileID: 1276115730}
+  m_Layer: 0
+  m_Name: spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1276115729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276115728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1164362197}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1276115730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276115728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0d4ff1386a4d344b7fcfeabd42a894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boarPrefab: {fileID: 8300786310853059293, guid: 71dfe9a63a6bfb543bcffef2f847d8c1, type: 3}
+  count: 3
+  monsterHp: 100
+  monsterDamage: 1
+  spawnTime: 10
 --- !u!1001 &1626148248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -755,7 +704,7 @@ Transform:
   - {fileID: 1283595564877160405}
   - {fileID: 748001812}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1096669364132737292 stripped
 Transform:
