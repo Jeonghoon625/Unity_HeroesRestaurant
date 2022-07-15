@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StunState : MonoBehaviour
+public class StunState : IState
 {
-    // Start is called before the first frame update
-    void Start()
+    private Unit unit;
+    public void IEnter(Unit unit)
     {
-        
+        this.unit = unit;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IUpdate()
     {
-        
+
+    }
+
+    public void IFixedUpdate()
+    {
+
+    }
+
+    public void IExit()
+    {
+
     }
 }

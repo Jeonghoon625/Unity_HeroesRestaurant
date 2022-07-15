@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1511299017338005663}
   - component: {fileID: 1511299017338005660}
   - component: {fileID: 1718585137}
-  - component: {fileID: 2131149320}
   - component: {fileID: 574714549}
   m_Layer: 0
   m_Name: Ayran
@@ -152,20 +151,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.99, y: 7.95, z: 2}
   m_Center: {x: -0.13, y: 3.7219584, z: 0}
---- !u!114 &2131149320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511299017338005661}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b856e390b308614fa3542fd27f2915d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  ran: 15
 --- !u!114 &574714549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +167,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   speed: 3
   dmg: 3
+  attackCool: 1
   attackArea: {x: 1, y: 0, z: 0}
   hp: 100
   skillPrefab: {fileID: 2557322121503452124, guid: 46bb0d55fc420fa41a3b9780e2f392b0, type: 3}
