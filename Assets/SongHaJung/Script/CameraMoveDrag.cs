@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraMoveDrag : MonoBehaviour
 {
     public float xmove = 0;
     private float movespeed = 0.01f;
     private float wheelspeed = 0.01f;
-    
+
+    private float limitY = 0.025f;
+    private float limitZ = -0.1f;
+
     private float verticalPosition = 0.45f;
 
     private Camera cam;
@@ -22,8 +26,12 @@ public class CameraMoveDrag : MonoBehaviour
     }
     void Update()
     {
-        DragMouseMove();
-        ZoomMouseMove();
+        if(!EventSystem.current.IsPointerOverGameObject())
+        {
+            DragMouseMove();
+            ZoomMouseMove();
+        }
+        
     }
     private void DragMouseMove()
     {
@@ -31,15 +39,15 @@ public class CameraMoveDrag : MonoBehaviour
         {
             xmove += Input.GetAxis("Mouse X") * movespeed;
         }
-        transform.position = new Vector3(xmove, 0.025f, -0.1f);
+        transform.position = new Vector3(xmove, limitY, limitZ);
         MoveLimit();
     }
     void MoveLimit()
     {
         Vector3 temp;
         temp.x = Mathf.Clamp(transform.position.x, -verticalPosition, verticalPosition);
-        temp.y = 0.025f;
-        temp.z = -0.1f;
+        temp.y = limitY;
+        temp.z = limitZ;
 
         transform.position = temp;
     }

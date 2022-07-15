@@ -6,6 +6,6 @@ public class BuildingMenu : MonoBehaviour
 {
     public void OnClickBack()
     {
-        MenuManager.OpenMenu(Menu.MAINMENU, gameObject);
+        
     }
 }
