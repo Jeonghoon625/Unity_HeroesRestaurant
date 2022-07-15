@@ -7,7 +7,8 @@ public class RunState : IState
     private Unit unit;
     private Vector3 m_Position;
     private GameObject target;
-    Vector3 dir = new Vector3(0f, 0f, 0f);
+
+    private Vector3 dir = new Vector3(0f, 0f, 0f);
     public void IEnter(Unit unit)
     {
         unit.animator.SetBool("Run", true);
@@ -34,7 +35,6 @@ public class RunState : IState
         if (dis < 0.1f && dis > -0.1f)
         {
             unit.SetState("Idle");
-            unit.animator.SetBool("Run", false);
         }
         else
         {
@@ -55,7 +55,7 @@ public class RunState : IState
 
     public void IExit()
     {
-
+        unit.animator.SetBool("Run", false);
     }
 
     private void OnTarget()
@@ -63,10 +63,9 @@ public class RunState : IState
         var cols = Physics.OverlapBox(unit.transform.position, unit.attackArea);
         foreach(var col in cols)
         {
-            if(col.CompareTag("Monster"))
+            if(col.gameObject == target)
             {
                 unit.SetState("Attack");
-                unit.animator.SetBool("Run", false);
             }
         }
     }

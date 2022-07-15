@@ -167,6 +167,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   speed: 3
   dmg: 3
+  attackCool: 1
   attackArea: {x: 5, y: 0, z: 0}
   hp: 100
   skillPrefab: {fileID: 2557322121503452124, guid: 6e1624b38939f9f49baa828609aa2c32, type: 3}

@@ -20,6 +20,8 @@ public class Unit : MonoBehaviour
     private float speed = 3f;
     [SerializeField]
     private int dmg = 3;
+    [SerializeField]
+    private float attackCool = 1f;
 
     public Vector3 attackArea = new Vector3(1f, 0f, 0f);
     public int hp = 100;
@@ -40,6 +42,10 @@ public class Unit : MonoBehaviour
     {
         get { return dmg; }
     }
+    public float AttackCool
+    {
+        get { return attackCool; }
+    }
 
     private void Awake()
     {
@@ -58,6 +64,7 @@ public class Unit : MonoBehaviour
         stateMap.Add("Idle", new IdleState());
         stateMap.Add("Run", new RunState());
         stateMap.Add("Attack", new AttackState());
+        stateMap.Add("Stun", new StunState());
 
         SetState("Idle");
     }
@@ -65,7 +72,6 @@ public class Unit : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //animator.SetBool("Attack", false);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 50f))
@@ -80,7 +86,6 @@ public class Unit : MonoBehaviour
                     target = null;
                 }
                 // ¿Ãµø
-                animator.SetBool("Attack", false);
                 m_Position = hit.point;
                 SetState("Run");
             }
