@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int hp = 100;
+    private BoxCollider col;
+
+    private void Awake()
     {
-        
+        col = GetComponent<BoxCollider>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public int OnHit(Heros hero, int dmg)
     {
-        
+        hp -= dmg;
+
+        if(hp <= 0)
+        {
+            hero.target = null;
+            //hero.SetState("Idle");
+            col.enabled = false;
+            hp = 0;
+            Destroy(gameObject, 1f);
+        }
+
+        return hp;
     }
 }

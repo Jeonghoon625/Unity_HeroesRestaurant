@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class StunState : IState
 {
-    private Unit unit;
-    public void IEnter(Unit unit)
+    private Heros hero;
+    public void IEnter(Heros hero)
     {
-        this.unit = unit;
+        this.hero = hero;
     }
 
     public void IUpdate()

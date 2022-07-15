@@ -4,33 +4,38 @@ using UnityEngine;
 
 public class AttackState : IState
 {
-    private Unit unit;
+    private Heros hero;
 
     private float attackTimer;
-    public void IEnter(Unit unit)
+    public void IEnter(Heros hero)
     {
-        this.unit = unit;
-        unit.animator.SetTrigger("Attack");
-        attackTimer = 0f;
+        this.hero = hero;
+        attackTimer = hero.AttackCool;
     }
 
     public void IUpdate()
     {
-        
+
     }
 
     public void IFixedUpdate()
     {
+        if(hero.target == null)
+        {
+            hero.SetState("Idle");
+        }
+
         attackTimer += Time.deltaTime;
-        if(unit.AttackCool <= attackTimer)
+        if (hero.AttackCool <= attackTimer)
         {
             attackTimer = 0f;
-            unit.animator.SetTrigger("Attack");
+            hero.animator.SetTrigger("Attack");
         }
+
     }
 
     public void IExit()
     {
-        
+        hero.target = null;
     }
 }

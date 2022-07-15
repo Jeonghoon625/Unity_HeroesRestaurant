@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class IdleState : IState
 {
-    private Unit unit;
+    private Heros hero;
     private GameObject leftTarget;
     private GameObject rightTarget;
 
     private float leftDir;
     private float rightDir;
 
-    public void IEnter(Unit unit)
+    public void IEnter(Heros hero)
     {
-        this.unit = unit;
+        this.hero = hero;
     }
 
     public void IUpdate()
     {
-        if(unit.target == null)
+        if(hero.target == null)
         {
-            var unitPos = unit.transform.position;
+            // Raycast 鸥标 眠利
+            var unitPos = hero.transform.position;
             RaycastHit hit;
             int layerMast = (-1) - (1 << LayerMask.NameToLayer("Player"));
             if(Physics.Raycast(unitPos + Vector3.up, Vector3.left, out hit, 30f, layerMast))
@@ -30,8 +31,8 @@ public class IdleState : IState
                     leftDir = unitPos.x - hit.transform.position.x;
                     leftTarget = hit.transform.gameObject;
                     // 老馆
-                    unit.target = leftTarget;
-                    unit.m_Position = unit.target.transform.position;
+                    hero.target = leftTarget;
+                    hero.m_Position = hero.target.transform.position;
                 }
             }
 
@@ -42,8 +43,8 @@ public class IdleState : IState
                     rightDir = unitPos.x - hit.transform.position.x;
                     rightTarget = hit.transform.gameObject;
                     // 老馆
-                    unit.target = rightTarget;
-                    unit.m_Position = unit.target.transform.position;
+                    hero.target = rightTarget;
+                    hero.m_Position = hero.target.transform.position;
                 }
             }
 
@@ -51,13 +52,13 @@ public class IdleState : IState
             {
                 leftDir = Mathf.Abs(leftDir);
                 rightDir = Mathf.Abs(rightDir);
-                unit.target = leftDir < rightDir ? leftTarget : rightTarget;
-                unit.m_Position = unit.target.transform.position;
+                hero.target = leftDir < rightDir ? leftTarget : rightTarget;
+                hero.m_Position = hero.target.transform.position;
             }
 
-            if(unit.target != null)
+            if(hero.target != null)
             {
-                unit.SetState("Run");
+                hero.SetState("Run");
             }
         }
     }
