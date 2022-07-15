@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     public int hp = 100;
 
     [SerializeField]
-    private GameObject skillPrefab;
+    private float attackCool = 0.5f;
     /******************************************
      * 이동 및 적
      * ***************************************/
@@ -40,15 +40,15 @@ public class Enemy : MonoBehaviour
     {
         get { return dmg; }
     }
+    public float AttackCool
+    {
+        get { return attackCool; }
+    }
 
     private void Awake()
     {
         /*******************************************************************************/
         // 체력, 공격력 => 데이터 세이브 로드를 통하여 관리
-        /*******************************************************************************/
-
-        /*******************************************************************************/
-        // 캐릭터 생성 시 스킬 창에 스킬 버튼 추가
         /*******************************************************************************/
 
         animator = GetComponent<Animator>();
@@ -63,29 +63,6 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            //animator.SetBool("Attack", false);
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 50f))
-            {
-                if (hit.transform.tag == "Monster")
-                {
-                    // 타겟팅
-                    target = hit.transform.gameObject;
-                }
-                else
-                {
-                    target = null;
-                }
-                // 이동
-                animator.SetBool("Attack", false);
-                m_Position = hit.point;
-                SetState("Run");
-            }
-        }
-
         currentState.IUpdate();
     }
     private void FixedUpdate()
@@ -107,4 +84,48 @@ public class Enemy : MonoBehaviour
         currentState.IEnter(this);
         currentState.IUpdate();
     }
+    /******************************************
+     * 애니메이션 이벤트 공격!!
+     * ***************************************/
+    //void PerformNextSkillAction()
+    //{
+    //    if (target == null)
+    //    {
+    //        return;
+    //    }
+    //    var monster = target.GetComponent<MonsterState>();
+    //    var dir = transform.position.x - target.transform.position.x;
+    //    switch (AttackType)
+    //    {
+    //        case AttackTypes.Range:
+    //            RangeAttack(monster, dir);
+    //            break;
+    //        case AttackTypes.Melee:
+    //            MelleAttack(monster, dir);
+    //            break;
+    //    }
+    //}
+    //private void MelleAttack(MonsterState monster, float dir)
+    //{
+    //    if (monster != null)
+    //    {
+    //        if (monster.OnHit(this, Dmg) == 0)
+    //        {
+    //            SetState("Idle");
+    //        }
+    //    }
+    //}
+    //private void RangeAttack(MonsterState monster, float dir)
+    //{
+    //    if (monster != null)
+    //    {
+    //        Shoot(dir);
+    //    }
+    //}
+    //private void Shoot(float dir)
+    //{
+    //    var rot = Quaternion.identity;
+    //    rot.y = transform.rotation.y == 0 ? 180f : 0f;
+    //    Instantiate(shootPrefab, startShoot.transform.position, rot);
+    //}
 }

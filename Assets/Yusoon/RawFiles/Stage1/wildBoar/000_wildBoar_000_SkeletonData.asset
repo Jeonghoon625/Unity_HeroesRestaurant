@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: 000_wildBoar_000_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 59aad59dcb372a044ac74e8a7da1a9cf, type: 2}
+  - {fileID: 11400000, guid: 19f07b5bb2937fa47ae223932d9b5329, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: acac0547d50601c4dbc99cd42d5111af, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 0d3d03cc9a0f38847a0223cb7d9d24f1, type: 3}
   fromAnimation: []
   toAnimation: []
   duration: []
   defaultMix: 0.2
-  controller: {fileID: 9100000, guid: 4785368df034f4447b2369b8958d6ad8, type: 2}
+  controller: {fileID: 9100000, guid: b0d3b8070896e784aaaca1765b357c09, type: 2}

@@ -6,7 +6,6 @@ public interface IEnemyState
 {
     void IEnter(Enemy enemy);
     void IUpdate();
-
     void IFixedUpdate();
     void IExit();
 }
