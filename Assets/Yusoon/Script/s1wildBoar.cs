@@ -10,8 +10,8 @@ public class s1wildBoar : MonoBehaviour
     public float monsterDamage = 1;
     public float spawnTime;
 
-    private Transform target;
-    private float speed = 2f;
+    private Transform target = null;
+    private float moveSpeed = 2f;
 
 
     private void Awake()
@@ -31,6 +31,14 @@ public class s1wildBoar : MonoBehaviour
         yield return new WaitForSeconds(spawnTime);
     }
 
+    private void Update()
+    {
+        if (target != null)
+        {
+            Vector3 dir = target.position - transform.position;
+            transform.Translate(dir.normalized * moveSpeed * Time.deltaTime);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -42,6 +50,5 @@ public class s1wildBoar : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         target = null;
-
     }
 }
