@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyAttackState : IEnemyState
 {
     private Enemy enemy;
+    private float attackTimer;
     public void IEnter(Enemy enemy)
     {
         this.enemy = enemy;
-        enemy.animator.SetBool("Attack", true);
+        attackTimer = enemy.AttackCool;
     }
 
     public void IUpdate()
@@ -18,11 +19,22 @@ public class EnemyAttackState : IEnemyState
 
     public void IFixedUpdate()
     {
+        if (enemy.target == null)
+        {
+            enemy.SetState("Idle");
+        }
+
+        attackTimer += Time.deltaTime;
+        if (enemy.AttackCool <= attackTimer)
+        {
+            attackTimer = 0f;
+            enemy.animator.SetTrigger("Attack");
+        }
 
     }
 
     public void IExit()
     {
-
+        enemy.target = null;
     }
 }

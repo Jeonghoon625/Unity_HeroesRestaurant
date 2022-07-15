@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: 000_wildBoar_000_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 91428fead9c947d4aa6e8d0a15009bc7, type: 3}
+  atlasFile: {fileID: 4900000, guid: 4ba0a24b3422be6499d3536030355ea1, type: 3}
   materials:
-  - {fileID: 2100000, guid: 75a065a626ac03b4bb02ad0e6e47a42e, type: 2}
+  - {fileID: 2100000, guid: 9c32ec35f58347941873416aabeeae81, type: 2}
