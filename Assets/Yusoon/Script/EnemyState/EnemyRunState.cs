@@ -18,13 +18,11 @@ public class EnemyRunState : IEnemyState
         target = enemy.target;
         if (enemy.transform.position.x - m_Position.x > 0)
         {
-            //
             dir.x = -1f;
             enemy.transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
         }
         else
         {
-            //
             dir.x = 1f;
             enemy.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         }
@@ -34,15 +32,7 @@ public class EnemyRunState : IEnemyState
     {
         // ¿Ãµø
         var dir = enemy.transform.position.x - m_Position.x;
-        if (dir < 0.1f && dir > -0.1f)
-        {
-            enemy.SetState("Idle");
-        }
-        else
-        {
-            enemy.transform.position += this.dir * enemy.runSpeed * Time.deltaTime;
-        }
-
+        enemy.transform.position += this.dir * enemy.runSpeed * Time.deltaTime;
 
         if (target != null)
         {
@@ -52,7 +42,6 @@ public class EnemyRunState : IEnemyState
 
     public void IFixedUpdate()
     {
-
     }
 
     public void IExit()
@@ -62,7 +51,6 @@ public class EnemyRunState : IEnemyState
 
     private void OnTarget()
     {
-        /****************************************************************************************************************************/
         var cols = Physics.OverlapBox(enemy.transform.position, enemy.attackArea);
         foreach (var col in cols)
         {

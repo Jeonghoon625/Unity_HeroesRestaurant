@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: 000_wildWolf_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 163a0c60f9abefd418d8dadcce78d5db, type: 2}
+  - {fileID: 11400000, guid: 579485691755b834a909aca68f19f743, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: 6708c49b58a3b8a45a6a7919aceaacc4, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 3bec074f7c7a2fb40a1f1490f7dec60d, type: 3}
   fromAnimation: []
   toAnimation: []
   duration: []
   defaultMix: 0.2
-  controller: {fileID: 9100000, guid: 44b9fa00aa9f72b4783b3a05cf8f6e2c, type: 2}
+  controller: {fileID: 9100000, guid: e44cd6dfd8acf424aa3c56416c10994b, type: 2}

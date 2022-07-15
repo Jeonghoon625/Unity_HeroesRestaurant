@@ -21,16 +21,16 @@ public class EnemyIdleState : IEnemyState
         if (enemy.target == null)
         {
             // Raycast 鸥标 眠利
-            var unitPos = enemy.transform.position;
+            var enemyPos = enemy.transform.position;
+            
             RaycastHit hit;
-            /****************************************************************************************************************************/
+
             int layerMast = (-1) - (1 << LayerMask.NameToLayer("Monster"));
-            if (Physics.Raycast(unitPos + Vector3.up, Vector3.left, out hit, 30f, layerMast))
+            if (Physics.Raycast(enemyPos + Vector3.up, Vector3.left, out hit, 30f, layerMast))
             {
-                /****************************************************************************************************************************/
                 if (hit.transform.tag == "Hero")
                 {
-                    leftDir = unitPos.x - hit.transform.position.x;
+                    leftDir = enemyPos.x - hit.transform.position.x;
                     leftTarget = hit.transform.gameObject;
                     // 老馆
                     enemy.target = leftTarget;
@@ -38,12 +38,11 @@ public class EnemyIdleState : IEnemyState
                 }
             }
 
-            if (Physics.Raycast(unitPos + Vector3.up, Vector3.right, out hit, 30f, layerMast))
+            if (Physics.Raycast(enemyPos + Vector3.up, Vector3.right, out hit, 30f, layerMast))
             {
-                /****************************************************************************************************************************/
                 if (hit.transform.tag == "Hero")
                 {
-                    rightDir = unitPos.x - hit.transform.position.x;
+                    rightDir = enemyPos.x - hit.transform.position.x;
                     rightTarget = hit.transform.gameObject;
                     // 老馆
                     enemy.target = rightTarget;

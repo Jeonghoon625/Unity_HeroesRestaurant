@@ -14,23 +14,16 @@ public class EnemyAttackState : IEnemyState
 
     public void IUpdate()
     {
-
     }
 
     public void IFixedUpdate()
     {
-        if (enemy.target == null)
-        {
-            enemy.SetState("Idle");
-        }
-
         attackTimer += Time.deltaTime;
         if (enemy.AttackCool <= attackTimer)
         {
             attackTimer = 0f;
             enemy.animator.SetTrigger("Attack");
         }
-
     }
 
     public void IExit()
