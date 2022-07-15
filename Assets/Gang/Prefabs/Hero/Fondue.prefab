@@ -168,7 +168,7 @@ MonoBehaviour:
   speed: 3
   dmg: 3
   attackCool: 1
-  attackArea: {x: 5, y: 0, z: 0}
+  attackArea: {x: 5.5, y: 0, z: 0}
   hp: 100
   skillPrefab: {fileID: 0}
   m_Position: {x: 0, y: 0, z: 0}

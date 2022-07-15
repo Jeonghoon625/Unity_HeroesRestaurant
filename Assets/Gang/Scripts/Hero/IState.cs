@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IState
 {
-    void IEnter(Unit unit);
+    void IEnter(Heros hero);
     void IUpdate();
 
     void IFixedUpdate();

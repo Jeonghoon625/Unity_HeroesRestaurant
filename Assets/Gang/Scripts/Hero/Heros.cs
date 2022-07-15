@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Unit : MonoBehaviour
+public enum AttackTypes
 {
+    Melee,
+    Range,
+}
+public class Heros : MonoBehaviour
+{
+    [SerializeField]
+    private AttackTypes attackType;
     /******************************************
      * 상태
      * ***************************************/
@@ -28,6 +36,9 @@ public class Unit : MonoBehaviour
 
     [SerializeField]
     private GameObject skillPrefab;
+    [SerializeField]
+    private GameObject shootPrefab;
+    public GameObject startShoot;
     /******************************************
      * 이동 및 적
      * ***************************************/
@@ -45,6 +56,10 @@ public class Unit : MonoBehaviour
     public float AttackCool
     {
         get { return attackCool; }
+    }
+    public AttackTypes AttackType
+    {
+        get { return attackType; }
     }
 
     private void Awake()
@@ -70,8 +85,9 @@ public class Unit : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
+            target = null;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 50f))
@@ -80,10 +96,6 @@ public class Unit : MonoBehaviour
                 {
                     // 타겟팅
                     target = hit.transform.gameObject;
-                }
-                else
-                {
-                    target = null;
                 }
                 // 이동
                 m_Position = hit.point;
@@ -111,5 +123,49 @@ public class Unit : MonoBehaviour
         currentState = nextState;
         currentState.IEnter(this);
         currentState.IUpdate();
+    }
+    /******************************************
+     * 애니메이션 이벤트 공격!!
+     * ***************************************/
+    void PerformNextSkillAction()
+    {
+        if(target == null)
+        {
+            return;
+        }
+        var monster = target.GetComponent<MonsterState>();
+        var dir = transform.position.x - target.transform.position.x;
+        switch (AttackType)
+        {
+            case AttackTypes.Range:
+                RangeAttack(monster, dir);
+                break;
+            case AttackTypes.Melee:
+                MelleAttack(monster, dir);
+                break;
+        }
+    }
+    private void MelleAttack(MonsterState monster, float dir)
+    {
+        if (monster != null)
+        {
+            if (monster.OnHit(this, Dmg) == 0)
+            {
+                SetState("Idle");
+            }
+        }
+    }
+    private void RangeAttack(MonsterState monster, float dir)
+    {
+        if (monster != null)
+        {
+            Shoot(dir);
+        }
+    }
+    private void Shoot(float dir)
+    {
+        var rot = Quaternion.identity;
+        rot.y = transform.rotation.y == 0 ? 180f : 0f;
+        Instantiate(shootPrefab, startShoot.transform.position, rot);
     }
 }

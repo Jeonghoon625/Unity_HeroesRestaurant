@@ -4,41 +4,41 @@ using UnityEngine;
 
 public class RunState : IState
 {
-    private Unit unit;
+    private Heros hero;
     private Vector3 m_Position;
     private GameObject target;
 
     private Vector3 dir = new Vector3(0f, 0f, 0f);
-    public void IEnter(Unit unit)
+    public void IEnter(Heros hero)
     {
-        unit.animator.SetBool("Run", true);
-        this.unit = unit;
+        hero.animator.SetBool("Run", true);
+        this.hero = hero;
 
-        m_Position = unit.m_Position;
-        target = unit.target;
-        if (unit.transform.position.x - m_Position.x > 0)
+        m_Position = hero.m_Position;
+        target = hero.target;
+        if (hero.transform.position.x - m_Position.x > 0)
         {
             dir.x = -1f;
-            unit.transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
+            hero.transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
         }
         else
         {
             dir.x = 1f;
-            unit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+            hero.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         }
     }
 
     public void IUpdate()
     {
         // ¿Ãµø
-        var dis = unit.transform.position.x - m_Position.x;
-        if (dis < 0.1f && dis > -0.1f)
+        var dir = hero.transform.position.x - m_Position.x;
+        if (dir < 0.1f && dir > -0.1f)
         {
-            unit.SetState("Idle");
+            hero.SetState("Idle");
         }
         else
         {
-            unit.transform.position += dir * unit.runSpeed * Time.deltaTime;
+            hero.transform.position += this.dir * hero.runSpeed * Time.deltaTime;
         }
 
 
@@ -55,17 +55,17 @@ public class RunState : IState
 
     public void IExit()
     {
-        unit.animator.SetBool("Run", false);
+        hero.animator.SetBool("Run", false);
     }
 
     private void OnTarget()
     {
-        var cols = Physics.OverlapBox(unit.transform.position, unit.attackArea);
+        var cols = Physics.OverlapBox(hero.transform.position, hero.attackArea);
         foreach(var col in cols)
         {
             if(col.gameObject == target)
             {
-                unit.SetState("Attack");
+                hero.SetState("Attack");
             }
         }
     }
