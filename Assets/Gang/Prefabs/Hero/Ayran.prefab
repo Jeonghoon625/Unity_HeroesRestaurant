@@ -163,16 +163,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465eee2279c51814fb17f44ed603d9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackType: 0
-  prevState: 
+  curStateString: 
+  prevStateString: 
   animator: {fileID: 0}
+  attackType: 0
   speed: 3
   dmg: 3
   attackCool: 1
   attackArea: {x: 1, y: 0, z: 0}
   hp: 100
-  skillPrefab: {fileID: 2557322121503452124, guid: 46bb0d55fc420fa41a3b9780e2f392b0, type: 3}
+  skillButtonPrefab: {fileID: 2557322121503452124, guid: 46bb0d55fc420fa41a3b9780e2f392b0, type: 3}
   shootPrefab: {fileID: 0}
   startShoot: {fileID: 0}
   m_Position: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  isInvincibility: 0
