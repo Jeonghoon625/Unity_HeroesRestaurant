@@ -49,3 +49,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  isSellectSkill: 0
+  isActiveSkill: 0
+  skillAreaPrefab: {fileID: 2737741342942384132, guid: 4a44cf658033e3840bf2185d9c9eca59, type: 3}

@@ -6,38 +6,13 @@ using TMPro;
 
 public class SkillCoolTime : MonoBehaviour
 {
-    //public TextMeshProUGUI text_CoolTime;
-    //public Image image_fill;
-
-    ////private 
-    
-
-    //void Start()
-    //{
-        
-    //}
-
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.T)) { StartCoroutine(CoolTime(3f)); }
-    //}
-
-    //IEnumerator CoolTime(float cool)
-    //{
-    //    print("쿨타임?코루틴?실행");
-    //    while (cool > 1.0f)
-    //    {
-    //        cool -= Time.deltaTime;
-    //        image_fill.fillAmount = (1.0f / cool);
-    //        yield return new WaitForFixedUpdate(); 
-    //    }
-    //    print("쿨타임?코루틴?완료"); 
-    //}
-
     public Image skillFilter;
     public TextMeshProUGUI coolTimeCounter;
+    private Button button;
 
-    public float coolTime;
+    private float timer;
+    [SerializeField]
+    private float coolTime;
 
     private float currentCoolTime;
 
@@ -46,6 +21,8 @@ public class SkillCoolTime : MonoBehaviour
     private void Start()
     {
         skillFilter.fillAmount = 0;
+        timer = coolTime;
+        button = GetComponent<Button>();
     }
 
     private void Update()
@@ -60,10 +37,13 @@ public class SkillCoolTime : MonoBehaviour
     {
         if(canUseSkill)
         {
+            button.enabled = false;
+
             skillFilter.fillAmount = 1;
             StartCoroutine("Cooltime");
 
-            currentCoolTime = coolTime;
+            timer = coolTime;
+            currentCoolTime = timer;
             coolTimeCounter.text = "" + currentCoolTime;
 
             StartCoroutine("CoolTimeCounter");
@@ -76,9 +56,7 @@ public class SkillCoolTime : MonoBehaviour
     {
         while(skillFilter.fillAmount > 0)
         {
-            //skillFilter.fillAmount -= 1 * Time.smoothDeltaTime / coolTime;
-            skillFilter.fillAmount -= 1 * Time.deltaTime;
-            Debug.Log(skillFilter.fillAmount);
+            skillFilter.fillAmount -= 1 * Time.smoothDeltaTime / timer;
             yield return null;
         }
 
@@ -96,6 +74,7 @@ public class SkillCoolTime : MonoBehaviour
             currentCoolTime -= 1.0f;
             coolTimeCounter.text = "" + currentCoolTime;
         }
+        button.enabled = true;
         coolTimeCounter.text = "";
         yield break;
     }

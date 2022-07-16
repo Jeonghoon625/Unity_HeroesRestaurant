@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     public string prevState;
 
     public Animator animator;
+
+    private BoxCollider col;
     /******************************************
      * 스탯
      * ***************************************/
@@ -45,10 +47,10 @@ public class Enemy : MonoBehaviour
         get { return attackCool; }
     }
 
-     /******************************************
-     * 이벤트
-     * ***************************************/
-     
+    /******************************************
+    * 이벤트
+    * ***************************************/
+
 
     private void Awake()
     {
@@ -56,15 +58,18 @@ public class Enemy : MonoBehaviour
         // 체력, 공격력 => 데이터 세이브 로드를 통하여 관리
         /*******************************************************************************/
 
+        col = gameObject.GetComponent<BoxCollider>();
+
         animator = GetComponent<Animator>();
 
         stateMap = new Dictionary<string, IEnemyState>();
 
+        stateMap.Add("None", new EnumyNoneState());
         stateMap.Add("Idle", new EnemyIdleState());
         stateMap.Add("Run", new EnemyRunState());
         stateMap.Add("Attack", new EnemyAttackState());
 
-        SetState("Idle");
+        SetState("None");
     }
     private void Update()
     {
@@ -90,47 +95,60 @@ public class Enemy : MonoBehaviour
         currentState.IUpdate();
     }
     /******************************************
+     * 애니메이션 이벤트 생성
+     * ***************************************/
+    void Create()
+    {
+        SetState("Idle");
+    }
+
+    /******************************************
      * 애니메이션 이벤트 공격!!
      * ***************************************/
-    //void PerformNextSkillAction()
-    //{
-    //    if (target == null)
-    //    {
-    //        return;
-    //    }
-    //    var monster = target.GetComponent<MonsterState>();
-    //    var dir = transform.position.x - target.transform.position.x;
-    //    switch (AttackType)
-    //    {
-    //        case AttackTypes.Range:
-    //            RangeAttack(monster, dir);
-    //            break;
-    //        case AttackTypes.Melee:
-    //            MelleAttack(monster, dir);
-    //            break;
-    //    }
-    //}
-    //private void MelleAttack(MonsterState monster, float dir)
-    //{
-    //    if (monster != null)
-    //    {
-    //        if (monster.OnHit(this, Dmg) == 0)
-    //        {
-    //            SetState("Idle");
-    //        }
-    //    }
-    //}
-    //private void RangeAttack(MonsterState monster, float dir)
-    //{
-    //    if (monster != null)
-    //    {
-    //        Shoot(dir);
-    //    }
-    //}
-    //private void Shoot(float dir)
-    //{
-    //    var rot = Quaternion.identity;
-    //    rot.y = transform.rotation.y == 0 ? 180f : 0f;
-    //    Instantiate(shootPrefab, startShoot.transform.position, rot);
-    //}
+    void OnAttack()
+    {
+        if (target == null)
+        {
+            return;
+        }
+        var hero = target.GetComponent<Heros>();
+        MelleAttack(hero);
+    }
+    private void MelleAttack(Heros hero)
+    {
+        if (hero != null)
+        {
+            if (hero.OnHit(this, Dmg) == 0)
+            {
+                SetState("Idle");
+            }
+        }
+    }
+    /******************************************
+     * 맞은 판정
+     * ***************************************/
+    void DeadEffect()
+    {
+        // 사라질 때 이펙트
+        Destroy(gameObject);
+    }
+    public int OnHit(Heros attacker, int dmg)
+    {
+        // hp 감소
+        hp -= dmg;
+        Debug.Log(gameObject.name + " : " + dmg);
+        if (hp <= 0)
+        {
+            Dead(attacker);
+        }
+        return hp;
+    }
+    private void Dead(Heros target)
+    {
+        SetState("None");
+        animator.SetTrigger("Dead");
+        target.target = null;
+        col.enabled = false;
+        hp = 0;
+    }
 }

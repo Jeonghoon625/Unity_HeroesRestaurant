@@ -5,11 +5,13 @@ using UnityEngine;
 public class EnemyAttackState : IEnemyState
 {
     private Enemy enemy;
+    private Heros hero;
     private float attackTimer;
     public void IEnter(Enemy enemy)
     {
         this.enemy = enemy;
         attackTimer = enemy.AttackCool;
+        hero = enemy.target.GetComponent<Heros>();
     }
 
     public void IUpdate()
@@ -18,6 +20,10 @@ public class EnemyAttackState : IEnemyState
 
     public void IFixedUpdate()
     {
+        if (enemy.target == null || hero.hp == 0)
+        {
+            enemy.SetState("Idle");
+        }
         attackTimer += Time.deltaTime;
         if (enemy.AttackCool <= attackTimer)
         {

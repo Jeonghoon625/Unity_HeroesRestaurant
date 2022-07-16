@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyRunState : IEnemyState
 {
     private Enemy enemy;
+    private Heros hero;
     private Vector3 m_Position;
     private GameObject target;
 
@@ -16,6 +17,7 @@ public class EnemyRunState : IEnemyState
 
         m_Position = enemy.m_Position;
         target = enemy.target;
+        hero = target.GetComponent<Heros>();
         if (enemy.transform.position.x - m_Position.x > 0)
         {
             dir.x = -1f;
@@ -30,6 +32,11 @@ public class EnemyRunState : IEnemyState
 
     public void IUpdate()
     {
+        if(hero.hp == 0)
+        {
+            enemy.target = null;
+            enemy.SetState("Idle");
+        }
         // ¿Ãµø
         var dir = enemy.transform.position.x - m_Position.x;
         enemy.transform.position += this.dir * enemy.runSpeed * Time.deltaTime;
