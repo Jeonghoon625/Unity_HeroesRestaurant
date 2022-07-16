@@ -51,6 +51,7 @@ public class Heros : MonoBehaviour
      * 버프
      * ***************************************/
     public bool isInvincibility;                                // 무적
+    public bool isActiveSkill;                                  // 스킬 시전 중
 
     public float runSpeed
     {
@@ -88,13 +89,13 @@ public class Heros : MonoBehaviour
         stateMap.Add("Run", new RunState());
         stateMap.Add("Attack", new AttackState());
         stateMap.Add("Stun", new StunState());
-        stateMap.Add("Skill", new SkillState());
+        stateMap.Add("None", new NoneState());
 
         SetState("Idle");
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !isActiveSkill)
         {
             target = null;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -144,18 +145,18 @@ public class Heros : MonoBehaviour
         {
             return;
         }
-        var monster = target.GetComponent<MonsterState>();
+        var monsterStat = target.GetComponent<Enemy>();
         switch (AttackType)
         {
             case AttackTypes.Range:
-                RangeAttack(monster);
+                RangeAttack(monsterStat);
                 break;
             case AttackTypes.Melee:
-                MelleAttack(monster);
+                MelleAttack(monsterStat);
                 break;
         }
     }
-    private void MelleAttack(MonsterState monster)
+    private void MelleAttack(Enemy monster)
     {
         if (monster != null)
         {
@@ -165,7 +166,7 @@ public class Heros : MonoBehaviour
             }
         }
     }
-    private void RangeAttack(MonsterState monster)
+    private void RangeAttack(Enemy monster)
     {
         if (monster != null)
         {
@@ -181,9 +182,10 @@ public class Heros : MonoBehaviour
     /******************************************
      * 맞은 판정
      * ***************************************/
-    void DieEffect()
+    void DeadEffect()
     {
         // 사라질 때 이펙트
+        Destroy(gameObject);
     }
     public int OnHit(Enemy attacker, int dmg)
     {
@@ -194,6 +196,7 @@ public class Heros : MonoBehaviour
         }
         // hp 감소
         hp -= dmg;
+        Debug.Log(gameObject.name + " : " + dmg);
 
         if(hp <= 0)
         {
@@ -204,6 +207,7 @@ public class Heros : MonoBehaviour
     private void Dead(GameObject target)
     {
         animator.SetTrigger("Dead");
+        SetState("None");
         target = null;
         col.enabled = false;
         hp = 0;

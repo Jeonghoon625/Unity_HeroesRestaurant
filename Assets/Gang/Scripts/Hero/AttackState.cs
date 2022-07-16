@@ -5,12 +5,13 @@ using UnityEngine;
 public class AttackState : IState
 {
     private Heros hero;
-
+    private Enemy enemy;
     private float attackTimer;
     public void IEnter(Heros hero)
     {
         this.hero = hero;
         attackTimer = hero.AttackCool;
+        enemy = hero.target.GetComponent<Enemy>();
     }
 
     public void IUpdate()
@@ -20,7 +21,7 @@ public class AttackState : IState
 
     public void IFixedUpdate()
     {
-        if(hero.target == null)
+        if(hero.target == null || enemy.hp == 0)
         {
             hero.SetState("Idle");
         }
@@ -31,7 +32,6 @@ public class AttackState : IState
             attackTimer = 0f;
             hero.animator.SetTrigger("Attack");
         }
-
     }
 
     public void IExit()
