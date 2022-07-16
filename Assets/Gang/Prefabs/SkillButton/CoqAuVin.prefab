@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6367554839228226613}
   - component: {fileID: 5243581787738053201}
   m_Layer: 5
-  m_Name: Coq au Vin
+  m_Name: CoqAuVin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

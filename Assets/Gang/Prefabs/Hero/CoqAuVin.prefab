@@ -47,8 +47,8 @@ GameObject:
   - component: {fileID: 1355504461}
   - component: {fileID: 1022228607}
   m_Layer: 8
-  m_Name: Coq au Vin
-  m_TagString: Untagged
+  m_Name: CoqAuVin
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,16 +195,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465eee2279c51814fb17f44ed603d9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackType: 1
-  prevState: 
+  curStateString: 
+  prevStateString: 
   animator: {fileID: 0}
+  attackType: 1
   speed: 3
   dmg: 3
   attackCool: 1
   attackArea: {x: 6, y: 0, z: 0}
   hp: 100
-  skillPrefab: {fileID: 2557322121503452124, guid: 6e1624b38939f9f49baa828609aa2c32, type: 3}
+  skillButtonPrefab: {fileID: 2557322121503452124, guid: 6e1624b38939f9f49baa828609aa2c32, type: 3}
   shootPrefab: {fileID: 3654254246184495155, guid: 967e70dbf1cbcf949af3ea94a257fbae, type: 3}
   startShoot: {fileID: 69802530}
   m_Position: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  isInvincibility: 0

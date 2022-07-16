@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 9110276075606207486}
   - component: {fileID: 2004016739}
   - component: {fileID: 117952170}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Limu
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465eee2279c51814fb17f44ed603d9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackType: 0
   prevState: 
   animator: {fileID: 0}
   speed: 3
@@ -171,5 +172,7 @@ MonoBehaviour:
   attackArea: {x: 5, y: 0, z: 0}
   hp: 100
   skillPrefab: {fileID: 0}
+  shootPrefab: {fileID: 0}
+  startShoot: {fileID: 0}
   m_Position: {x: 0, y: 0, z: 0}
   target: {fileID: 0}

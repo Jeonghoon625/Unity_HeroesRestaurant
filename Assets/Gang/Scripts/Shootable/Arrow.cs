@@ -23,7 +23,6 @@ public class Arrow : ShootableObject
                 // 데미지 줘야함
                 var heros = hero.GetComponent<Heros>();
                 var dmg = heros.Dmg;
-                Debug.Log(dmg);
                 col.transform.GetComponent<MonsterState>().OnHit(heros, dmg);
 
                 Destroy(gameObject);

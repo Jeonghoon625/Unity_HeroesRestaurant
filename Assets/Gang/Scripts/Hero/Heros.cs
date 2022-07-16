@@ -11,39 +11,46 @@ public enum AttackTypes
 }
 public class Heros : MonoBehaviour
 {
-    [SerializeField]
-    private AttackTypes attackType;
     /******************************************
      * 상태
      * ***************************************/
     public Dictionary<string, IState> stateMap;
     public IState currentState;
-    public string prevState;
+
+
+    public string curStateString;
+    public string prevStateString;
 
     public Animator animator;
+
+    private BoxCollider col;
     /******************************************
-     * 스탯
+     * 스탯 및 동작
      * ***************************************/
     [SerializeField]
-    private float speed = 3f;
+    private AttackTypes attackType;                             // 공격 타입
     [SerializeField]
-    private int dmg = 3;
+    private float speed = 3f;                                   // 이동속도
     [SerializeField]
-    private float attackCool = 1f;
+    private int dmg = 3;                                        // 공격력
+    [SerializeField]
+    private float attackCool = 1f;                              // 공격 쿨타임
 
-    public Vector3 attackArea = new Vector3(1f, 0f, 0f);
-    public int hp = 100;
+    public Vector3 attackArea = new Vector3(1f, 0f, 0f);        // 공격 범위
+    public int hp = 100;                                        // 체력
 
+    public GameObject skillButtonPrefab;                        // 스킬 버튼
+    //public GameObject skillPrefab;                              // 스킬
     [SerializeField]
-    private GameObject skillPrefab;
-    [SerializeField]
-    private GameObject shootPrefab;
-    public GameObject startShoot;
+    private GameObject shootPrefab;                             // 투사체
+    public GameObject startShoot;                               // 투사체 발사 위치
+
+    public Vector3 m_Position;                                  // 목표 이동지점
+    public GameObject target;                                   // 공격 대상
     /******************************************
-     * 이동 및 적
+     * 버프
      * ***************************************/
-    public Vector3 m_Position;
-    public GameObject target;
+    public bool isInvincibility;                                // 무적
 
     public float runSpeed
     {
@@ -72,6 +79,7 @@ public class Heros : MonoBehaviour
         // 캐릭터 생성 시 스킬 창에 스킬 버튼 추가
         /*******************************************************************************/
 
+        col = gameObject.GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
 
         stateMap = new Dictionary<string, IState>();
@@ -80,6 +88,7 @@ public class Heros : MonoBehaviour
         stateMap.Add("Run", new RunState());
         stateMap.Add("Attack", new AttackState());
         stateMap.Add("Stun", new StunState());
+        stateMap.Add("Skill", new SkillState());
 
         SetState("Idle");
     }
@@ -119,33 +128,34 @@ public class Heros : MonoBehaviour
             currentState.IExit();
         }
 
+        curStateString = stateName;
         IState nextState = stateMap[stateName];
         currentState = nextState;
         currentState.IEnter(this);
         currentState.IUpdate();
     }
+    /*************************************************************** 공격 판정 수정 해줘야함 ***************************************************************/
     /******************************************
      * 애니메이션 이벤트 공격!!
      * ***************************************/
-    void PerformNextSkillAction()
+    void OnAttack()
     {
         if(target == null)
         {
             return;
         }
         var monster = target.GetComponent<MonsterState>();
-        var dir = transform.position.x - target.transform.position.x;
         switch (AttackType)
         {
             case AttackTypes.Range:
-                RangeAttack(monster, dir);
+                RangeAttack(monster);
                 break;
             case AttackTypes.Melee:
-                MelleAttack(monster, dir);
+                MelleAttack(monster);
                 break;
         }
     }
-    private void MelleAttack(MonsterState monster, float dir)
+    private void MelleAttack(MonsterState monster)
     {
         if (monster != null)
         {
@@ -155,17 +165,54 @@ public class Heros : MonoBehaviour
             }
         }
     }
-    private void RangeAttack(MonsterState monster, float dir)
+    private void RangeAttack(MonsterState monster)
     {
         if (monster != null)
         {
-            Shoot(dir);
+            Shoot();
         }
     }
-    private void Shoot(float dir)
+    private void Shoot()
     {
         var rot = Quaternion.identity;
         rot.y = transform.rotation.y == 0 ? 180f : 0f;
         Instantiate(shootPrefab, startShoot.transform.position, rot);
+    }
+    /******************************************
+     * 맞은 판정
+     * ***************************************/
+    void DieEffect()
+    {
+        // 사라질 때 이펙트
+    }
+    public int OnHit(Enemy attacker, int dmg)
+    {
+        // 무적 상태
+        if(isInvincibility)
+        {
+            return hp;
+        }
+        // hp 감소
+        hp -= dmg;
+
+        if(hp <= 0)
+        {
+            Dead(attacker.target);
+        }
+        return hp;
+    }
+    private void Dead(GameObject target)
+    {
+        animator.SetTrigger("Dead");
+        target = null;
+        col.enabled = false;
+        hp = 0;
+    }
+    /******************************************
+     * 스킬
+     * ***************************************/
+    void SkillEnd()
+    {
+        SetState(prevStateString);
     }
 }
