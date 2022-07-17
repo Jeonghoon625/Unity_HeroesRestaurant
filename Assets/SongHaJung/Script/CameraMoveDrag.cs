@@ -26,13 +26,13 @@ public class CameraMoveDrag : MonoBehaviour
     }
     void Update()
     {
-        if(!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
             DragMouseMove();
             ZoomMouseMove();
         }
-        
     }
+
     private void DragMouseMove()
     {
         if (Input.GetMouseButton(0))
