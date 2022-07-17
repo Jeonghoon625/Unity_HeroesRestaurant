@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class Item
 {
     //생성자
-    public Item(string _Type, string _Name, string _Explain, string _SpecOfEnhance, string _SpecOfLevel, string _SpecOfConten, string _Number,bool _isUsing)
+    public Item(string _Type, string _Name, string _Explain, string _SpecOfEnhance, string _SpecOfLevel, string _SpecOfConten, string _Number, bool _isUsing, string _Index)
     {
         Type = _Type;
         Name = _Name;
@@ -21,120 +21,121 @@ public class Item
         SpecOfConten = _SpecOfConten;
         Number = _Number;
         isUsing = _isUsing;
+        Index = _Index;
     }
 
-    public string Type, Name, Explain, SpecOfEnhance, SpecOfLevel, SpecOfConten, Number;
+    public string Type, Name, Explain, SpecOfEnhance, SpecOfLevel, SpecOfConten, Number, Index;
+    
     public bool isUsing;
 }
 public class GameDataManager : MonoBehaviour
 {
-
-    public TextAsset BuildingDataBase;
-    public List<Item> AllmyItemList, MyItemList, CurItemList;
-    
-    public string curType = "Building"; //메뉴창 키자마자 기본 slot 메뉴가 떠야하기때문에 building으로 설정
-    public GameObject[] Slot, UsingIamge;
-
-    public Image[] tapImage, itemImage;
-    
-    public Sprite TabIdleSprite, TabSelectSprite;
+    public TextAsset ItemDataBase;
+    public List<Item> AllItemList, MyItemList, CurItemList;
+    public string curType = "Building";
+    public GameObject[] Slot, UsingImage;
+    public Image[] TapImage, ItemImage;
     public Sprite[] ItemSprite;
     public GameObject ExplainPanel;
+    
+    public static int selectionIndex = 0;
+    //public Button getInButton, getRemoveButton;
+    //public Sprite TabIdleSprite, TapSelectSprite;
 
-
-    void Start()
+    private void Start()
     {
         //전체 아이템 리스트 불러오기
-        //엑셀로작업했기 때문에 마지막 엔터자리 없애주기 -> -1
-        int startIndex = 0;
-        string[] line = BuildingDataBase.text.Substring(startIndex, BuildingDataBase.text.Length - 1).Split("\n");
-
-        for(int i = 0; i < line.Length; i++)
+        string[] line = ItemDataBase.text.Substring(0, ItemDataBase.text.Length - 1).Split("\n");
+        for (int i = 0; i < line.Length; i++) 
         {
             string[] row = line[i].Split("\t");
-            AllmyItemList.Add(new Item(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7] == "TRUE"));
+            AllItemList.Add(new Item(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7] == "TRUE", row[8]));
         }
         Load();
-        PointerClick(0);
+        PointerClick(0); // 기본 Detail 메뉴 뜨도록
     }
-
     public void GetItemClick()
     {
         //Item curItem = MyItemList.Find(x => x.Name == Slot.text);
-        
-        //Item curItem = MyItemList.FindIndex(x => x.Number == CurItemList.Number);
-    }
-    public void RemoveItemClick()
-    {
+        Item curItem = CurItemList.Find(x => x.isUsing == true);
 
+        if (curItem != null)
+        {
+            CurItemList.Sort((p1, p2) => p1.Index.CompareTo(p2.Index));
+            Save();
+        }
+
+        selectionIndex = int.Parse(curItem.Index);
+        PlayerPrefs.SetInt("SelectedBuilding", selectionIndex);
+        //print(selectionIndex);
     }
+
+    //public void RemoveItemClick()
+    //{
+    //    Item curItem = MyItemList.Find(x => x.isUsing == true);
+    //    if (curItem != null)
+    //    {
+    //        MyItemList.Remove(curItem);
+    //    }
+    //    MyItemList.Sort((p1, p2) => p1.Index.CompareTo(p2.Index));
+    //    Save();
+    //}
     public void SlotClick(int slotNum)
     {
         Item CurItem = CurItemList[slotNum];
-        //사용중인 아이템을 찾아서CurItemOList 삽입
         Item UsingItem = CurItemList.Find(x => x.isUsing == true);
 
-        if (curType == "Building")
+        if(curType== "Building")
         {
             if(UsingItem != null)
             {
                 UsingItem.isUsing = false;
                 CurItem.isUsing = true;
             }
-
+           
         }
         else
         {
             CurItem.isUsing = !CurItem.isUsing;
-            if (UsingItem !=null)
+            if(UsingItem != null)
             {
                 UsingItem.isUsing = false;
             }
         }
         Save();
     }
-
     public void TapClick(string tapName)
     {
         //현재 아이템 리스트에 클릭한 타입만 추가
         curType = tapName;
-        CurItemList = MyItemList.FindAll(x => x.Type == tapName); //tapName의 값을 전부 가져와서 CurItemList 넣어줌
+        CurItemList = MyItemList.FindAll(x => x.Type == tapName);
 
-        //슬롯과 텍스트 보이기
-        for (int i = 0; i < Slot.Length; i++)
+        //아이템 이미지와 사용중인지 뜨도록
+        for(int i=0;i<Slot.Length;i++)
         {
+            //슬롯과 텍스트 보이기
             bool isExist = i < CurItemList.Count;
+            Slot[i].SetActive(isExist);
 
-            Slot[i].SetActive(isExist); // CurItemList갯수만큼 slot 활성화 
-
-            //Slot[i].GetComponentInChildren<TextMeshProUGUI>().text = i < CurItemList.Count ? CurItemList[i].Name + "/" + CurItemList[i].isUsing:"";
-
-            //아이템이미지와 사용중인 이미지 보이기
             if(isExist)
             {
-                //AllmyItemList 이름과 CurItemList 이름이 같다면 Itemimgae삽입
-                itemImage[i].sprite = ItemSprite[AllmyItemList.FindIndex(x => x.Name == CurItemList[i].Name)];
-
-                UsingIamge[i].SetActive(CurItemList[i].isUsing);
+                ItemImage[i].sprite = ItemSprite[AllItemList.FindIndex(x => x.Name == CurItemList[i].Name)];
+                UsingImage[i].SetActive(CurItemList[i].isUsing);
             }
         }
-
         //탭이미지
-
         int tabNum = 0;
-
-        switch (tapName)
+        switch(tapName)
         {
-            case "Building": tabNum = 0; break;
-            case "FrontFurniture": tabNum = 1; break;
-            case "BackFurniture": tabNum = 2; break;
+            case "Building" :tabNum = 0;break;
+            case "FrontFurniture": tabNum = 1;break;
+            case "BackFurniture": tabNum = 2;break;
         }
-        //탭이미지
-        //for (int i = 0; i < tapImage.Length; i++)
+        
+        //for (int i = 0; i < TapImage.Length; i++)
         //{
-        //    tapImage[i].sprite = i == tabNum ? TabSelectSprite : TabIdleSprite;
+        //    TapImage[i].sprite = i == tabNum ? TapSelectSprite : TabIdleSprite;
         //}
-
     }
     public void PointerClick(int slotNum)
     {
@@ -145,30 +146,20 @@ public class GameDataManager : MonoBehaviour
         ExplainPanel.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = CurItemList[slotNum].SpecOfEnhance;
         ExplainPanel.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = CurItemList[slotNum].SpecOfLevel;
         ExplainPanel.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = CurItemList[slotNum].SpecOfConten;
-       
+
     }
 
-    //public void PointerUp(int slotNum)
-    //{
-       
-    //    ExplainPanel.SetActive(false);
-    //}
     void Save()
-    {
-        string jdata = JsonConvert.SerializeObject(MyItemList); //AllmyList가 List형식이기 때문에 SerializeObject로 직렬화 -> 한줄로 나옴
-
-        //내폴더에 저장
+    { 
+        string jdata = JsonConvert.SerializeObject(MyItemList); 
         File.WriteAllText(Application.dataPath + "/SongHaJung/BuildingData.txt", jdata); //text 저장
 
         TapClick(curType);
     }
-
-
-    //Load는 Save와 반대 구조로 구현
     void Load()
     {
         string jdata = File.ReadAllText(Application.dataPath + "/SongHaJung/BuildingData.txt");
-        MyItemList = JsonConvert.DeserializeObject<List<Item>>(jdata); // 역직렬화 -> Json형식을 list형식으로 빼줌
+        MyItemList = JsonConvert.DeserializeObject<List<Item>>(jdata);
 
         TapClick(curType);
     }
