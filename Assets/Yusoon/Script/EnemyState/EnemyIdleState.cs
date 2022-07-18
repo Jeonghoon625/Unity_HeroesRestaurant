@@ -34,7 +34,6 @@ public class EnemyIdleState : IEnemyState
                     leftTarget = hit.transform.gameObject;
                     // 일반
                     enemy.target = leftTarget;
-                    enemy.m_Position = enemy.target.transform.position;
                 }
             }
 
@@ -46,7 +45,6 @@ public class EnemyIdleState : IEnemyState
                     rightTarget = hit.transform.gameObject;
                     // 일반
                     enemy.target = rightTarget;
-                    enemy.m_Position = enemy.target.transform.position;
                 }
             }
 
@@ -55,7 +53,6 @@ public class EnemyIdleState : IEnemyState
                 leftDir = Mathf.Abs(leftDir);
                 rightDir = Mathf.Abs(rightDir);
                 enemy.target = leftDir < rightDir ? leftTarget : rightTarget;
-                enemy.m_Position = enemy.target.transform.position;
             }
 
             if (enemy.target != null)

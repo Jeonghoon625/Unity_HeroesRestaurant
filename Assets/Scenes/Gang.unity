@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 346817270}
   m_Layer: 0
   m_Name: BattleManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillManager: {fileID: 2322842550712715423, guid: 2bf0568dfa968f849af0deb9698638e4, type: 3}
+  HeroCount: 0
+  VictoryUI: {fileID: 1384737525470407326, guid: 51e18a1760c09ec408558c0141b77418, type: 3}
+  DefeatUI: {fileID: 1384737525470407326, guid: b514ddf2f2ad9e04dadef193d57b2f66, type: 3}
 --- !u!1 &417198354
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,16 +452,8 @@ PrefabInstance:
       value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 574714549, guid: 56cc97726128a3f46b28373cc7e62418, type: 3}
-      propertyPath: speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1718585137, guid: 56cc97726128a3f46b28373cc7e62418, type: 3}
-      propertyPath: m_Size.y
-      value: -9.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 1718585137, guid: 56cc97726128a3f46b28373cc7e62418, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+      propertyPath: dmg
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1511299017338005648, guid: 56cc97726128a3f46b28373cc7e62418, type: 3}
       propertyPath: m_RootOrder
@@ -511,10 +506,6 @@ PrefabInstance:
     - target: {fileID: 1511299017338005661, guid: 56cc97726128a3f46b28373cc7e62418, type: 3}
       propertyPath: m_Name
       value: Ayran
-      objectReference: {fileID: 0}
-    - target: {fileID: 1511299017338005661, guid: 56cc97726128a3f46b28373cc7e62418, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56cc97726128a3f46b28373cc7e62418, type: 3}
@@ -620,7 +611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8734886078376390246, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
@@ -751,15 +742,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1022228607, guid: 55a6032e69a4e8d4eb1566fd5a2536e5, type: 3}
       propertyPath: hp
-      value: 1
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022228607, guid: 55a6032e69a4e8d4eb1566fd5a2536e5, type: 3}
+      propertyPath: dmg
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3371376095778415760, guid: 55a6032e69a4e8d4eb1566fd5a2536e5, type: 3}
       propertyPath: m_Name
       value: CoqAuVin
-      objectReference: {fileID: 0}
-    - target: {fileID: 3371376095778415760, guid: 55a6032e69a4e8d4eb1566fd5a2536e5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3371376095778415764, guid: 55a6032e69a4e8d4eb1566fd5a2536e5, type: 3}
       propertyPath: m_Mesh

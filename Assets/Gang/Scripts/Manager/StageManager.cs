@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleManager : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
+    /******************************************
+     * 스킬 관리
+     * ***************************************/
     public SkillManager skillManager;
     private GameObject skillArea;
+    /******************************************
+     * 스테이지 성공, 실패 여부 확인
+     * ***************************************/
+    private bool stageEnd = false;
+    public int HeroCount;
+    public GameObject VictoryUI;
+    public GameObject DefeatUI;
+
     private void Awake()
     {
         skillManager.isSellectSkill = false;
@@ -14,8 +25,25 @@ public class BattleManager : MonoBehaviour
     }
     private void Update()
     {
+        if(stageEnd && Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("메인 메뉴로");
+
+            // 메인 씬으로 이동... GameManager.Instance.SceneChange("");
+        }
         /***************************************************
-         * 스킬 시전 중 슬로우 모션
+         * 스테이지 테스트
+         * ************************************************/
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Victory();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Defeat();
+        }
+        /***************************************************
+         * 스킬 관리
          * ************************************************/
         if (skillManager.isSellectSkill)
         {
@@ -38,7 +66,7 @@ public class BattleManager : MonoBehaviour
                 if (Input.GetMouseButtonUp(0))
                 {
                     var skillAreaRender = skillArea.GetComponentsInChildren<SpriteRenderer>();
-                    foreach(SpriteRenderer ren in skillAreaRender)
+                    foreach (SpriteRenderer ren in skillAreaRender)
                     {
                         ren.enabled = false;
                     }
@@ -74,10 +102,29 @@ public class BattleManager : MonoBehaviour
                     Destroy(skillArea);
                     break;
             }
-            yield break;
         }
-        /***************************************************
-         * 
-         * ************************************************/
+    }
+    /***************************************************
+     * 성공
+     * ************************************************/
+    public void Victory()
+    {
+        Instantiate(VictoryUI).transform.SetParent(GameObject.Find("Canvas").transform, false);
+        stageEnd = true;
+
+        // 영웅들 애니메이션 변경.... SetTrigger("Clear");
+        // GameManager에게 보상 전달
+    }
+    /***************************************************
+     * 실패
+     * ************************************************/
+    public void Defeat()
+    {
+        if (--HeroCount == 0)
+        {
+            Instantiate(DefeatUI).transform.SetParent(GameObject.Find("Canvas").transform, false);
+            stageEnd = true;
+        }
+        Debug.Log("HeroCount : " + HeroCount);
     }
 }

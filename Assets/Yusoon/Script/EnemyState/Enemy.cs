@@ -23,7 +23,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int dmg = 3;
 
-    public Vector3 attackArea = new Vector3(1f, 0f, 0f);
+    public float attackAreaX;
+    public Vector3 attackArea;
     public int hp = 100;
 
     [SerializeField]
@@ -31,7 +32,6 @@ public class Enemy : MonoBehaviour
     /******************************************
      * 이동 및 적
      * ***************************************/
-    public Vector3 m_Position;
     public GameObject target;
 
     public float runSpeed
@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
         /*******************************************************************************/
 
         col = gameObject.GetComponent<BoxCollider>();
+        col.enabled = false;
 
         animator = GetComponent<Animator>();
 
@@ -70,6 +71,10 @@ public class Enemy : MonoBehaviour
         stateMap.Add("Attack", new EnemyAttackState());
 
         SetState("None");
+    }
+    private void Start()
+    {
+        attackArea = new Vector3(attackAreaX, 0f, 0f);
     }
     private void Update()
     {
@@ -99,6 +104,7 @@ public class Enemy : MonoBehaviour
      * ***************************************/
     void Create()
     {
+        col.enabled = true;
         SetState("Idle");
     }
 
