@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     /******************************************
     * ¿Ã∫•∆Æ
     * ***************************************/
-
+    public event System.Action OnDeath;
 
     private void Awake()
     {
@@ -149,5 +149,8 @@ public class Enemy : MonoBehaviour
         target.target = null;
         col.enabled = false;
         hp = 0;
+
+        if (OnDeath != null)
+            OnDeath();
     }
 }

@@ -168,7 +168,7 @@ MonoBehaviour:
   speed: 3
   dmg: 3
   attackArea: {x: 2, y: 0, z: 0}
-  hp: 100
+  hp: 6
   attackCool: 1
   m_Position: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
