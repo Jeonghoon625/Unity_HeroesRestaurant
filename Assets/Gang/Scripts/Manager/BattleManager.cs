@@ -25,26 +25,56 @@ public class BattleManager : MonoBehaviour
                 skillManager.isActiveSkill = true;
             }
 
-            if(skillManager.isActiveSkill)
+            if (skillManager.isActiveSkill)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
+                var pos = Vector3.zero;
                 if (Physics.Raycast(ray, out hit, 50f))
                 {
-                    var pos = Vector3.zero;
                     pos.x = hit.point.x;
                     skillArea.transform.position = pos;
                 }
-
                 if (Input.GetMouseButtonUp(0))
                 {
-                    skillManager.CoqAuVin();
-                    Destroy(skillArea);
+                    var skillAreaRender = skillArea.GetComponentsInChildren<SpriteRenderer>();
+                    foreach(SpriteRenderer ren in skillAreaRender)
+                    {
+                        ren.enabled = false;
+                    }
+                    skillManager.AreaSkill(skillManager.taker, pos);
                     skillManager.isActiveSkill = false;
                     skillManager.isSellectSkill = false;
-                    Time.timeScale = 1f;
+
+                    StartCoroutine(Delay());
                 }
             }
+        }
+        /***************************************************
+         * 스킬 시전 딜레이
+         * ************************************************/
+        IEnumerator Delay()
+        {
+            yield return new WaitForSeconds(1f);
+
+            var cols = Physics.OverlapBox(skillArea.transform.position, skillArea.transform.localScale);
+            List<GameObject> lists = new List<GameObject>();
+            foreach (var col in cols)
+            {
+                if (col.gameObject.tag == "Monster")
+                {
+                    lists.Add(col.gameObject);
+                }
+            }
+            //
+            switch (skillManager.taker)
+            {
+                case "CoqAuVin":
+                    skillManager.CoqAuVinAttack(lists);
+                    Destroy(skillArea);
+                    break;
+            }
+            yield break;
         }
         /***************************************************
          * 
