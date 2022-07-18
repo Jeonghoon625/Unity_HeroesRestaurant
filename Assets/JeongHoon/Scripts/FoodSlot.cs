@@ -16,10 +16,6 @@ public class FoodSlot : MonoBehaviour
     {
         image = GetComponent<Image>();
         image.sprite = sprite;
-
-        Debug.Log(id);
-        Debug.Log(title);
-        Debug.Log(explanation);
     }
 
     public void OnClick()
