@@ -136,7 +136,6 @@ public class Enemy : MonoBehaviour
     {
         // hp °¨¼Ò
         hp -= dmg;
-        Debug.Log(gameObject.name + " : " + dmg);
         if (hp <= 0)
         {
             Dead(attacker);

@@ -15,7 +15,7 @@ public class BattleManager : MonoBehaviour
     private void Update()
     {
         /***************************************************
-         * 스킬 시전 중
+         * 스킬 시전 중 슬로우 모션
          * ************************************************/
         if (skillManager.isSellectSkill)
         {
@@ -46,5 +46,8 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
+        /***************************************************
+         * 
+         * ************************************************/
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum Skill
+enum SkillParticle
 {
     Ayran = 0,
     CoqAuVin = 1,
@@ -37,7 +37,7 @@ public class SkillManager : MonoBehaviour
             hero.isInvincibility = true;
             var pos = hero.transform.position;
             pos.y += yPosUp;
-            Instantiate(heroSkills[(int)Skill.Ayran], pos, hero.transform.rotation).transform.parent = hero.transform;
+            Instantiate(heroSkills[(int)SkillParticle.Ayran], pos, hero.transform.rotation).transform.parent = hero.transform;
         }
     }
     /******************************************
@@ -73,5 +73,16 @@ public class SkillManager : MonoBehaviour
     {
         isSellectSkill = true;
         Time.timeScale = 0.2f;
+    }
+
+    public void AreaSkill(string str)
+    {
+        switch(str)
+        {
+            case "CoqAuVin":
+                CoqAuVin();
+                break;
+
+        }
     }
 }

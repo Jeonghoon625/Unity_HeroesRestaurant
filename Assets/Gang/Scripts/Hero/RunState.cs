@@ -15,9 +15,13 @@ public class RunState : IState
         hero.animator.SetBool("Run", true);
         this.hero = hero;
 
+
         m_Position = hero.m_Position;
         target = hero.target;
-        enemy = target.GetComponent<Enemy>();
+        if (hero.target != null)
+        {
+            enemy = target.GetComponent<Enemy>();
+        }
         if (hero.transform.position.x - m_Position.x > 0)
         {
             dir.x = -1f;
@@ -32,7 +36,7 @@ public class RunState : IState
 
     public void IUpdate()
     {
-        if (enemy.hp == 0)
+        if (hero.target != null && enemy.hp == 0)
         {
             hero.target = null;
             hero.SetState("Idle");
