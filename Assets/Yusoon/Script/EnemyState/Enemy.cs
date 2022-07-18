@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     /******************************************
     * 이벤트
     * ***************************************/
-
+    public event System.Action OnDeath;
 
     private void Awake()
     {
@@ -136,7 +136,6 @@ public class Enemy : MonoBehaviour
     {
         // hp 감소
         hp -= dmg;
-        Debug.Log(gameObject.name + " : " + dmg);
         if (hp <= 0)
         {
             Dead(attacker);
@@ -150,5 +149,8 @@ public class Enemy : MonoBehaviour
         target.target = null;
         col.enabled = false;
         hp = 0;
+
+        if (OnDeath != null)
+            OnDeath();
     }
 }

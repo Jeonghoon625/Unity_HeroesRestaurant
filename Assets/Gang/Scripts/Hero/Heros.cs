@@ -51,7 +51,7 @@ public class Heros : MonoBehaviour
      * 버프
      * ***************************************/
     public bool isInvincibility;                                // 무적
-    public bool isActiveSkill;                                  // 스킬 시전 중
+    public bool doneMove;                                  // 스킬 시전 중
 
     public float runSpeed
     {
@@ -95,7 +95,7 @@ public class Heros : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !isActiveSkill)
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !doneMove)
         {
             target = null;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -196,7 +196,6 @@ public class Heros : MonoBehaviour
         }
         // hp 감소
         hp -= dmg;
-        Debug.Log(gameObject.name + " : " + dmg);
 
         if(hp <= 0)
         {
@@ -211,6 +210,7 @@ public class Heros : MonoBehaviour
         target = null;
         col.enabled = false;
         hp = 0;
+        doneMove = true;
     }
     /******************************************
      * 스킬

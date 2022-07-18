@@ -23,6 +23,7 @@ public class SkillCoolTime : MonoBehaviour
         skillFilter.fillAmount = 0;
         timer = coolTime;
         button = GetComponent<Button>();
+        UseSkill();
     }
 
     private void Update()
