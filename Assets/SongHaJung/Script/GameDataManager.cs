@@ -37,23 +37,34 @@ public class GameDataManager : MonoBehaviour
     public Image[] TapImage, ItemImage;
     public Sprite[] ItemSprite;
     public GameObject ExplainPanel;
-    
-    public static int selectionIndex = 0;
-    //public Button getInButton, getRemoveButton;
-    //public Sprite TabIdleSprite, TapSelectSprite;
+    public MainMenu main;
+
+    public ModelsCreation modelContainer;
+
+    public static int selectionIndex;
+
+  
 
     private void Start()
     {
+        int startIndex = 0;
         //전체 아이템 리스트 불러오기
-        string[] line = ItemDataBase.text.Substring(0, ItemDataBase.text.Length - 1).Split("\n");
+        string[] line = ItemDataBase.text.Substring(startIndex, ItemDataBase.text.Length - 1).Split("\n");
         for (int i = 0; i < line.Length; i++) 
         {
             string[] row = line[i].Split("\t");
             AllItemList.Add(new Item(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7] == "TRUE", row[8]));
         }
+        
         Load();
-        PointerClick(0); // 기본 Detail 메뉴 뜨도록
+        PointerClick(0);
+        ExplainPanel.SetActive(true);
+     
+
+
     }
+
+    //배치눌렀을때
     public void GetItemClick()
     {
         //Item curItem = MyItemList.Find(x => x.Name == Slot.text);
@@ -61,13 +72,29 @@ public class GameDataManager : MonoBehaviour
 
         if (curItem != null)
         {
+
             CurItemList.Sort((p1, p2) => p1.Index.CompareTo(p2.Index));
             Save();
         }
 
         selectionIndex = int.Parse(curItem.Index);
-        PlayerPrefs.SetInt("SelectedBuilding", selectionIndex);
-        //print(selectionIndex);
+        ShowItemInMain();
+
+    }
+
+    public void ShowItemInMain()
+    {
+        main.BuildingOnMain();
+        modelContainer.Update();
+
+
+        Save();
+    }
+
+    public void EndBuilding()
+    {
+        
+        Load();
     }
 
     //public void RemoveItemClick()
@@ -80,6 +107,7 @@ public class GameDataManager : MonoBehaviour
     //    MyItemList.Sort((p1, p2) => p1.Index.CompareTo(p2.Index));
     //    Save();
     //}
+
     public void SlotClick(int slotNum)
     {
         Item CurItem = CurItemList[slotNum];
@@ -139,7 +167,7 @@ public class GameDataManager : MonoBehaviour
     }
     public void PointerClick(int slotNum)
     {
-        ExplainPanel.SetActive(true);
+       
         ExplainPanel.GetComponentInChildren<TextMeshProUGUI>().text = CurItemList[slotNum].Explain;
         ExplainPanel.transform.GetChild(2).GetComponentInChildren<Image>().sprite = Slot[slotNum].transform.GetChild(0).GetComponent<Image>().sprite;
         //ExplainPanel.transform.GetChild(2).GetComponentInChildren<Image>().sprite = Slot[slotNum].transform.GetComponent<Image>().sprite; 

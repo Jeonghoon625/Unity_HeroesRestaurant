@@ -6,13 +6,10 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject cookStore, enhance, heroes, building, Blur, buttons;
-    
-    public List<GameObject> Buidingall;
-
-
+   
     private void Start()
     {
-       
+        
     }
 
     public void OnclickSystem()
@@ -32,11 +29,6 @@ public class MainMenu : MonoBehaviour
         Blur.SetActive(false);
         building.SetActive(false);
 
-        GameDataManager.selectionIndex = PlayerPrefs.GetInt("SelectedBuilding");
-        Debug.Log(GameDataManager.selectionIndex);
-        GameObject prefab = Buidingall[GameDataManager.selectionIndex];
-        //GameObject clone = Instantiate(prefab, spwnPoint.position, Quaternion.identity);
-        
 
     }
     public void OnClickCookStore()

@@ -9,7 +9,7 @@ public class CameraMoveDrag : MonoBehaviour
     private float movespeed = 0.01f;
     private float wheelspeed = 0.01f;
 
-    private float limitY = 0.025f;
+    private float limitY = 0.035f;
     private float limitZ = -0.1f;
 
     private float verticalPosition = 0.45f;
