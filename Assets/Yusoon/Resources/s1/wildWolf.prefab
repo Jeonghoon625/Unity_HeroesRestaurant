@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 8900304003143110692}
   - component: {fileID: 4345294620634015476}
   - component: {fileID: 4128296019164284006}
-  m_Layer: 0
+  - component: {fileID: 1516233061}
+  - component: {fileID: 1516233060}
+  m_Layer: 7
   m_Name: wildWolf
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,3 +138,37 @@ MonoBehaviour:
   translator:
     autoReset: 1
     layerMixModes: 00000000
+--- !u!65 &1516233061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308874914376139751}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.161018, y: 6.8254, z: 0}
+  m_Center: {x: -0.5394826, y: 3.2106907, z: 0}
+--- !u!114 &1516233060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308874914376139751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecd99c5aa74e42489d0c6a4220af8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prevState: 
+  animator: {fileID: 4345294620634015476}
+  speed: 3
+  dmg: 3
+  attackArea: {x: 2, y: 0, z: 0}
+  hp: 100
+  attackCool: 1
+  m_Position: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
