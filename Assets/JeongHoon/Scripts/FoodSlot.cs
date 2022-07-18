@@ -10,7 +10,9 @@ public class FoodSlot : MonoBehaviour
     public string explanation;
     public Sprite sprite;
 
-    private Image image;
+    public Image image;
+
+    public List<int> currencyList;
 
     private void Start()
     {

@@ -11,6 +11,10 @@ public class CookManager : MonoBehaviour
     public GameObject foodPrefab;
     public GameObject currencyPrefab;
 
+    public List<FoodSlot> foodSlots = new List<FoodSlot>();
+    public List<CurrencySlot> currencySlots = new List<CurrencySlot>();
+
+
     private void Awake()
     {
         Init();
@@ -23,7 +27,7 @@ public class CookManager : MonoBehaviour
 
     private void Init()
     {
-        resourceMgr.LoadCurrency(currencySection, currencyPrefab);
-        resourceMgr.LoadFood(foodSection, foodPrefab);
+        resourceMgr.Init(this);
+        resourceMgr.Load(currencySection, currencyPrefab, foodSection, foodPrefab);
     }
 }
