@@ -1,25 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
 
     public GameObject cookStore, enhance, heroes, building, Blur, buttons;
-    public Button checkbutton,backbutton;
+   
     private void Start()
     {
-        checkbutton.gameObject.SetActive(false);
-        backbutton.gameObject.SetActive(false);
+        
     }
 
     public void OnclickSystem()
     {
         buttons.SetActive(false);
         Blur.SetActive(true);
-
-
     }
 
     public void BackclickSystem()
@@ -33,9 +29,6 @@ public class MainMenu : MonoBehaviour
         Blur.SetActive(false);
         building.SetActive(false);
 
-
-        checkbutton.gameObject.SetActive(true);
-        backbutton.gameObject.SetActive(true);
 
     }
     public void OnClickCookStore()
@@ -55,10 +48,7 @@ public class MainMenu : MonoBehaviour
     public void OnClickBuilding()
     {
         OnclickSystem();
-        building.SetActive(true);
-
-        checkbutton.gameObject.SetActive(false);
-        backbutton.gameObject.SetActive(false);
+        building.SetActive(true);   
     }
     public void OnClickBuildingBack()
     {

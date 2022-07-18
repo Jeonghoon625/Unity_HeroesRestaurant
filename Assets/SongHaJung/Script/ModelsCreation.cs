@@ -9,6 +9,8 @@ public class ModelsCreation : MonoBehaviour
 
     void Start()
     {
+
+        GameDataManager.selectionIndex = 0;
         Models = new List<GameObject>();
 
         foreach (Transform t in transform)
@@ -30,7 +32,7 @@ public class ModelsCreation : MonoBehaviour
     public void Select(int index)
     {
 
-        //if (index < 0 || index >= Models.Count)
+        //if (index < 0 || index >= Models.Count) 
         //{
         //    return;
         //}
@@ -40,11 +42,16 @@ public class ModelsCreation : MonoBehaviour
         //    return;
         //}
 
+        if (index < 2)
+        {
+            Models[GameDataManager.selectionIndex].SetActive(false);
+        }
+
         
-        //Models[GameDataManager.selectionIndex].SetActive(false);
-        //GameDataManager.selectionIndex = index;
         Models[GameDataManager.selectionIndex].SetActive(true);
         Datamanager.EndBuilding();
+
+
 
     }
 
