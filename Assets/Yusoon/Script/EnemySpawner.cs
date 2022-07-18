@@ -8,10 +8,10 @@ public class EnemySpawner : MonoBehaviour
     public Enemy enemy;
 
     private Wave currentWave;
-    private int currentWaveNumber;
+    private int currentWaveNumber;      //현재 몇 번째 웨이브인지.
 
-    private int monsterRemains;
-    private int enemyRemainingAlive;
+    private int monsterRemains;          //소환 되어야하는 몬스터
+    private int enemyRemainingAlive;    //남아있는 몬스터
 
     private void Start()
     {
@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
         {
             currentWave = waves[currentWaveNumber - 1];
 
-            monsterRemains = currentWave.enemys.Count;
+            monsterRemains = currentWave.enemies.Count;
             enemyRemainingAlive = monsterRemains;
 
             for(int i = 0; i < monsterRemains; i++)
@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
                     rot.y = 0f;
                 }
 
-                Enemy spawnedEnemy = Instantiate(currentWave.enemys[i], pos, rot);
+                Enemy spawnedEnemy = Instantiate(currentWave.enemies[i], pos, rot);
                 spawnedEnemy.OnDeath += OnEnemyDeath;
             }
         }
@@ -61,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
     [System.Serializable]
    public class Wave
     {
-        public List<Enemy> enemys = new List<Enemy>();
+        public List<Enemy> enemies = new List<Enemy>();
         public List<Vector3> pos = new List<Vector3>();
     }
 }
