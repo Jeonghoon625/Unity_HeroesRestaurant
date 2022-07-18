@@ -20,6 +20,7 @@ public class FoodSlot : MonoBehaviour
         image.sprite = sprite;
     }
 
+    /*
     public void OnClick()
     {
         GameObject infoPanel = GameObject.FindGameObjectWithTag("FoodInfoPanel");
@@ -28,4 +29,6 @@ public class FoodSlot : MonoBehaviour
             infoPanel.GetComponent<InformationLoadManager>().ShowInfo();
         }
     }
+    */
+
 }

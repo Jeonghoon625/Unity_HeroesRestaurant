@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using TMPro;
 
 public class InformationLoadManager : MonoBehaviour
 {
-    public CookManager cookManager;
-
     public TextMeshProUGUI title;
     public TextMeshProUGUI explanation;
     public Image image;
 
     public GameObject[] RecipeCurrencySection;
 
-    private void Start()
+    public void Init()
     {
         for (int i = 0; i < RecipeCurrencySection.Length; i++)
         {
@@ -23,10 +20,9 @@ public class InformationLoadManager : MonoBehaviour
         }
     }
 
-    public void ShowInfo()
+    public void ShowInfo(FoodSlot selectSlot, CookManager cookManager)
     {
-        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
-        FoodSlot slotInfo = clickObject.GetComponent<FoodSlot>();
+        FoodSlot slotInfo = selectSlot;
 
         if (slotInfo != null)
         {

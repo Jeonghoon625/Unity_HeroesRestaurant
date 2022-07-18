@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourceManager
 {
@@ -61,6 +62,7 @@ public class ResourceManager
             slot.title = title;
             slot.explanation = explanation;
             slot.sprite = sprite;
+            slot.GetComponent<Button>().onClick.AddListener(() => SelectFood(slot));
             cookManager.foodSlots.Add(slot);
         }
     }
@@ -81,5 +83,11 @@ public class ResourceManager
                 cookManager.foodSlots[foodId].currencyList.Add(currencyCount);
             }
         }
+    }
+
+    public void SelectFood(FoodSlot slot)
+    {
+        cookManager.selectFood = slot;
+        cookManager.infoMgr.ShowInfo(slot,cookManager);
     }
 }
