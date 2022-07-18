@@ -11,7 +11,10 @@ public class EnemyAttackState : IEnemyState
     {
         this.enemy = enemy;
         attackTimer = enemy.AttackCool;
-        hero = enemy.target.GetComponent<Heros>();
+        if(enemy.target != null)
+        {
+            hero = enemy.target.GetComponent<Heros>();
+        }
     }
 
     public void IUpdate()
