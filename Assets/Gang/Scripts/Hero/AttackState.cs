@@ -11,7 +11,10 @@ public class AttackState : IState
     {
         this.hero = hero;
         attackTimer = hero.AttackCool;
-        enemy = hero.target.GetComponent<Enemy>();
+        if (hero.target != null)
+        {
+            enemy = hero.target.GetComponent<Enemy>();
+        }
     }
 
     public void IUpdate()
@@ -21,7 +24,7 @@ public class AttackState : IState
 
     public void IFixedUpdate()
     {
-        if(hero.target == null || enemy.hp == 0)
+        if (hero.target == null || enemy.hp == 0)
         {
             hero.SetState("Idle");
         }

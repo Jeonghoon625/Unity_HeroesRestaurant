@@ -196,7 +196,6 @@ public class Heros : MonoBehaviour
         }
         // hp °¨¼Ò
         hp -= dmg;
-        Debug.Log(gameObject.name + " : " + dmg);
 
         if(hp <= 0)
         {
