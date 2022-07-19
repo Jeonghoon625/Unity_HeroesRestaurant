@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CurrencySlot : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class CurrencySlot : MonoBehaviour
 
     public GameObject imageGO;
     public Image image;
+
+    public TextMeshProUGUI reserveText;
 
     private void Start()
     {

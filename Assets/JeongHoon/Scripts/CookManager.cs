@@ -15,6 +15,10 @@ public class CookManager : MonoBehaviour
     public List<FoodSlot> foodSlots = new List<FoodSlot>();
     public List<CurrencySlot> currencySlots = new List<CurrencySlot>();
 
+    public List<int> currencyReserve = new List<int>();
+    public List<int> foodReserve = new List<int>();
+
+
     public FoodSlot selectFood;
 
     private void Awake()
