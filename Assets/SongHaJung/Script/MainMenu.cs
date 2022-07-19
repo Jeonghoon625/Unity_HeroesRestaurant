@@ -6,12 +6,20 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 
-    public GameObject cookStore, enhance, heroes, building, Blur, buttons;
+    public GameObject cookStore, building, Blur, buttons, Story;
     public Button backbutton;
 
     private void Start()
     {
         backbutton.gameObject.SetActive(false);
+        Story.SetActive(false);
+        //cookStore.SetActive(false);
+        
+    }
+
+    public void SceneChange()
+    {
+        GameManager.Instance.GoBattleScene();
     }
 
     public void OnclickSystem()
@@ -20,12 +28,27 @@ public class MainMenu : MonoBehaviour
         Blur.SetActive(true);
         backbutton.gameObject.SetActive(false);
     }
+    public void OnclickStory()
+    {
+        Story.SetActive(true);
+        Blur.SetActive(true);
+        buttons.SetActive(false);
+    }
+    public void OnclickCook()
+    {
+        //cookStore.SetActive(true);
+        Blur.SetActive(true);
+        buttons.SetActive(false);
+    }
 
 
     public void BackclickSystem()
     {
         buttons.SetActive(true);
         Blur.SetActive(false);
+
+        Story.gameObject.SetActive(false);
+        //cookStore.SetActive(false);
 
         backbutton.gameObject.SetActive(false);
     }
@@ -37,21 +60,11 @@ public class MainMenu : MonoBehaviour
 
         backbutton.gameObject.SetActive(true);
        
-
-
     }
+
     public void OnClickCookStore()
     {
         cookStore.SetActive(true);
-    }
-
-    public void OnClickEnhance()
-    {
-        enhance.SetActive(true);
-    }
-    public void OnClickHeroes()
-    {
-        heroes.SetActive(true);
     }
  
     public void OnClickBuilding()
@@ -62,7 +75,11 @@ public class MainMenu : MonoBehaviour
     }
     public void OnClickBuildingBack()
     {
-        BackclickSystem();
+        buttons.SetActive(true);
+        Blur.SetActive(false);
+
+        backbutton.gameObject.SetActive(false);
+
         building.SetActive(false);
         
     }
