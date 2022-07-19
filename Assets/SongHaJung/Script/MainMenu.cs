@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 
-    public GameObject cookStore, building, Blur, buttons, Story;
+    public GameObject  building, Blur, buttons;
     public Button backbutton;
 
     private void Start()
     {
         backbutton.gameObject.SetActive(false);
-        Story.SetActive(false);
-        cookStore.SetActive(false);
+        
         
     }
 
@@ -30,7 +29,7 @@ public class MainMenu : MonoBehaviour
     }
     public void OnclickStory()
     {
-        Story.SetActive(true);
+        
         Blur.SetActive(true);
         buttons.SetActive(false);
     }
@@ -48,8 +47,7 @@ public class MainMenu : MonoBehaviour
         buttons.SetActive(true);
         Blur.SetActive(false);
 
-        Story.gameObject.SetActive(false);
-        cookStore.SetActive(false);
+       
 
         backbutton.gameObject.SetActive(false);
     }
@@ -65,7 +63,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnClickCookStore()
     {
-        cookStore.SetActive(true);
+        
         Blur.SetActive(true);
         buttons.SetActive(false);
     }

@@ -7,17 +7,17 @@ public class CameraMoveDrag : MonoBehaviour
 {
     public float xmove = 0;
     private float movespeed = 0.01f;
-    private float wheelspeed = 0.01f;
+    private float wheelspeed = 0.2f;
 
-    private float limitY = 0.035f;
+    private float limitY = 0.037f;
     private float limitZ = -0.1f;
 
-    private float verticalPosition = 0.45f;
+    private float verticalPosition = 0.43f;
 
     private Camera cam;
 
     int minZoom = 20;
-    int maxZoom = 36;
+    int maxZoom = 45;
     int zoomValue = 25;
 
     private void Start()
