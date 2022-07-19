@@ -4,10 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Map
   - Hero
   - Monster
   - FoodInfoPanel
+=======
+  - Name
+>>>>>>> BuildingMenu
   layers:
   - Default
   - TransparentFX
