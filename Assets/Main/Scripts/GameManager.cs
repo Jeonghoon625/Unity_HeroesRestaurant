@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
         SceneLoader.LoadScene("Gang");
     }
 
+    public void ChangeScene(string sceneName)
+    {
+        SceneLoader.LoadScene(sceneName);
+    }
     /*
     public void InitGame()
     {
