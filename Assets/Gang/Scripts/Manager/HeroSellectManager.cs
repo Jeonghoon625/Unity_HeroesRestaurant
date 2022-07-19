@@ -5,10 +5,6 @@ using UnityEngine;
 public class HeroSellectManager : MonoBehaviour
 {
     public HeroList heroList;
-    public void Awake()
-    {
-        
-    }
     public void SellectAyran()
     {
         heroList.isSellect[0] = !heroList.isSellect[0];

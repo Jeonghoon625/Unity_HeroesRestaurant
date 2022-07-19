@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3071177794149621646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7112924842447599635}
+  m_Layer: 0
+  m_Name: Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7112924842447599635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3071177794149621646}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.34, y: 4.8, z: 0}
+  m_LocalScale: {x: 6.6666665, y: 6.6666665, z: 6.6666665}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9110276075606207474}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9110276075606207487
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,7 +64,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7112924842447599635}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -163,16 +195,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465eee2279c51814fb17f44ed603d9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackType: 0
-  prevState: 
+  curStateString: 
+  prevStateString: 
   animator: {fileID: 0}
+  attackType: 1
   speed: 3
   dmg: 3
-  attackCool: 1
+  attackCool: 1.2
   attackArea: {x: 5, y: 0, z: 0}
   hp: 100
-  skillPrefab: {fileID: 0}
-  shootPrefab: {fileID: 0}
-  startShoot: {fileID: 0}
+  skillButtonPrefab: {fileID: 2557322121503452124, guid: e135a7e35db301e4ca4da93e2a2b5079, type: 3}
+  shootPrefab: {fileID: 3654254246184495155, guid: 6f08d5453719adf4c823398125b281fd, type: 3}
+  startShoot: {fileID: 3071177794149621646}
   m_Position: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
+  isInvincibility: 0
+  doneMove: 0
