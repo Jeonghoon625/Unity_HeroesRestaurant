@@ -45,7 +45,7 @@ public class ModelsCreation : MonoBehaviour
 
         //Models[GameDataManager.selectionIndex].SetActive(false);
 
-        Debug.Log(GameDataManager.selectionIndex);
+        //Debug.Log(GameDataManager.selectionIndex);
         Models[GameDataManager.selectionIndex].SetActive(true);
         
         Datamanager.EndBuilding();
