@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gang.unity
     guid: 97b709274638c5745a93ca05d403f2d9
+  - enabled: 1
+    path: Assets/SongHaJung/Scene/Main01.unity
+    guid: 0d61755f29cc44e45bfffcfa805e3015
   m_configObjects: {}

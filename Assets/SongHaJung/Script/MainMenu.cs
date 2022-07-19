@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     {
         backbutton.gameObject.SetActive(false);
         Story.SetActive(false);
-        //cookStore.SetActive(false);
+        cookStore.SetActive(false);
         
     }
 
@@ -34,13 +34,14 @@ public class MainMenu : MonoBehaviour
         Blur.SetActive(true);
         buttons.SetActive(false);
     }
+    /*
     public void OnclickCook()
     {
-        //cookStore.SetActive(true);
+        cookStore.SetActive(true);
         Blur.SetActive(true);
         buttons.SetActive(false);
     }
-
+    */
 
     public void BackclickSystem()
     {
@@ -48,7 +49,7 @@ public class MainMenu : MonoBehaviour
         Blur.SetActive(false);
 
         Story.gameObject.SetActive(false);
-        //cookStore.SetActive(false);
+        cookStore.SetActive(false);
 
         backbutton.gameObject.SetActive(false);
     }
@@ -65,6 +66,8 @@ public class MainMenu : MonoBehaviour
     public void OnClickCookStore()
     {
         cookStore.SetActive(true);
+        Blur.SetActive(true);
+        buttons.SetActive(false);
     }
  
     public void OnClickBuilding()
