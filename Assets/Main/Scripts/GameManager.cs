@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        heroSellectManager = this.gameObject.AddComponent<HeroSellectManager>();
     }
 
     public static GameManager Instance
@@ -42,6 +44,8 @@ public class GameManager : MonoBehaviour
     {
         SceneLoader.LoadScene(sceneName);
     }
+
+    public HeroSellectManager heroSellectManager;
     /*
     public void InitGame()
     {
