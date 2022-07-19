@@ -42,13 +42,12 @@ public class ModelsCreation : MonoBehaviour
         //    return;
         //}
 
-        if (index < 2)
-        {
-            Models[GameDataManager.selectionIndex].SetActive(false);
-        }
 
-        
+        //Models[GameDataManager.selectionIndex].SetActive(false);
+
+        Debug.Log(GameDataManager.selectionIndex);
         Models[GameDataManager.selectionIndex].SetActive(true);
+        
         Datamanager.EndBuilding();
 
 

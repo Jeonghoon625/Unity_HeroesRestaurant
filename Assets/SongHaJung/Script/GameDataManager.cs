@@ -39,6 +39,8 @@ public class GameDataManager : MonoBehaviour
     public GameObject ExplainPanel;
     public MainMenu main;
 
+    
+
     public ModelsCreation modelContainer;
 
     public static int selectionIndex;
@@ -57,7 +59,7 @@ public class GameDataManager : MonoBehaviour
         }
         
         Load();
-        PointerClick(0);
+        PointerClick(0); //기본 디테일 메뉴가 뜨도록
         ExplainPanel.SetActive(true);
      
 
@@ -95,6 +97,7 @@ public class GameDataManager : MonoBehaviour
     {
         
         Load();
+        
     }
 
     //public void RemoveItemClick()
