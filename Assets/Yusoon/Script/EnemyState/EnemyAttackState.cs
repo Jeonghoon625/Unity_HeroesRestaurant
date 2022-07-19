@@ -23,6 +23,11 @@ public class EnemyAttackState : IEnemyState
 
     public void IFixedUpdate()
     {
+        if (enemy.target != null && Mathf.Abs(enemy.transform.position.x - enemy.target.transform.position.x) > enemy.attackAreaX + 0.5f)
+        {
+            enemy.target = null;
+            enemy.SetState("Idle");
+        }
         if (enemy.target == null || hero.hp == 0)
         {
             enemy.SetState("Idle");

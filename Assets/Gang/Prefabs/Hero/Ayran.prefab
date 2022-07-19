@@ -149,7 +149,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.99, y: 7.95, z: 2}
+  m_Size: {x: 3.99, y: -9.53, z: 2}
   m_Center: {x: -0.13, y: 3.7219584, z: 0}
 --- !u!114 &574714549
 MonoBehaviour:
@@ -167,15 +167,15 @@ MonoBehaviour:
   prevStateString: 
   animator: {fileID: 0}
   attackType: 0
-  speed: 3
+  speed: 3.5
   dmg: 3
   attackCool: 1
   attackArea: {x: 1, y: 0, z: 0}
-  hp: 1
+  hp: 100000
   skillButtonPrefab: {fileID: 2557322121503452124, guid: 46bb0d55fc420fa41a3b9780e2f392b0, type: 3}
   shootPrefab: {fileID: 0}
   startShoot: {fileID: 0}
   m_Position: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
   isInvincibility: 0
-  isActiveSkill: 0
+  doneMove: 0

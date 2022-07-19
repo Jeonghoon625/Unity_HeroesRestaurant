@@ -199,15 +199,15 @@ MonoBehaviour:
   prevStateString: 
   animator: {fileID: 0}
   attackType: 1
-  speed: 3
+  speed: 3.5
   dmg: 3
   attackCool: 1
   attackArea: {x: 6, y: 0, z: 0}
-  hp: 10
+  hp: 10000
   skillButtonPrefab: {fileID: 2557322121503452124, guid: 6e1624b38939f9f49baa828609aa2c32, type: 3}
   shootPrefab: {fileID: 3654254246184495155, guid: c83f3a37a3fe54e4b80ee56f1f0cb2da, type: 3}
   startShoot: {fileID: 69802530}
   m_Position: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
   isInvincibility: 0
-  isActiveSkill: 0
+  doneMove: 0

@@ -11,6 +11,7 @@ public enum AttackTypes
 }
 public class Heros : MonoBehaviour
 {
+    private StageManager stageManager;
     /******************************************
      * 상태
      * ***************************************/
@@ -76,10 +77,12 @@ public class Heros : MonoBehaviour
         // 체력, 공격력 => 데이터 세이브 로드를 통하여 관리
         /*******************************************************************************/
 
-        /*******************************************************************************/
-        // 캐릭터 생성 시 스킬 창에 스킬 버튼 추가
-        /*******************************************************************************/
-        Instantiate(skillButtonPrefab).transform.SetParent(GameObject.Find("Skill").transform);
+        // 스킬 창에 스킬 버튼 추가
+        Instantiate(skillButtonPrefab).transform.SetParent(GameObject.Find("Skill").transform, false);
+        // StageManager에 정보 전달
+        stageManager = GameObject.FindWithTag("GameController").GetComponent<StageManager>();
+        stageManager.HeroCount += 1;
+
         /*******************************************************************************/
         // 캐릭터 상태 설정
         /*******************************************************************************/
@@ -159,14 +162,30 @@ public class Heros : MonoBehaviour
                 break;
         }
     }
+    void NextTarget()
+    {
+        if(target == null)
+        {
+            return;
+        }
+        var monsterStat = target.GetComponent<Enemy>();
+        if (monsterStat != null)
+        {
+            if (monsterStat.OnHit(this, 0) == 0)
+            {
+                SetState("Idle");
+            }
+        }
+    }
     private void MelleAttack(Enemy monster)
     {
         if (monster != null)
         {
-            if (monster.OnHit(this, Dmg) == 0)
-            {
-                SetState("Idle");
-            }
+            monster.OnHit(this, Dmg);
+            //if (monster.OnHit(this, Dmg) == 0)
+            //{
+            //    //SetState("Idle");
+            //}
         }
     }
     private void RangeAttack(Enemy monster)
@@ -214,6 +233,8 @@ public class Heros : MonoBehaviour
         col.enabled = false;
         hp = 0;
         doneMove = true;
+
+        stageManager.Defeat();
     }
     /******************************************
      * 스킬
