@@ -29,7 +29,8 @@ public class StageManager : MonoBehaviour
         {
             Debug.Log("메인 메뉴로");
 
-            // 메인 씬으로 이동... GameManager.Instance.SceneChange("");
+            // 메인 씬으로 이동...
+            GameManager.Instance.ChangeScene("Main01");
         }
         /***************************************************
          * 스테이지 테스트
