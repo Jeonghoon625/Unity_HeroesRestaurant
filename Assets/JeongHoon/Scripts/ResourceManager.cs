@@ -12,9 +12,9 @@ public class ResourceManager
     List<Dictionary<string, object>> reserveFoodData = new List<Dictionary<string, object>>();
 
     CookManager cookManager;
-    public void Init(CookManager cookManager)
+    public void Init( )
     {
-        this.cookManager = cookManager;
+        this.cookManager = GameManager.Instance.cookMgr;
     }
 
     public void Load(GameObject currencySection, GameObject currencyPrefab, GameObject foodSection, GameObject foodPrefab)
@@ -128,6 +128,6 @@ public class ResourceManager
     public void SelectFood(FoodSlot slot)
     {
         cookManager.selectFood = slot;
-        cookManager.infoMgr.ShowInfo(slot,cookManager);
+        cookManager.informationPanel.ShowInfo(slot,cookManager);
     }
 }

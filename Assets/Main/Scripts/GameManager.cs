@@ -5,10 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
-
-
     void Awake()
     {
+        Debug.Log("게임매니저 생성");
+
         if (null == instance)
         {
             instance = this;
@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        cookMgr = this.gameObject.AddComponent<CookManager>();
     }
 
     public static GameManager Instance
@@ -42,6 +44,23 @@ public class GameManager : MonoBehaviour
     {
         SceneLoader.LoadScene(sceneName);
     }
+
+    //매니저들 여기다가 선언하는게 좋을것같아요
+
+    public CookManager cookMgr;
+
+    
+
+
+
+
+
+
+
+
+
+
+
     /*
     public void InitGame()
     {
