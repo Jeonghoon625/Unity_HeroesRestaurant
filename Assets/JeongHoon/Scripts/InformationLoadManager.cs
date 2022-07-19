@@ -12,6 +12,11 @@ public class InformationLoadManager : MonoBehaviour
 
     public GameObject[] RecipeCurrencySection;
 
+    public TextMeshProUGUI currentReserve;
+    public TextMeshProUGUI maxReserve;
+
+    public Slider reserveSlider;
+
     public void Init()
     {
         for (int i = 0; i < RecipeCurrencySection.Length; i++)
@@ -47,6 +52,13 @@ public class InformationLoadManager : MonoBehaviour
                     idx++;
                 }
             }
+
+            currentReserve.text = cookManager.foodReserve[slotInfo.id].ToString();
+            maxReserve.text = slotInfo.maxReserve.ToString();
+
+            reserveSlider.minValue = 0;
+            reserveSlider.maxValue = slotInfo.maxReserve;
+            reserveSlider.value = cookManager.foodReserve[slotInfo.id];
         }
     }
 }

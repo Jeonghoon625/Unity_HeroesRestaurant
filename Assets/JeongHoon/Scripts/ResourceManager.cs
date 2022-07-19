@@ -8,6 +8,8 @@ public class ResourceManager
     List<Dictionary<string, object>> currencyData = new List<Dictionary<string, object>>();
     List<Dictionary<string, object>> foodData = new List<Dictionary<string, object>>();
     List<Dictionary<string, object>> recipeData = new List<Dictionary<string,object>>();
+    List<Dictionary<string, object>> reserveCurrencyData = new List<Dictionary<string, object>>();
+    List<Dictionary<string, object>> reserveFoodData = new List<Dictionary<string, object>>();
 
     CookManager cookManager;
     public void Init(CookManager cookManager)
@@ -20,6 +22,7 @@ public class ResourceManager
         LoadCurrency(currencySection, currencyPrefab);
         LoadFood(foodSection, foodPrefab);
         LoadRecipe();
+        LoadReserve();
     }
 
     public void LoadCurrency(GameObject currencySection, GameObject currencyPrefab)
@@ -52,6 +55,7 @@ public class ResourceManager
             int id = (int)foodData[i]["id"];
             string title = (string)foodData[i]["name"];
             string explanation = (string)foodData[i]["explanation"];
+            int maxReserve = (int)foodData[i]["maxReserve"];
             Sprite sprite = Resources.Load<Sprite>("Food\\" + (string)foodData[i]["image"]);
 
             GameObject foodGO = Object.Instantiate(foodPrefab, foodSection.transform);
@@ -62,6 +66,7 @@ public class ResourceManager
             slot.title = title;
             slot.explanation = explanation;
             slot.sprite = sprite;
+            slot.maxReserve = maxReserve;
             slot.GetComponent<Button>().onClick.AddListener(() => SelectFood(slot));
             cookManager.foodSlots.Add(slot);
         }
@@ -82,6 +87,41 @@ public class ResourceManager
                 int currencyCount = (int)recipeData[i][j.ToString()];
                 cookManager.foodSlots[foodId].currencyList.Add(currencyCount);
             }
+        }
+    }
+
+    public void LoadReserve()
+    {
+        LoadReserveCurrency();
+        LoadReserveFood();
+    }
+
+    public void LoadReserveCurrency()
+    {
+        reserveCurrencyData = CSVReader.Read("Tables\\Currency_ReserveTable");
+
+        for (var i = 0; i < reserveCurrencyData.Count; i++)
+        {
+            int currencyId = (int)reserveCurrencyData[i]["currencyId"];
+
+            cookManager.currencyReserve.Insert(currencyId, (int)reserveCurrencyData[i]["reserve"]);
+        }
+
+        for (var i = 0; i < cookManager.currencySlots.Count; i++)
+        {
+            cookManager.currencySlots[i].reserveText.text = cookManager.currencyReserve[i].ToString();
+        }
+    }
+
+    public void LoadReserveFood()
+    {
+        reserveFoodData = CSVReader.Read("Tables\\Food_ReserveTable");
+
+        for (var i = 0; i < reserveFoodData.Count; i++)
+        {
+            int foodId = (int)reserveFoodData[i]["foodId"];
+
+            cookManager.foodReserve.Insert(foodId, (int)reserveFoodData[i]["reserve"]);
         }
     }
 
