@@ -18,8 +18,18 @@ public class StageManager : MonoBehaviour
     public GameObject VictoryUI;
     public GameObject DefeatUI;
 
+    private HeroList heroList;
     private void Awake()
     {
+        // ¿µ¿õ ¼ÒÈ¯
+        heroList = GameManager.Instance.heroSellectManager.heroList;
+        var heroPrefab = heroList.heroPrefab;
+        var isSellect = heroList.isSellect;
+        for (int i = 0; i < heroList.heroPrefab.Length; i++)
+        {
+
+        }
+
         skillManager.isSellectSkill = false;
         skillManager.isActiveSkill = false;
     }

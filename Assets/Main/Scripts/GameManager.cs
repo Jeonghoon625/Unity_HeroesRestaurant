@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
     void Awake()
     {
-        Debug.Log("°ÔÀÓ¸Å´ÏÀú »ý¼º");
+        Debug.Log("ï¿½ï¿½ï¿½Ó¸Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 
         if (null == instance)
         {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
         }
 
         cookMgr = this.gameObject.AddComponent<CookManager>();
+        heroSellectManager = this.gameObject.AddComponent<HeroSellectManager>();
     }
 
     public static GameManager Instance
@@ -45,7 +47,7 @@ public class GameManager : MonoBehaviour
         SceneLoader.LoadScene(sceneName);
     }
 
-    //¸Å´ÏÀúµé ¿©±â´Ù°¡ ¼±¾ðÇÏ´Â°Ô ÁÁÀ»°Í°°¾Æ¿ä
+    //ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ï¿½Æ¿ï¿½
 
     public CookManager cookMgr;
 
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
 
 
 
+    public HeroSellectManager heroSellectManager;
     /*
     public void InitGame()
     {
