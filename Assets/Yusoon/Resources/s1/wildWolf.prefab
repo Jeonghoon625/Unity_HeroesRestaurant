@@ -165,8 +165,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prevState: 
   animator: {fileID: 4345294620634015476}
-  speed: 3
+  speed: 2
   dmg: 3
+  attackAreaX: 2
   attackArea: {x: 2, y: 0, z: 0}
   hp: 6
   attackCool: 1

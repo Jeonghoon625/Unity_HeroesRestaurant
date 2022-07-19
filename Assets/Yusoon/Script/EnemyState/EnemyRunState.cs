@@ -15,9 +15,9 @@ public class EnemyRunState : IEnemyState
         enemy.animator.SetBool("Run", true);
         this.enemy = enemy;
 
-        m_Position = enemy.m_Position;
         target = enemy.target;
         hero = target.GetComponent<Heros>();
+        m_Position = target.transform.position;
         if (enemy.transform.position.x - m_Position.x > 0)
         {
             dir.x = -1f;
