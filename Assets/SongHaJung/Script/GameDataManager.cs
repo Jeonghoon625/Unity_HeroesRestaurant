@@ -45,11 +45,14 @@ public class GameDataManager : MonoBehaviour
     public GameObject ExplainPanel;
     public MainMenu main;
 
-
     public static int selectionIndex = 0;
+
+
 
     private void Start()
     {
+
+
         int startIndex = 0;
         //전체 아이템 리스트 불러오기
         string[] line = ItemDataBase.text.Substring(startIndex, ItemDataBase.text.Length - 1).Split("\n");  //마지막 엔터자리 지워주기(엑셀로 작업하면 마지막 엔터자리까지뜨기때문)
@@ -65,6 +68,50 @@ public class GameDataManager : MonoBehaviour
         Load();
 
         //PointerClick(0); //기본 디테일 메뉴가 뜨도록
+
+    }
+    private bool isMouseDragging;
+    private Vector3 screenPosition;
+    private Vector3 offset;
+
+    private void Update()
+    {
+        float moveX = 0f;
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("눌러써?");
+        }
+        Debug.Log("왔니?");
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            if (AllModels[selectionIndex] != null)
+            {
+                isMouseDragging = true;
+                Debug.Log("our target position :" + AllModels[selectionIndex].transform.position);
+                //Here we Convert world position to screen position.
+                screenPosition = Camera.main.WorldToScreenPoint(AllModels[selectionIndex].transform.position);
+                offset = AllModels[selectionIndex].transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0.02f, -0.1f));
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            isMouseDragging = false;
+        }
+
+        if (isMouseDragging)
+        {
+            //tracking mouse position.
+            Vector3 currentScreenSpace = new Vector3(Input.mousePosition.x, 0.02f, -0.1f);
+
+            //convert screen position to world position with offset changes.
+            Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenSpace) + offset;
+
+            //It will update target gameobject's current postion.
+            AllModels[selectionIndex].transform.position = currentPosition;
+        }
 
     }
 
@@ -86,23 +133,28 @@ public class GameDataManager : MonoBehaviour
         }
 
         selectionIndex = int.Parse(curItem.Index);
-        Debug.Log("배치눌렀닥!!!!!!!");
         AllModels[selectionIndex].SetActive(true);
+        AllModels[selectionIndex].transform.position = new Vector3(0, 0, 0);
 
-        ShowItemInMain();
+      
+            ShowItemInMain();
     }
+    
 
     public void ShowItemInMain()
     {
+        
         main.BuildingOnMain();
-       
+
+        
+
+
+    }
+
+
+
     
 
-
-
-
-       
-    }
 
     public void EndBuilding()
     {

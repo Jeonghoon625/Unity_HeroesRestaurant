@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class CameraMoveDrag : MonoBehaviour
 {
-    public float xmove = 0;
+    public static float xmove = 0f;
     private float movespeed = 0.01f;
     private float wheelspeed = 0.2f;
 
@@ -33,13 +33,14 @@ public class CameraMoveDrag : MonoBehaviour
         }
     }
 
-    private void DragMouseMove()
+    public void DragMouseMove()
     {
         if (Input.GetMouseButton(0))
         {
             xmove -= Input.GetAxis("Mouse X") * movespeed;
         }
         transform.position = new Vector3(xmove, limitY, limitZ);
+
         MoveLimit();
     }
     void MoveLimit()
