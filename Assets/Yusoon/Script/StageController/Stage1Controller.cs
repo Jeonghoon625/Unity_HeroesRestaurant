@@ -34,7 +34,7 @@ public class Stage1Controller : MonoBehaviour
         else if (stage.text == "1-2")
         {
             //GameManager.Instance.ChangeScene("Stage1-2");
-            Debug.Log("1-2");
+            SceneLoader.LoadScene("Scene1-2");
         }
     }
 

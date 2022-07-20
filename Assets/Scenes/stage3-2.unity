@@ -959,6 +959,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 346817269}
     m_Modifications:
+    - target: {fileID: 8734886078376390242, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
+      propertyPath: waves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734886078376390242, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
+      propertyPath: waves.Array.data[0].pos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734886078376390242, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
+      propertyPath: waves.Array.data[0].enemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734886078376390242, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
+      propertyPath: waves.Array.data[0].pos.Array.data[0].x
+      value: -4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734886078376390242, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
+      propertyPath: waves.Array.data[0].enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: -7812301599235580286, guid: 14bcffde045ebb3498043d02dd270b61, type: 3}
     - target: {fileID: 8734886078376390245, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
       propertyPath: m_RootOrder
       value: 1
