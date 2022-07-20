@@ -11,86 +11,97 @@ using UnityEngine.UI;
 public class Item
 {
     //생성자
-    public Item(string _Type, string _Name, string _Explain, string _SpecOfEnhance, string _SpecOfLevel, string _SpecOfConten, string _Number, bool _isUsing, string _Index)
+    public Item(string _Type, string _Name, string _Explain, string _SpecOfEnhance, string _SpecOfLevel, string _SpecOfContent, string _WoodMoney, bool _isUsing, string _Index, string _FloatX, string _FloatY, string _FloatZ, string _UsingChange, string _PositionChange)
     {
         Type = _Type;
         Name = _Name;
         Explain = _Explain;
         SpecOfEnhance = _SpecOfEnhance;
         SpecOfLevel = _SpecOfLevel;
-        SpecOfConten = _SpecOfConten;
-        Number = _Number;
+        SpecOfContent = _SpecOfContent;
+        WoodMoney = _WoodMoney;
         isUsing = _isUsing;
         Index = _Index;
+        FloatX = _FloatX;
+        FloatY = _FloatY;
+        FloatZ = _FloatZ;
+        UsingChange = _UsingChange;
+        PositionChange = _PositionChange;
     }
 
-    public string Type, Name, Explain, SpecOfEnhance, SpecOfLevel, SpecOfConten, Number, Index;
-    
+    public string Type, Name, Explain, SpecOfEnhance, SpecOfLevel, SpecOfContent, WoodMoney, Index, FloatX, FloatY, FloatZ, UsingChange, PositionChange;
     public bool isUsing;
 }
+
 public class GameDataManager : MonoBehaviour
 {
     public TextAsset ItemDataBase;
+
     public List<Item> AllItemList, MyItemList, CurItemList;
     public string curType = "Building";
-    public GameObject[] Slot, UsingImage;
+    public GameObject[] Slot, UsingImage, AllModels;
     public Image[] TapImage, ItemImage;
     public Sprite[] ItemSprite;
     public GameObject ExplainPanel;
     public MainMenu main;
 
-    
 
-    public ModelsCreation modelContainer;
-
-    public static int selectionIndex;
-
-  
+    public static int selectionIndex = 0;
 
     private void Start()
     {
         int startIndex = 0;
         //전체 아이템 리스트 불러오기
-        string[] line = ItemDataBase.text.Substring(startIndex, ItemDataBase.text.Length - 1).Split("\n");
+        string[] line = ItemDataBase.text.Substring(startIndex, ItemDataBase.text.Length - 1).Split("\n");  //마지막 엔터자리 지워주기(엑셀로 작업하면 마지막 엔터자리까지뜨기때문)
+
+
+        //List에 아이템리스트 삽입
         for (int i = 0; i < line.Length; i++) 
         {
             string[] row = line[i].Split("\t");
-            AllItemList.Add(new Item(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7] == "TRUE", row[8]));
+            AllItemList.Add(new Item(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7] == "TRUE", row[8], row[9], row[10], row[11], row[12], row[13]));
         }
         
         Load();
-        PointerClick(0); //기본 디테일 메뉴가 뜨도록
-        ExplainPanel.SetActive(true);
-     
 
+        //PointerClick(0); //기본 디테일 메뉴가 뜨도록
 
     }
 
     //배치눌렀을때
     public void GetItemClick()
     {
+
         //Item curItem = MyItemList.Find(x => x.Name == Slot.text);
+
+        //선택아이템 -> 노랑클릭 true될때
         Item curItem = CurItemList.Find(x => x.isUsing == true);
+
 
         if (curItem != null)
         {
-
-            CurItemList.Sort((p1, p2) => p1.Index.CompareTo(p2.Index));
+            //CurItemList.Sort((p1, p2) => p1.Index.CompareTo(p2.Index));
+            
             Save();
         }
 
         selectionIndex = int.Parse(curItem.Index);
-        ShowItemInMain();
+        Debug.Log("배치눌렀닥!!!!!!!");
+        AllModels[selectionIndex].SetActive(true);
 
+        ShowItemInMain();
     }
 
     public void ShowItemInMain()
     {
         main.BuildingOnMain();
-        modelContainer.Update();
+       
+    
 
 
-        Save();
+
+
+       
     }
 
     public void EndBuilding()
@@ -113,26 +124,35 @@ public class GameDataManager : MonoBehaviour
 
     public void SlotClick(int slotNum)
     {
+        
         Item CurItem = CurItemList[slotNum];
         Item UsingItem = CurItemList.Find(x => x.isUsing == true);
 
-        if(curType== "Building")
-        {
-            if(UsingItem != null)
-            {
-                UsingItem.isUsing = false;
-                CurItem.isUsing = true;
-            }
+        //if(curType== "Building")
+        //{
+        //    if(UsingItem != null)
+        //    {
+        //        UsingItem.isUsing = false;
+        //        CurItem.isUsing = true;
+        //    }
            
-        }
-        else
+        //}
+        //else
+        //{
+        //    CurItem.isUsing = !CurItem.isUsing;
+        //    if(UsingItem != null)
+        //    {
+        //        UsingItem.isUsing = false;
+        //    }
+        //} 
+        
+        CurItem.isUsing = !CurItem.isUsing;
+        if(UsingItem != null)
         {
-            CurItem.isUsing = !CurItem.isUsing;
-            if(UsingItem != null)
-            {
-                UsingItem.isUsing = false;
-            }
+            UsingItem.isUsing = false;
         }
+        
+        Debug.Log(CurItem.Index);
         Save();
     }
     public void TapClick(string tapName)
@@ -142,7 +162,7 @@ public class GameDataManager : MonoBehaviour
         CurItemList = MyItemList.FindAll(x => x.Type == tapName);
 
         //아이템 이미지와 사용중인지 뜨도록
-        for(int i=0;i<Slot.Length;i++)
+        for (int i = 0; i < Slot.Length; i++) 
         {
             //슬롯과 텍스트 보이기
             bool isExist = i < CurItemList.Count;
@@ -152,6 +172,7 @@ public class GameDataManager : MonoBehaviour
             {
                 ItemImage[i].sprite = ItemSprite[AllItemList.FindIndex(x => x.Name == CurItemList[i].Name)];
                 UsingImage[i].SetActive(CurItemList[i].isUsing);
+                
             }
         }
         //탭이미지
@@ -163,20 +184,24 @@ public class GameDataManager : MonoBehaviour
             case "BackFurniture": tabNum = 2;break;
         }
         
+        // 탭 이미지 교환
         //for (int i = 0; i < TapImage.Length; i++)
         //{
         //    TapImage[i].sprite = i == tabNum ? TapSelectSprite : TabIdleSprite;
         //}
     }
+
+    //디테일 메뉴와 설명이 뜨도록 로드
     public void PointerClick(int slotNum)
     {
-       
+        ExplainPanel.SetActive(true);
+        
         ExplainPanel.GetComponentInChildren<TextMeshProUGUI>().text = CurItemList[slotNum].Explain;
         ExplainPanel.transform.GetChild(2).GetComponentInChildren<Image>().sprite = Slot[slotNum].transform.GetChild(0).GetComponent<Image>().sprite;
         //ExplainPanel.transform.GetChild(2).GetComponentInChildren<Image>().sprite = Slot[slotNum].transform.GetComponent<Image>().sprite; 
         ExplainPanel.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = CurItemList[slotNum].SpecOfEnhance;
         ExplainPanel.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = CurItemList[slotNum].SpecOfLevel;
-        ExplainPanel.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = CurItemList[slotNum].SpecOfConten;
+        ExplainPanel.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = CurItemList[slotNum].SpecOfContent;
 
     }
 

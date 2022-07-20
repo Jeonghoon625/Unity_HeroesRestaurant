@@ -9,10 +9,10 @@ public class CameraMoveDrag : MonoBehaviour
     private float movespeed = 0.01f;
     private float wheelspeed = 0.2f;
 
-    private float limitY = 0.037f;
+    private float limitY = 0.02f;
     private float limitZ = -0.1f;
 
-    private float verticalPosition = 0.43f;
+    private float verticalPosition = 0.38f;
 
     private Camera cam;
 
@@ -37,7 +37,7 @@ public class CameraMoveDrag : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            xmove += Input.GetAxis("Mouse X") * movespeed;
+            xmove -= Input.GetAxis("Mouse X") * movespeed;
         }
         transform.position = new Vector3(xmove, limitY, limitZ);
         MoveLimit();
