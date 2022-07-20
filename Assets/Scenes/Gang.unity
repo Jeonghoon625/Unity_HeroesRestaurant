@@ -2476,6 +2476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroSellctManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6244866692470110030, guid: cfa9a3a12028e60429a5b9f129986916, type: 3}
+      propertyPath: m_TagString
+      value: HeroSellect
+      objectReference: {fileID: 0}
     - target: {fileID: 6244866692470110064, guid: cfa9a3a12028e60429a5b9f129986916, type: 3}
       propertyPath: m_RootOrder
       value: 6
