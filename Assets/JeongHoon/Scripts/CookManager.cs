@@ -34,11 +34,12 @@ public class CookManager : MonoBehaviour
     private void Init()
     {
         Debug.Log("CookMgrInit");
+        GameManager.Instance.DoSomething();
         informationPanel = GameObject.FindGameObjectWithTag("InformationPanel").GetComponent<InformationPanel>();
         foodSection = GameObject.FindGameObjectWithTag("FoodSection");
         currencySection = GameObject.FindGameObjectWithTag("CurrencySection");
 
-        resourceMgr.Init();
+        resourceMgr.Init(this);
         resourceMgr.Load(currencySection, currencyPrefab, foodSection, foodPrefab);
         selectFood = foodSlots[0];
         informationPanel.Init();

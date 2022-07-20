@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
+    /*
     /******************************************
      * 스킬 관리
      * ***************************************/
@@ -138,4 +139,5 @@ public class StageManager : MonoBehaviour
         }
         Debug.Log("HeroCount : " + HeroCount);
     }
+    
 }
