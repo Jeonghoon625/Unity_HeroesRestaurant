@@ -9,6 +9,8 @@ TagManager:
   - CurrencySection
   - InformationPanel
   - FoodInfoPanel
+  - Monster
+  - Hero
   layers:
   - Default
   - TransparentFX
@@ -19,6 +21,8 @@ TagManager:
   - 
   - 
   - 
+  - Monster
+  - Hero
   - 
   - 
   - 

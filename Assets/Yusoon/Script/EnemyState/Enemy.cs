@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 
     public float attackAreaX;
     public Vector3 attackArea;
-    public int hp = 100;
+    public float hp = 100;
 
     [SerializeField]
     private float attackCool = 0.5f;
@@ -138,7 +138,7 @@ public class Enemy : MonoBehaviour
         // 사라질 때 이펙트
         Destroy(gameObject);
     }
-    public int OnHit(Heros attacker, int dmg)
+    public float OnHit(Heros attacker, float dmg)
     {
         // hp 감소
         hp -= dmg;
