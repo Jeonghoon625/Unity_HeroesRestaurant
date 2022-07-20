@@ -7,8 +7,9 @@ enum SkillParticle
     Ayran = 0,
     CoqAuVin = 1,
     CoqAuVinDown = 2,
-    Fondue = 3,
-    Limu = 4,
+    FondueSkill = 3,
+    Fondue = 4,
+    Limu = 5,
 }
 public class SkillManager : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class SkillManager : MonoBehaviour
         foreach (var heroInfo in heroList)
         {
             var hero = heroInfo.GetComponent<Heros>();
-            hero.doneMove = true;
+            hero.doneControll = true;
         }
     }
     public void CoqAuVin(Vector3 skillPos)
@@ -62,7 +63,7 @@ public class SkillManager : MonoBehaviour
         foreach (var heroInfo in heroList)
         {
             var hero = heroInfo.GetComponent<Heros>();
-            hero.doneMove = false;
+            hero.doneControll = false;
             if (hero.name == "CoqAuVin")
             {
                 hero.prevStateString = hero.curStateString;
@@ -76,7 +77,7 @@ public class SkillManager : MonoBehaviour
         }
         skillPos.y = 0f;
         skillPos.z = 0f;
-        Instantiate(heroSkills[(int)SkillParticle.CoqAuVinDown], skillPos, new Quaternion(0f, 0f, 0f, 0f));
+        Instantiate(heroSkills[(int)SkillParticle.CoqAuVinDown], skillPos, Quaternion.identity);
     }
     public void CoqAuVinAttack(List<GameObject> list)
     {
@@ -104,8 +105,31 @@ public class SkillManager : MonoBehaviour
         foreach (var heroInfo in heroList)
         {
             var hero = heroInfo.GetComponent<Heros>();
-            hero.doneMove = true;
+            hero.doneControll = true;
         }
+    }
+
+    public void FondueSkill(Vector3 skillPos)
+    {
+        var heroList = GameObject.FindGameObjectsWithTag("Hero");
+        foreach (var heroInfo in heroList)
+        {
+            var hero = heroInfo.GetComponent<Heros>();
+            hero.doneControll = false;
+            if (hero.name == "Fondue")
+            {
+                hero.prevStateString = hero.curStateString;
+                hero.animator.SetTrigger("Skill");
+                hero.SetState("None");
+
+                var pos = hero.transform.position;
+                pos.y += yPosUp;
+                Instantiate(heroSkills[(int)SkillParticle.Fondue], pos, hero.transform.rotation).transform.parent = hero.transform;
+            }
+        }
+        skillPos.y = 0f;
+        skillPos.z = 0f;
+        Instantiate(heroSkills[(int)SkillParticle.FondueSkill], skillPos, Quaternion.identity);
     }
     /******************************************
      * 리무 스킬
@@ -126,8 +150,11 @@ public class SkillManager : MonoBehaviour
             case "CoqAuVin":
                 CoqAuVin(skillPos);
                 break;
+            case "Fondue":
+                FondueSkill(skillPos);
+                break;
         }
 
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
     }
 }

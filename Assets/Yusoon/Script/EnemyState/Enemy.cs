@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
      * ***************************************/
     [SerializeField]
     private float speed = 3f;
+    public int speedDebuff = 1;
     [SerializeField]
     private int dmg = 3;
 
