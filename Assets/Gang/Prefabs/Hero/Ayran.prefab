@@ -168,7 +168,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   attackType: 0
   speed: 3.5
-  dmg: 3
+  dmg: 5
   attackCool: 1
   attackArea: {x: 1, y: 0, z: 0}
   hp: 100000

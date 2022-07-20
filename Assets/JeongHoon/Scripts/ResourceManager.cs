@@ -128,6 +128,6 @@ public class ResourceManager
     public void SelectFood(FoodSlot slot)
     {
         cookManager.selectFood = slot;
-        cookManager.infoMgr.ShowInfo(slot,cookManager);
+        cookManager.informationPanel.ShowInfo(slot,cookManager);
     }
 }

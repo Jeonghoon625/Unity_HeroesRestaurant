@@ -2,35 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    private static GameManager instance = null;
-
-
-    void Awake()
+    int test = 625;
+    public GameManager()
     {
-        if (null == instance)
-        {
-            instance = this;
-            
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    public static GameManager Instance
-    {
-        get
-        {
-            if (null == instance)
-            {
-                return null;
-            }
-            return instance;
-        }
+        Debug.Log("게임 매니저 초기화");
     }
 
     public void GoBattleScene()
@@ -38,34 +15,8 @@ public class GameManager : MonoBehaviour
         SceneLoader.LoadScene("Gang");
     }
 
-    public void ChangeScene(string sceneName)
+    public void DoSomething()
     {
-        SceneLoader.LoadScene(sceneName);
+        Debug.Log(test);
     }
-    /*
-    public void InitGame()
-    {
-
-    }
-
-    public void PauseGame()
-    {
-
-    }
-
-    public void ContinueGame()
-    {
-
-    }
-
-    public void RestartGame()
-    {
-
-    }
-
-    public void StopGame()
-    {
-
-    }
-    */
 }

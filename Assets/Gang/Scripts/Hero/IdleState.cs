@@ -23,7 +23,7 @@ public class IdleState : IState
             // Raycast Å¸±ê ÃßÀû
             var unitPos = hero.transform.position;
             RaycastHit hit;
-            int layerMast = (-1) - (1 << LayerMask.NameToLayer("Player"));
+            int layerMast = (-1) - (1 << LayerMask.NameToLayer("Hero"));
             if(Physics.Raycast(unitPos + Vector3.up, Vector3.left, out hit, 30f, layerMast))
             {
                 if(hit.transform.tag == "Monster")

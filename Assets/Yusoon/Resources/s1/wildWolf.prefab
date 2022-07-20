@@ -171,5 +171,4 @@ MonoBehaviour:
   attackArea: {x: 2, y: 0, z: 0}
   hp: 6
   attackCool: 1
-  m_Position: {x: 0, y: 0, z: 0}
   target: {fileID: 0}

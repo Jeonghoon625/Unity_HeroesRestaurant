@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3654254246184495155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.54, y: 1.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99,8 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  curveSpeed: 0
+  curveHeight: 0
+  damageType: 0
   hero: {fileID: 3371376095778415760, guid: 55a6032e69a4e8d4eb1566fd5a2536e5, type: 3}
-  duration: 5
+  splashRange: {x: 0, y: 0, z: 0}
 --- !u!1 &8187196697815975971
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CookManager : MonoBehaviour
 {
     ResourceManager resourceMgr = new ResourceManager();
-    public InformationLoadManager infoMgr;
+    public InformationPanel informationPanel;
 
     public GameObject foodSection;
     public GameObject currencySection;
@@ -18,25 +18,31 @@ public class CookManager : MonoBehaviour
     public List<int> currencyReserve = new List<int>();
     public List<int> foodReserve = new List<int>();
 
-
     public FoodSlot selectFood;
 
     private void Awake()
     {
-        Init();
+        
     }
 
     private void Start()
     {
-        
+        Init();
+
     }
 
     private void Init()
     {
+        Debug.Log("CookMgrInit");
+        GameManager.Instance.DoSomething();
+        informationPanel = GameObject.FindGameObjectWithTag("InformationPanel").GetComponent<InformationPanel>();
+        foodSection = GameObject.FindGameObjectWithTag("FoodSection");
+        currencySection = GameObject.FindGameObjectWithTag("CurrencySection");
+
         resourceMgr.Init(this);
         resourceMgr.Load(currencySection, currencyPrefab, foodSection, foodPrefab);
         selectFood = foodSlots[0];
-        infoMgr.Init();
-        infoMgr.ShowInfo(selectFood, this);
+        informationPanel.Init();
+        informationPanel.ShowInfo(selectFood, this);
     }
 }

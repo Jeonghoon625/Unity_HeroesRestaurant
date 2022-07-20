@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class InformationLoadManager : MonoBehaviour
+public class InformationPanel : MonoBehaviour
 {
     public TextMeshProUGUI title;
     public TextMeshProUGUI explanation;

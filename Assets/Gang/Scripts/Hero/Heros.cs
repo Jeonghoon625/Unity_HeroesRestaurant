@@ -38,12 +38,12 @@ public class Heros : MonoBehaviour
     private float attackCool = 1f;                              // 공격 쿨타임
 
     public Vector3 attackArea = new Vector3(1f, 0f, 0f);        // 공격 범위
-    public int hp = 100;                                        // 체력
+    public float hp = 100;                                        // 체력
 
     public GameObject skillButtonPrefab;                        // 스킬 버튼
     //public GameObject skillPrefab;                              // 스킬
     [SerializeField]
-    private GameObject shootPrefab;                             // 투사체
+    public GameObject shootPrefab;                             // 투사체
     public GameObject startShoot;                               // 투사체 발사 위치
 
     public Vector3 m_Position;                                  // 목표 이동지점
@@ -73,10 +73,10 @@ public class Heros : MonoBehaviour
 
     private void Awake()
     {
+        gameObject.name = gameObject.name.Replace("(Clone)", "");
         /*******************************************************************************/
         // 체력, 공격력 => 데이터 세이브 로드를 통하여 관리
         /*******************************************************************************/
-
         // 스킬 창에 스킬 버튼 추가
         Instantiate(skillButtonPrefab).transform.SetParent(GameObject.Find("Skill").transform, false);
         // StageManager에 정보 전달
@@ -199,7 +199,7 @@ public class Heros : MonoBehaviour
     {
         var rot = Quaternion.identity;
         rot.y = transform.rotation.y == 0 ? 180f : 0f;
-        Instantiate(shootPrefab, startShoot.transform.position, rot);
+        Instantiate(shootPrefab).GetComponent<ShootableObject>().Set(this, startShoot.transform.position, rot);
     }
     /******************************************
      * 맞은 판정
@@ -209,7 +209,7 @@ public class Heros : MonoBehaviour
         // 사라질 때 이펙트
         Destroy(gameObject);
     }
-    public int OnHit(Enemy attacker, int dmg)
+    public float OnHit(Enemy attacker, int dmg)
     {
         // 무적 상태
         if(isInvincibility)
