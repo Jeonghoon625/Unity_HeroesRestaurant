@@ -98,11 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b19816b361d78148bab213ca965a2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 6
   curveSpeed: 20
   curveHeight: 0.5
   damageType: 1
-  hero: {fileID: 4521901471334446279, guid: 668c8f4abd3204f4e8a2673d79b93565, type: 3}
   splashRange: {x: 2, y: 0, z: 0}
 --- !u!1 &8187196697815975971
 GameObject:

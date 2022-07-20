@@ -27,37 +27,38 @@ public class StageManager : MonoBehaviour
     private void Start()
     {
         // 영웅 소환
-        heroList = GameManager.Instance.heroSellectManager.heroList;
-        var heroPrefab = heroList.heroPrefab;
-        var isSellect = heroList.isSellect;
-        var ren = heroList.heroPrefab.Length;
-        int count = 0;
-        for (int i = 0; i < ren; i++)
-        {
-            if (isSellect[i] == true)
-            {
-                count++;
-                // 오브젝트 풀
-                var hero = heroPrefab[i].GetComponent<Heros>();
-                if (hero.AttackType == AttackTypes.Range)
-                {
-                    objectPool.poolPrefabs.Add(hero.shootPrefab);
-                }
-            }
-        }
-        float startPos = -0.75f * (count - 1);
-        var pos = Vector3.zero;
-        var rot = Quaternion.identity;
-        rot.y = 180f;
-        for (int i = 0; i < ren; i++)
-        {
-            if (isSellect[i] == true)
-            {
-                pos.x = startPos;
-                herosList.Add(Instantiate(heroPrefab[i], pos, rot));
-                startPos += 1.5f;
-            }
-        }
+        /*********************************************************** 게임 매니저 수정 후 사용 *******************************************************************/
+        //heroList = GameManager.Instance.heroSellectManager.heroList;
+        //var heroPrefab = heroList.heroPrefab;
+        //var isSellect = heroList.isSellect;
+        //var ren = heroList.heroPrefab.Length;
+        //int count = 0;
+        //for (int i = 0; i < ren; i++)
+        //{
+        //    if (isSellect[i] == true)
+        //    {
+        //        count++;
+        //        // 오브젝트 풀
+        //        var hero = heroPrefab[i].GetComponent<Heros>();
+        //        if (hero.AttackType == AttackTypes.Range)
+        //        {
+        //            objectPool.poolPrefabs.Add(hero.shootPrefab);
+        //        }
+        //    }
+        //}
+        //float startPos = -0.75f * (count - 1);
+        //var pos = Vector3.zero;
+        //var rot = Quaternion.identity;
+        //rot.y = 180f;
+        //for (int i = 0; i < ren; i++)
+        //{
+        //    if (isSellect[i] == true)
+        //    {
+        //        pos.x = startPos;
+        //        herosList.Add(Instantiate(heroPrefab[i], pos, rot));
+        //        startPos += 1.5f;
+        //    }
+        //}
 
         skillManager.isSellectSkill = false;
         skillManager.isActiveSkill = false;

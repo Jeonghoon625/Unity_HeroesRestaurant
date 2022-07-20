@@ -93,6 +93,23 @@ public class SkillManager : MonoBehaviour
             }
         }
     }
+    /******************************************
+     * 퐁듀 스킬
+     * ***************************************/
+    public void OnClickFondueSkill()
+    {
+        SlowGame();
+        taker = "Fondue";
+        var heroList = GameObject.FindGameObjectsWithTag("Hero");
+        foreach (var heroInfo in heroList)
+        {
+            var hero = heroInfo.GetComponent<Heros>();
+            hero.doneMove = true;
+        }
+    }
+    /******************************************
+     * 리무 스킬
+     * ***************************************/
 
     /******************************************
      * 범위 스킬
