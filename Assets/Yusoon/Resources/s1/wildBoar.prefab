@@ -166,6 +166,7 @@ MonoBehaviour:
   prevState: 
   animator: {fileID: 423989380552767075}
   speed: 2
+  speedDebuff: 1
   dmg: 3
   attackAreaX: 1
   attackArea: {x: 1, y: 0, z: 0}
