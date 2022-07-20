@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class StageUiController : MonoBehaviour
+public class Stage1Controller : MonoBehaviour
 {
     public GameObject[] heroPrefab;
     public GameObject rewardPrefab;
@@ -17,28 +17,29 @@ public class StageUiController : MonoBehaviour
         stage.text = "1-1";
         properCompatPower.text = "3";
     }
+
+    public void stage2Btn()
+    {
+        stage.text = "1-2";
+        properCompatPower.text = "3";
+    }
+
     public void StartStage1Btn()
     {
-        if(stage.text == "1-1")
+        if (stage.text == "1-1")
         {
             //GameManager.Instance.ChangeScene("Stage1-1");
             Debug.Log("1-1");
         }
-        else if(stage.text == "1-2")
+        else if (stage.text == "1-2")
         {
             //GameManager.Instance.ChangeScene("Stage1-2");
             Debug.Log("1-2");
         }
     }
 
-    public void stage2Btn()
-    {
-        stage.text = "1-2";
-        properCompatPower.text = "5";
-    }
-
     public void exitBtn()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
