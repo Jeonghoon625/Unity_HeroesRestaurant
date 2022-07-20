@@ -48,8 +48,9 @@ MonoBehaviour:
   - {fileID: 6297284225615730141, guid: 4abe45f2f8eabd348b052f96f5311b98, type: 3}
   - {fileID: 2651494052700413412, guid: d3eb7943a4a351542b1beed3dc943932, type: 3}
   - {fileID: 390868257218662838, guid: 13bebe8e1d873664db1fd586a1df93f2, type: 3}
-  - {fileID: 0}
-  isSellectSkill: 0
-  isActiveSkill: 0
-  taker: CoqAuVin
+  - {fileID: 5830458345551012715, guid: 6a812f737663f3f499444e9fb34784e5, type: 3}
+  - {fileID: 6297284225615730141, guid: 5057fe880e1a407479ad4e0db16c4d93, type: 3}
+  isSellectSkill: 1
+  isActiveSkill: 1
+  taker: Fondue
   skillAreaPrefab: {fileID: 2737741342942384132, guid: 4a44cf658033e3840bf2185d9c9eca59, type: 3}

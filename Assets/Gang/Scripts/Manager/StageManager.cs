@@ -27,7 +27,6 @@ public class StageManager : MonoBehaviour
     private void Start()
     {
         // 영웅 소환
-        /*********************************************************** 게임 매니저 수정 후 사용 *******************************************************************/
         //heroList = GameManager.Instance.heroSellectManager.heroList;
         heroList = GameObject.FindWithTag("HeroSellect").GetComponent<HeroSellectManager>().heroList;
         var heroPrefab = heroList.heroPrefab;
@@ -68,7 +67,7 @@ public class StageManager : MonoBehaviour
     }
     private void Update()
     {
-        if(stageEnd && Input.GetMouseButtonDown(0))
+        if (stageEnd && Input.GetMouseButtonDown(0))
         {
             Debug.Log("메인 메뉴로");
 
@@ -109,15 +108,15 @@ public class StageManager : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
+                    Time.timeScale = 1f;
                     var skillAreaRender = skillArea.GetComponentsInChildren<SpriteRenderer>();
                     foreach (SpriteRenderer ren in skillAreaRender)
                     {
                         ren.enabled = false;
                     }
                     skillManager.AreaSkill(skillManager.taker, pos);
-                    skillManager.isActiveSkill = false;
-                    skillManager.isSellectSkill = false;
-
+                            skillManager.isActiveSkill = false;
+                            skillManager.isSellectSkill = false;
                     StartCoroutine(Delay());
                 }
             }
@@ -128,7 +127,6 @@ public class StageManager : MonoBehaviour
         IEnumerator Delay()
         {
             yield return new WaitForSeconds(1f);
-
             var cols = Physics.OverlapBox(skillArea.transform.position, skillArea.transform.localScale);
             List<GameObject> lists = new List<GameObject>();
             foreach (var col in cols)
@@ -156,7 +154,7 @@ public class StageManager : MonoBehaviour
         Instantiate(VictoryUI).transform.SetParent(GameObject.Find("Canvas").transform, false);
         stageEnd = true;
 
-        foreach(var heroState in herosList)
+        foreach (var heroState in herosList)
         {
             var con = heroState.GetComponent<Heros>();
             con.animator.SetTrigger("Clear");
@@ -175,5 +173,5 @@ public class StageManager : MonoBehaviour
             stageEnd = true;
         }
     }
-    
+
 }

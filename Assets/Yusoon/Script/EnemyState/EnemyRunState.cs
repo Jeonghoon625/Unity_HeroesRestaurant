@@ -38,8 +38,7 @@ public class EnemyRunState : IEnemyState
             enemy.SetState("Idle");
         }
         // ¿Ãµø
-        var dir = enemy.transform.position.x - m_Position.x;
-        enemy.transform.position += this.dir * enemy.runSpeed * Time.deltaTime;
+        enemy.transform.position += dir * enemy.runSpeed * Time.deltaTime * enemy.speedDebuff;
 
         if (target != null)
         {

@@ -127,7 +127,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2322842550712715423, guid: 2bf0568dfa968f849af0deb9698638e4, type: 3}
         m_TargetAssemblyTypeName: SkillManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnClickFondueSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -25,9 +25,8 @@ public class ShootableObject : MonoBehaviour
     private Vector3 dir = Vector3.zero;
     public Vector3 splashRange = Vector3.zero;
   
-    private void FixedUpdate()
+    private void Update()
     {
-        //transform.position += dir * speed * Time.deltaTime;
         dir.y = Mathf.Sin(Time.time *curveSpeed) * curveHeight;
         transform.position += dir * speed * Time.deltaTime;
         
@@ -36,29 +35,35 @@ public class ShootableObject : MonoBehaviour
         {
             if (col.transform.tag == "Monster")
             {
-                // 데미지 줘야함
-                var dmg = hero.Dmg;
-                col.transform.GetComponent<Enemy>().OnHit(hero, dmg);
-
-                if (damageType == DamageType.Splash)
+                switch(damageType)
                 {
-                    SplashDamage(col.gameObject);
+                    case DamageType.Basic:
+                        col.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg);
+                        break;
+                    case DamageType.Splash:
+                        SplashDamage(col);
+                        break;
                 }
-
                 Destroy(gameObject);
             }
         }
     }
 
-    private void SplashDamage(GameObject col)
+    private void SplashDamage(Collider col)
     {
         var splash = Physics.OverlapBox(transform.position, splashRange);
         foreach (var hit in splash)
         {
-            if (col != hit.gameObject)
+            if (hit.transform.tag == "Monster")
             {
-                var splashDmg = hero.Dmg * 0.1f;
-                hit.transform.GetComponent<Enemy>().OnHit(hero, splashDmg);
+                if(col.gameObject == hit.gameObject)
+                {
+                    col.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg);
+                }
+                else
+                {
+                    hit.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg * 0.1f);
+                }
             }
         }
     }
