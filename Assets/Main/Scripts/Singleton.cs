@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> where T : new()
+public class Singleton<T> where T : class, new()
 {
-    protected static T instance;
+    private static T instance;
 
     public static T Instance
     {
