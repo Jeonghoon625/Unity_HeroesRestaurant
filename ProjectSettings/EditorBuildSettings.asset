@@ -5,13 +5,34 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/MainTest.unity
-    guid: 9cb83f8b9c91506418e113475e310a8f
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Gang.unity
     guid: 97b709274638c5745a93ca05d403f2d9
   - enabled: 1
     path: Assets/SongHaJung/Scene/Main01.unity
     guid: 0d61755f29cc44e45bfffcfa805e3015
+  - enabled: 1
+    path: Assets/Scenes/stage1-2.unity
+    guid: e9ccb1ea4aaec6f4ab3b9863204f4629
+  - enabled: 1
+    path: Assets/Scenes/stage2-1.unity
+    guid: 54c1f84f10f01054abe005ea850bd795
+  - enabled: 1
+    path: Assets/Scenes/stage2-2.unity
+    guid: a6e9ef3740385cb4c99fd490f35dc2a2
+  - enabled: 1
+    path: Assets/Scenes/stage3-1.unity
+    guid: d76b6e0690e694f4a965754b1ed48b91
+  - enabled: 1
+    path: Assets/Scenes/stage3-2.unity
+    guid: 7555e451211e17e489d3991b4040c70a
+  - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 93fbccffdcd9bb24298d0a156ca45914
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 17bec1a29146acf438e6c5e0a46b5cf3
   m_configObjects: {}

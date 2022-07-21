@@ -28,13 +28,11 @@ public class Stage3Controller : MonoBehaviour
     {
         if (stage.text == "3-1")
         {
-            //GameManager.Instance.ChangeScene("Stage1-1");
-            Debug.Log("3-1");
+            GameManager.Instance.ChanageScene("stage3-1");
         }
         else if (stage.text == "3-2")
         {
-            //GameManager.Instance.ChangeScene("Stage1-2");
-            Debug.Log("3-2");
+            GameManager.Instance.ChanageScene("stage3-2");
         }
     }
 
