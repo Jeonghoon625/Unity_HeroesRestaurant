@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public enum AttackTypes
@@ -11,6 +12,7 @@ public enum AttackTypes
 }
 public class Heros : MonoBehaviour
 {
+    public Image hpBar;
     private StageManager stageManager;
     /******************************************
      * 상태
@@ -36,9 +38,14 @@ public class Heros : MonoBehaviour
     private int dmg = 3;                                        // 공격력
     [SerializeField]
     private float attackCool = 1f;                              // 공격 쿨타임
+    [SerializeField]
+    private float armor = 0f;                                  // 방어력
+    public float maxShield;                                      // 쉴드
+    public float curShield;                                      // 쉴드
 
     public Vector3 attackArea = new Vector3(1f, 0f, 0f);        // 공격 범위
     public float hp = 100;                                        // 체력
+    public float maxHp;                                        // 체력
 
     public GameObject skillButtonPrefab;                        // 스킬 버튼
     //public GameObject skillPrefab;                              // 스킬
@@ -52,6 +59,7 @@ public class Heros : MonoBehaviour
      * 버프
      * ***************************************/
     public bool isInvincibility;                                // 무적
+    public bool isShield;                                       // 쉴드
     public bool doneControll;                                  // 스킬 시전 중
 
     public float runSpeed
@@ -73,6 +81,9 @@ public class Heros : MonoBehaviour
 
     private void Awake()
     {
+        maxHp = hp;
+        maxShield = hp * 0.2f;
+        curShield = maxShield;
         gameObject.name = gameObject.name.Replace("(Clone)", "");
         /*******************************************************************************/
         // 체력, 공격력 => 데이터 세이브 로드를 통하여 관리
@@ -216,9 +227,26 @@ public class Heros : MonoBehaviour
         {
             return hp;
         }
-        // hp 감소
-        hp -= dmg;
+        if(isShield)
+        {
+            curShield -= (dmg - armor);
+            if(hpBar.GetComponent<HpBar>().HitShield(curShield, maxShield) <= 0)
+            {
+                isShield = false;
+                //curShield = 0;
+                // 쉴드 제거
+                //isShield = false;
+                Destroy(gameObject.GetComponentInChildren<HeroSkill>().gameObject);
 
+
+                hpBar.GetComponent<HpBar>();
+            }
+            
+            return hp;
+        }
+        // hp 감소
+        hp -= (dmg - armor);
+        hpBar.GetComponent<HpBar>().HitHp(hp, maxHp);
         if(hp <= 0)
         {
             Dead(attacker.target);

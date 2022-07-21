@@ -10,6 +10,8 @@ public class RunState : IState
     private GameObject target;
 
     private Vector3 dir = new Vector3(0f, 0f, 0f);
+    private Quaternion rot = Quaternion.identity;
+    private Quaternion hpRot = Quaternion.identity;
     public void IEnter(Heros hero)
     {
         hero.animator.SetBool("Run", true);
@@ -22,16 +24,21 @@ public class RunState : IState
         {
             enemy = target.GetComponent<Enemy>();
         }
+        //Quaternion rot;
+        //Quaternion hpRot;
         if (hero.transform.position.x - m_Position.x > 0)
         {
             dir.x = -1f;
-            hero.transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
+            rot.y = 180f;
         }
         else
         {
             dir.x = 1f;
-            hero.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+            rot.y = 0f;
         }
+
+        hero.transform.rotation = rot;
+        hero.hpBar.rectTransform.rotation = hpRot;
     }
 
     public void IUpdate()

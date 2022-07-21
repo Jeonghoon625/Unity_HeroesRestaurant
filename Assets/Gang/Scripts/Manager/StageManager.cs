@@ -69,22 +69,17 @@ public class StageManager : MonoBehaviour
     {
         if (stageEnd && Input.GetMouseButtonDown(0))
         {
-            Debug.Log("메인 메뉴로");
-
             // 메인 씬으로 이동...
             //GameManager.Instance.ChangeScene("Main01");
         }
-        /***************************************************
-         * 스테이지 테스트
-         * ************************************************/
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Victory();
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Defeat();
-        }
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    Victory();
+        //}
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    Defeat();
+        //}
         /***************************************************
          * 스킬 관리
          * ************************************************/
