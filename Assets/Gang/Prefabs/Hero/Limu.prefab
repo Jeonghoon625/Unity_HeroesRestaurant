@@ -197,11 +197,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBar: {fileID: 8140112272427981182}
+  stageManager: {fileID: 0}
   curStateString: 
   prevStateString: 
   animator: {fileID: 0}
   attackType: 1
-  speed: 3
+  speed: 4
   dmg: 3
   attackCool: 1.2
   armor: 0

@@ -9,7 +9,7 @@ public class RunState : IState
     private Vector3 m_Position;
     private GameObject target;
 
-    private Vector3 dir = new Vector3(0f, 0f, 0f);
+    private Vector3 dir = Vector3.zero;
     private Quaternion rot = Quaternion.identity;
     private Quaternion hpRot = Quaternion.identity;
     public void IEnter(Heros hero)
@@ -24,8 +24,6 @@ public class RunState : IState
         {
             enemy = target.GetComponent<Enemy>();
         }
-        //Quaternion rot;
-        //Quaternion hpRot;
         if (hero.transform.position.x - m_Position.x > 0)
         {
             dir.x = -1f;

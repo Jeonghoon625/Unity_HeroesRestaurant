@@ -13,7 +13,7 @@ public enum AttackTypes
 public class Heros : MonoBehaviour
 {
     public Image hpBar;
-    private StageManager stageManager;
+    public StageManager stageManager;
     /******************************************
      * 상태
      * ***************************************/
@@ -92,7 +92,6 @@ public class Heros : MonoBehaviour
         Instantiate(skillButtonPrefab).transform.SetParent(GameObject.Find("Skill").transform, false);
         // StageManager에 정보 전달
         stageManager = GameObject.FindWithTag("GameController").GetComponent<StageManager>();
-        stageManager.HeroCount += 1;
 
         /*******************************************************************************/
         // 캐릭터 상태 설정
@@ -193,10 +192,6 @@ public class Heros : MonoBehaviour
         if (monster != null)
         {
             monster.OnHit(this, Dmg);
-            //if (monster.OnHit(this, Dmg) == 0)
-            //{
-            //    //SetState("Idle");
-            //}
         }
     }
     private void RangeAttack(Enemy monster)
@@ -233,13 +228,7 @@ public class Heros : MonoBehaviour
             if(hpBar.GetComponent<HpBar>().HitShield(curShield, maxShield) <= 0)
             {
                 isShield = false;
-                //curShield = 0;
-                // 쉴드 제거
-                //isShield = false;
                 Destroy(gameObject.GetComponentInChildren<HeroSkill>().gameObject);
-
-
-                hpBar.GetComponent<HpBar>();
             }
             
             return hp;
@@ -249,6 +238,10 @@ public class Heros : MonoBehaviour
         hpBar.GetComponent<HpBar>().HitHp(hp, maxHp);
         if(hp <= 0)
         {
+            foreach (var s in stageManager.enemyList)
+            {
+                s.GetComponent<Enemy>().target = null;
+            }
             Dead(attacker.target);
         }
         return hp;
@@ -262,7 +255,7 @@ public class Heros : MonoBehaviour
         hp = 0;
         doneControll = true;
 
-        stageManager.Defeat();
+        stageManager.Defeat(gameObject);
     }
     /******************************************
      * 스킬

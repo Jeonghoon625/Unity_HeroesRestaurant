@@ -13,17 +13,17 @@ public class StageManager : MonoBehaviour
     /******************************************
      * 스테이지 성공, 실패 여부 확인
      * ***************************************/
-    private bool stageEnd = false;          // 임시
-    public int HeroCount;                   // 임시
+    private bool stageEnd = false;          //
     public GameObject VictoryUI;
     public GameObject DefeatUI;
 
     private HeroList heroList;
     public List<GameObject> herosList;
+    public List<GameObject> enemyList;
     /******************************************
      * 오브젝트 풀
      * ***************************************/
-    public MultipleObjectPooling objectPool;
+    //public MultipleObjectPooling objectPool;
     private void Start()
     {
         // 영웅 소환
@@ -39,11 +39,11 @@ public class StageManager : MonoBehaviour
             {
                 count++;
                 // 오브젝트 풀
-                var hero = heroPrefab[i].GetComponent<Heros>();
-                if (hero.AttackType == AttackTypes.Range)
-                {
-                    objectPool.poolPrefabs.Add(hero.shootPrefab);
-                }
+                //var hero = heroPrefab[i].GetComponent<Heros>();
+                //if (hero.AttackType == AttackTypes.Range)
+                //{
+                //    objectPool.poolPrefabs.Add(hero.shootPrefab);
+                //}
             }
         }
         float startPos = -0.75f * (count - 1);
@@ -63,23 +63,16 @@ public class StageManager : MonoBehaviour
         skillManager.isSellectSkill = false;
         skillManager.isActiveSkill = false;
         // 오브젝트 풀
-        objectPool.Test();
+        //objectPool.Test();
     }
     private void Update()
     {
         if (stageEnd && Input.GetMouseButtonDown(0))
         {
+            Debug.Log("Next Scene");
             // 메인 씬으로 이동...
             //GameManager.Instance.ChangeScene("Main01");
         }
-        //if (Input.GetKeyDown(KeyCode.V))
-        //{
-        //    Victory();
-        //}
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    Defeat();
-        //}
         /***************************************************
          * 스킬 관리
          * ************************************************/
@@ -110,8 +103,8 @@ public class StageManager : MonoBehaviour
                         ren.enabled = false;
                     }
                     skillManager.AreaSkill(skillManager.taker, pos);
-                            skillManager.isActiveSkill = false;
-                            skillManager.isSellectSkill = false;
+                    skillManager.isActiveSkill = false;
+                    skillManager.isSellectSkill = false;
                     StartCoroutine(Delay());
                 }
             }
@@ -158,15 +151,23 @@ public class StageManager : MonoBehaviour
         // GameManager에게 보상 전달
     }
     /***************************************************
-     * 실패
+     * 실패 영웅 사망
      * ************************************************/
-    public void Defeat()
+    public void Defeat(GameObject hero)
     {
-        if (--HeroCount == 0)
+        herosList.Remove(hero);
+
+        if(herosList.Count == 0)
         {
             Instantiate(DefeatUI).transform.SetParent(GameObject.Find("Canvas").transform, false);
             stageEnd = true;
         }
     }
-
+    /***************************************************
+     * 몬스터 사망
+     * ************************************************/
+    public void DeadEnemy(GameObject enemy)
+    {
+        enemyList.Remove(enemy);
+    }
 }
