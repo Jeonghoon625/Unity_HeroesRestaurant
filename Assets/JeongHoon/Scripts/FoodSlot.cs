@@ -15,6 +15,9 @@ public class FoodSlot : MonoBehaviour
 
     public List<int> currencyList;
 
+    public int stage;
+    public GameObject lockGO;
+
     private void Start()
     {
         image = GetComponent<Image>();

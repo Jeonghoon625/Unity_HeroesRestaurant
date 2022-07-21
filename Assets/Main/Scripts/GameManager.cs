@@ -19,6 +19,11 @@ public class GameManager : Singleton<GameManager>
         SceneLoader.LoadScene("Gang");
     }
 
+    public void ChanageScene(string sceneName)
+    {
+        SceneLoader.LoadScene(sceneName);
+    }
+
     public void DoSomething()
     {
     }

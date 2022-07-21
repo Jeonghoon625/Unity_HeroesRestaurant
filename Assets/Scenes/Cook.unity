@@ -403,9 +403,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4226558719336796662, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4226558719364932457, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226558719526435380, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
+      propertyPath: m_Name
+      value: Currency Section
       objectReference: {fileID: 0}
     - target: {fileID: 4226558719868322418, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -514,6 +522,10 @@ PrefabInstance:
     - target: {fileID: 4226558720138114682, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
       propertyPath: m_Name
       value: Cooking
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226558720138114682, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4226558720555932872, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -654,6 +666,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4226558720138114682, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
   m_PrefabInstance: {fileID: 4226558721058573579}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4226558721058573581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4226558719526435380, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
+  m_PrefabInstance: {fileID: 4226558721058573579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4226558721058573582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4226558720061178425, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
+  m_PrefabInstance: {fileID: 4226558721058573579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fab026d2e36cc429cedd58e33c772b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4226558721058573583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4226558719207786194, guid: f4560d430b3fd9044b71016f7fdcb06a, type: 3}
+  m_PrefabInstance: {fileID: 4226558721058573579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4226558721058573584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,11 +699,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2c8d549749f1945baf0f3cf33255e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  informationPanel: {fileID: 0}
-  foodSection: {fileID: 0}
-  currencySection: {fileID: 0}
-  foodSlots: []
-  currencySlots: []
+  selectFood: {fileID: 0}
+  uiManager: {fileID: 4226558721058573585}
+--- !u!114 &4226558721058573585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226558721058573580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312c228c7755afb40a8945f9214342dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cookManager: {fileID: 4226558721058573584}
+  informationPanel: {fileID: 4226558721058573582}
   foodPrefab: {fileID: 4358892774959400640, guid: 4818b779c00e7fd4db83bd39aaba7853, type: 3}
   currencyPrefab: {fileID: 1608822806546743553, guid: fdd5fd3dbc18b084bab5a20755136455, type: 3}
-  selectFood: {fileID: 0}
+  foodSlots: []
+  currencySlots: []
+  foodSection: {fileID: 4226558721058573583}
+  currencySection: {fileID: 4226558721058573581}

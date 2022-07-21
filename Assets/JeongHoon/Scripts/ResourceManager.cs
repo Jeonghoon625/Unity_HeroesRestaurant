@@ -33,43 +33,25 @@ public class ResourceManager
     public void LoadCurrency()
     {
         currencyData = CSVReader.Read("Tables\\Currency_DataTable");
-
-        
     }
 
     public void LoadFood()
     {
         foodData = CSVReader.Read("Tables\\Food_DataTable");
-
-       
     }
 
     public void LoadRecipe()
     {
         recipeData = CSVReader.Read("Tables\\Recipe_DataTable");
-
-        
     }
 
     public void LoadReserveCurrency()
     {
         reserveCurrencyData = CSVReader.Read("Tables\\Currency_ReserveTable");
-
-       
     }
 
     public void LoadReserveFood()
     {
         reserveFoodData = CSVReader.Read("Tables\\Food_ReserveTable");
-
-       
     }
-
-    /*
-    public void SelectFood(FoodSlot slot)
-    {
-        cookManager.selectFood = slot;
-        cookManager.informationPanel.ShowInfo(slot,cookManager);
-    }
-    */
 }
