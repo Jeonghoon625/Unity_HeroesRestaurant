@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4227966256587536444}
   - component: {fileID: 4395043979635779747}
   - component: {fileID: -7812301599235580286}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: s3_boss
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

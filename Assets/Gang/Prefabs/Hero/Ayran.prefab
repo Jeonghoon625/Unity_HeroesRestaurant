@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1511299017338005660}
   - component: {fileID: 1718585137}
   - component: {fileID: 574714549}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Ayran
   m_TagString: Hero
   m_Icon: {fileID: 0}
@@ -178,4 +178,4 @@ MonoBehaviour:
   m_Position: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
   isInvincibility: 0
-  doneMove: 0
+  doneControll: 0

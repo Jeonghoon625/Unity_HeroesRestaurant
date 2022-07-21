@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 594966999956174642}
   - component: {fileID: 8605685906485131692}
   - component: {fileID: -3665928654258817778}
-  m_Layer: 0
+  - component: {fileID: 3375992195304358924}
+  m_Layer: 9
   m_Name: s3_shell
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,12 +151,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prevState: 
-  animator: {fileID: 0}
+  animator: {fileID: 594966999956174642}
   speed: 3
   speedDebuff: 1
   dmg: 3
   attackAreaX: 0
   attackArea: {x: 0, y: 0, z: 0}
-  hp: 100
+  hp: 5
   attackCool: 0.5
   target: {fileID: 0}
+--- !u!65 &3375992195304358924
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5111463497007792417}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.588601, y: 4.905194, z: 1}
+  m_Center: {x: -0.09423971, y: 2.3968666, z: 0}

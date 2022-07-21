@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 2923291607162734649}
   - component: {fileID: 5547782818451936567}
   - component: {fileID: 433700686675517047}
-  m_Layer: 0
+  - component: {fileID: 8556508402926610806}
+  m_Layer: 9
   m_Name: s2_smallMush
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -150,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prevState: 
-  animator: {fileID: 0}
+  animator: {fileID: 2923291607162734649}
   speed: 3
   speedDebuff: 1
   dmg: 3
@@ -159,3 +160,16 @@ MonoBehaviour:
   hp: 100
   attackCool: 0.5
   target: {fileID: 0}
+--- !u!65 &8556508402926610806
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4804940923597937172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5259066, y: 3.2174802, z: 1}
+  m_Center: {x: -0.07383394, y: 1.5749147, z: 0}

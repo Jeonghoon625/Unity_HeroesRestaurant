@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 6652688226138499112}
   - component: {fileID: 6142933783690424888}
   - component: {fileID: -7911385276677208325}
-  m_Layer: 0
+  - component: {fileID: 7467220341007249760}
+  m_Layer: 9
   m_Name: s2_giantMush
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -150,12 +151,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prevState: 
-  animator: {fileID: 0}
+  animator: {fileID: 6652688226138499112}
   speed: 3
   speedDebuff: 1
   dmg: 3
   attackAreaX: 0
   attackArea: {x: 0, y: 0, z: 0}
-  hp: 100
+  hp: 5
   attackCool: 0.5
   target: {fileID: 0}
+--- !u!65 &7467220341007249760
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6325643287101716214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.0143585, y: 6.439137, z: 1}
+  m_Center: {x: 0.20157242, y: 3.2959702, z: 0}

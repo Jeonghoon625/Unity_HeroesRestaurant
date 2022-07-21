@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 3242038279660165284}
   - component: {fileID: 3752124653977354662}
   - component: {fileID: 4172093114267970467}
-  m_Layer: 0
+  - component: {fileID: 2711694286792679447}
+  m_Layer: 9
   m_Name: s2_boss
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -150,12 +151,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prevState: 
-  animator: {fileID: 0}
+  animator: {fileID: 3242038279660165284}
   speed: 3
   speedDebuff: 1
   dmg: 3
   attackAreaX: 0
   attackArea: {x: 0, y: 0, z: 0}
-  hp: 100
+  hp: 50
   attackCool: 0.5
   target: {fileID: 0}
+--- !u!65 &2711694286792679447
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085555794051645487}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 43.98, y: 43.4601, z: 0}
+  m_Center: {x: -0.28450012, y: 20.229948, z: 0}

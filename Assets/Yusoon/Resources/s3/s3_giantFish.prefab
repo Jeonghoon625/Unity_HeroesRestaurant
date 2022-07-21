@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 8054634148863511609}
   - component: {fileID: 7757600433617548277}
   - component: {fileID: 269138629399707798}
-  m_Layer: 0
+  - component: {fileID: 7541549185135691622}
+  m_Layer: 9
   m_Name: s3_giantFish
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,12 +151,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prevState: 
-  animator: {fileID: 0}
+  animator: {fileID: 8054634148863511609}
   speed: 3
   speedDebuff: 1
   dmg: 3
   attackAreaX: 0
   attackArea: {x: 0, y: 0, z: 0}
-  hp: 100
+  hp: 10
   attackCool: 0.5
   target: {fileID: 0}
+--- !u!65 &7541549185135691622
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341145352759608481}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.3045945, y: 6.2410703, z: 1}
+  m_Center: {x: -0.14293988, y: 2.9381776, z: 0}
