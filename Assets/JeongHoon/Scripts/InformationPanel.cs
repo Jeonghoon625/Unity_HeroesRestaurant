@@ -16,10 +16,15 @@ public class InformationPanel : MonoBehaviour
     public TextMeshProUGUI maxReserve;
 
     public Slider reserveSlider;
-    
+
+    private FoodSlot slotInfo;
+
+    public UIManager uiManager;
+
     public void ShowInfo(FoodSlot selectSlot, UIManager uiManager)
     {
-        FoodSlot slotInfo = selectSlot;
+        slotInfo = selectSlot;
+        this.uiManager = uiManager;
 
         if (slotInfo != null)
         {
@@ -40,7 +45,7 @@ public class InformationPanel : MonoBehaviour
                 {
                     RecipeCurrencySection[idx].SetActive(true);
                     RecipeCurrencySlot slot = RecipeCurrencySection[idx].GetComponent<RecipeCurrencySlot>();
-                    slot.Change(uiManager.currencySlots[i].sprite, slotInfo.currencyList[i].ToString());
+                    slot.Init(uiManager.currencySlots[i].sprite, slotInfo.currencyList[i].ToString());
                     idx++;
                 }
             }
@@ -54,6 +59,19 @@ public class InformationPanel : MonoBehaviour
         }
     }
 
+    public void ShowInfo()
+    {
+        ShowInfo(this.slotInfo, this.uiManager);
+    }
+
+    private void UpdateReserve()
+    {
+        if(slotInfo != null)
+        {
+            currentReserve.text = GameManager.Instance.goodsManager.foodReserve[slotInfo.id].ToString();
+        }
+    }
+    
     /*
     public void Init()
     {

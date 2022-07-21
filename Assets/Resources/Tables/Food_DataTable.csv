@@ -1,17 +1,17 @@
-id	name	sellTime	sellGold	image	explanation	stage	maxReserve
-0	À°Åº! ²¿Ä¡±¸ÀÌ	10	10	food.000_000	ÀÌ ²¿Ä¡¿¡ ²ÈÇôÀÖ´Â °Ç °í±â°¡ ¾Æ´Ï¶ó ¾ß»ý ±× ÀÚÃ¼.	1	30
-1	Ä¡Áî¹ö¼¸ ºñ½ºÅ¶	10	10	food.001_000	¹Ù»èÇÑ ºñ½ºÅ¶ À§¿¡ Ä¡Áî¹ö¼¸ Á¶°¢À» ¿Ã·Á ¸Ô´Â °£½Ä.	1	30
-2	Ä¡Áî¹ö¼¸ ÇÜ¹ö±×	20	20	food.001_001	À°Áó °¡µæÇÑ ÇÜ¹ö±× ¹ÝÀ¸·Î °¡¸£¸é ¼Ò½º¿Í Ä¡ÁîÀÇ Ãµ±¹ÀÌ ÆîÃÄÁø´Ù.	1	20
-3	»ý¼± ±¸ÀÌ	10	10	food.002_000	¹Ù»èÇÑ ²®Áú°ú ºÎµå·¯¿î ¼Ó»ìÀ» µ¿½Ã¿¡ ´À³¥ ¼ö ÀÖ´Ù.	1	10
-4	»ï»ö Àü°ñ	30	30	food.002_001	³²Àº ±¹¹°·Î´Â Á×À» ¸¸µé¾î ¸Ô´Â °ÍÀÌ Á¤¼®	1	30
-5	¹öÅÍÁ¶°³±¸ÀÌ	20	20	food.002_002	ÅëÅëÇÑ Á¶°¹»ì°ú ±× À§¿¡¼­ ³ì¾Æ Èê·¯³»¸° ¹öÅÍ°¡ ÀÌ·ç¾î³»´Â ¸ÀÀÇ Çâ¿¬.	1	20
-6	Åë»õ¿ì±¸ÀÌ	20	20	food.003_000	ÀÜÈ¤ÇÑ »ç½ÇÀÌÁö¸¸ »õ¿ì¿¡°Õ ¹Ù´Ùº¸´Ù ±×¸± À§°¡ ´õ ¾î¿ï¸³´Ï´Ù.	1	20
-7	¹ÌÆ®½ºÆ©	20	20	food.003_001	"°í±âÀÇ ÀûÁ¤·®Àº ""³¿ºñ¶Ñ²±ÀÌ ´ÝÈ÷Áö ¾ÊÀ» ¸¸Å­""ÀÔ´Ï´Ù."	1	20
-8	Unknown	0	0	food.000_001	Unknown	2	0
-9	Unknown	0	0	food.003_002	Unknown	2	0
-10	Unknown	0	0	food.003_003	Unknown	2	0
-11	Unknown	0	0	food.004_000	Unknown	2	0
-12	Unknown	0	0	food.004_001	Unknown	2	0
-13	Unknown	0	0	food.005_000	Unknown	2	0
-14	Unknown	0	0	food.009_003	Unknown	2	0
-15	Unknown	0	0	food.s3_002	Unknown	2	0
+ï»¿id,name,sellTime,sellGold,image,explanation,stage,maxReserve
+0,ìœ¡íƒ„! ê¼¬ì¹˜êµ¬ì´,10,10,food.000_000,ì´ ê¼¬ì¹˜ì— ê½‚í˜€ìžˆëŠ” ê±´ ê³ ê¸°ê°€ ì•„ë‹ˆë¼ ì•¼ìƒ ê·¸ ìžì²´.,1,30
+1,ì¹˜ì¦ˆë²„ì„¯ ë¹„ìŠ¤í‚·,10,10,food.001_000,ë°”ì‚­í•œ ë¹„ìŠ¤í‚· ìœ„ì— ì¹˜ì¦ˆë²„ì„¯ ì¡°ê°ì„ ì˜¬ë ¤ ë¨¹ëŠ” ê°„ì‹.,1,30
+2,ì¹˜ì¦ˆë²„ì„¯ í–„ë²„ê·¸,20,20,food.001_001,ìœ¡ì¦™ ê°€ë“í•œ í–„ë²„ê·¸ ë°˜ìœ¼ë¡œ ê°€ë¥´ë©´ ì†ŒìŠ¤ì™€ ì¹˜ì¦ˆì˜ ì²œêµ­ì´ íŽ¼ì³ì§„ë‹¤.,1,20
+3,ìƒì„  êµ¬ì´,10,10,food.002_000,ë°”ì‚­í•œ ê»ì§ˆê³¼ ë¶€ë“œëŸ¬ìš´ ì†ì‚´ì„ ë™ì‹œì— ëŠë‚„ ìˆ˜ ìžˆë‹¤.,1,10
+4,ì‚¼ìƒ‰ ì „ê³¨,30,30,food.002_001,ë‚¨ì€ êµ­ë¬¼ë¡œëŠ” ì£½ì„ ë§Œë“¤ì–´ ë¨¹ëŠ” ê²ƒì´ ì •ì„,1,30
+5,ë²„í„°ì¡°ê°œêµ¬ì´,20,20,food.002_002,í†µí†µí•œ ì¡°ê°¯ì‚´ê³¼ ê·¸ ìœ„ì—ì„œ ë…¹ì•„ í˜ëŸ¬ë‚´ë¦° ë²„í„°ê°€ ì´ë£¨ì–´ë‚´ëŠ” ë§›ì˜ í–¥ì—°.,1,20
+6,í†µìƒˆìš°êµ¬ì´,20,20,food.003_000,ìž”í˜¹í•œ ì‚¬ì‹¤ì´ì§€ë§Œ ìƒˆìš°ì—ê² ë°”ë‹¤ë³´ë‹¤ ê·¸ë¦´ ìœ„ê°€ ë” ì–´ìš¸ë¦½ë‹ˆë‹¤.,1,20
+7,ë¯¸íŠ¸ìŠ¤íŠœ,20,20,food.003_001,"ê³ ê¸°ì˜ ì ì •ëŸ‰ì€ ""ëƒ„ë¹„ëšœê»‘ì´ ë‹«ížˆì§€ ì•Šì„ ë§Œí¼""ìž…ë‹ˆë‹¤.",1,20
+8,Unknown,0,0,food.000_001,Unknown,2,0
+9,Unknown,0,0,food.003_002,Unknown,2,0
+10,Unknown,0,0,food.003_003,Unknown,2,0
+11,Unknown,0,0,food.004_000,Unknown,2,0
+12,Unknown,0,0,food.004_001,Unknown,2,0
+13,Unknown,0,0,food.005_000,Unknown,2,0
+14,Unknown,0,0,food.009_003,Unknown,2,0
+15,Unknown,0,0,food.s3_002,Unknown,2,0
