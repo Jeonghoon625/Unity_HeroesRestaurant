@@ -8,8 +8,6 @@ public class OpenMapManager : MonoBehaviour
 
     public void OnEnable()
     {
-        //Debug.Log("Active");
-        
         for(int i = 0; i < GameManager.Instance.masterStage; i++)
         {
             stageMaps[i].enabled = true;

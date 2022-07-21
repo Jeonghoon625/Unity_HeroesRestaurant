@@ -157,7 +157,7 @@ MonoBehaviour:
   dmg: 3
   attackAreaX: 0
   attackArea: {x: 0, y: 0, z: 0}
-  hp: 100
+  hp: 5
   attackCool: 0.5
   target: {fileID: 0}
 --- !u!65 &8556508402926610806

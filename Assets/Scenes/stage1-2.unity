@@ -973,11 +973,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8734886078376390242, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
       propertyPath: waves.Array.data[0].pos.Array.data[0].x
-      value: -3.8
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 8734886078376390242, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
       propertyPath: waves.Array.data[0].pos.Array.data[0].y
-      value: -0.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8734886078376390242, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
       propertyPath: waves.Array.data[0].enemies.Array.data[0]
