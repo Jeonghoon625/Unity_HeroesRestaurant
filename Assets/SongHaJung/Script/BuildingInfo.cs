@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class BuildingInfo
 {
-    //public int activeselectionIndex;
-    //public float positionX;
-    //public bool Istrue;
+    public BuildingInfo(int _activIndex, float _positionX, bool _Istrue)
+    {
+        activIndex = _activIndex;
+        positionX = _positionX;
+        Istrue = _Istrue;
+    }
+    public int activIndex;
+    public float positionX;
+    public bool Istrue;
+}
 
-    //public BuildingInfo(int _activeselectionIndex, float _positionX = 0, bool _Istrue)
-    //{
-    //    this.activeselectionIndex = _activeselectionIndex;
-    //    this.positionX = _positionX;
-    //    this.Istrue = _Istrue;
-    //}
+public class GameInfo
+{
+    public List<BuildingInfo> mainsInfo;
+    public GameInfo()
+    {
+        mainsInfo = new List<BuildingInfo>();
+    }
 }

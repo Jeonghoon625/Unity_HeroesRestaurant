@@ -37,7 +37,7 @@ public class GameDataManager : MonoBehaviour
 {
     public TextAsset ItemDataBase;
 
-    public List<Item> AllItemList, MyItemList, CurItemList, PositionList;
+    public List<Item> AllItemList, MyItemList, CurItemList;
     public string curType = "Building";
     public GameObject[] Slot, UsingImage, AllModels;
     public Image[] TapImage, ItemImage;
@@ -58,13 +58,16 @@ public class GameDataManager : MonoBehaviour
     private float backz = 0.045f;
     private bool IsMove;
 
+    public static GameInfo gameInfo;
+
     private void Start()
     {
+
 
         int startIndex = 0;
         //전체 아이템 리스트 불러오기
         string[] line = ItemDataBase.text.Substring(startIndex, ItemDataBase.text.Length - 1).Split("\n");  //마지막 엔터자리 지워주기(엑셀로 작업하면 마지막 엔터자리까지뜨기때문)
-
+     
 
         //List에 아이템리스트 삽입
         for (int i = 0; i < line.Length; i++)
@@ -133,9 +136,9 @@ public class GameDataManager : MonoBehaviour
             Save();
         }
 
-
         selectionIndex = int.Parse(curItem.Index);
         AllModels[selectionIndex].SetActive(true);
+
         if (AllModels[selectionIndex].tag == "Finish")
         {
             AllModels[testIndex].SetActive(false);
@@ -169,7 +172,6 @@ public class GameDataManager : MonoBehaviour
         {
             AllModels[selectionIndex].SetActive(true);
         }
-
     }
 
     public void NoDrag()
@@ -177,13 +179,12 @@ public class GameDataManager : MonoBehaviour
         main.OnClickBuildingBack();
         Debug.Log("노드래긍");
         IsMove = false;
-
     }
 
     public void EndBuilding()
     {
 
-        Load();
+        //Load();
 
     }
 
@@ -253,6 +254,7 @@ public class GameDataManager : MonoBehaviour
         }
         //탭이미지
         int tabNum = 0;
+
         switch (tapName)
         {
             case "Building": tabNum = 0; break;
@@ -285,6 +287,8 @@ public class GameDataManager : MonoBehaviour
 
     void Save()
     {
+        
+
         string jdata = JsonConvert.SerializeObject(MyItemList);
         File.WriteAllText(Application.dataPath + "/SongHaJung/BuildingData.txt", jdata); //text 저장
 
@@ -295,6 +299,7 @@ public class GameDataManager : MonoBehaviour
     {
         string jdata = File.ReadAllText(Application.dataPath + "/SongHaJung/BuildingData.txt");
         MyItemList = JsonConvert.DeserializeObject<List<Item>>(jdata);
+        //gameInfo = JsonConvert.DeserializeObject<GameInfo>(jdata);
 
         TapClick(curType);
     }
