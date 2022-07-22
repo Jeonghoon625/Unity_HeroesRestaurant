@@ -6,6 +6,19 @@ using System.IO;
 using TMPro;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class BuildingInfo
+{
+    public BuildingInfo(int _activIndex, float _positionX, bool _Istrue)
+    {
+        activIndex = _activIndex;
+        positionX = _positionX;
+        Istrue = _Istrue;
+    }
+    public int activIndex;
+    public float positionX;
+    public bool Istrue;
+}
 
 [System.Serializable]
 public class Item
@@ -58,33 +71,27 @@ public class GameDataManager : MonoBehaviour
     private float backz = 0.045f;
     private bool IsMove;
 
-    public static GameInfo gameInfo;
 
+    //건물위치, 상태값 저장
+    public List<BuildingInfo> buildingInfoList = new List<BuildingInfo>();
     private void Start()
     {
-
-
         int startIndex = 0;
         //전체 아이템 리스트 불러오기
         string[] line = ItemDataBase.text.Substring(startIndex, ItemDataBase.text.Length - 1).Split("\n");  //마지막 엔터자리 지워주기(엑셀로 작업하면 마지막 엔터자리까지뜨기때문)
      
-
         //List에 아이템리스트 삽입
         for (int i = 0; i < line.Length; i++)
         {
             string[] row = line[i].Split("\t");
             AllItemList.Add(new Item(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7] == "TRUE", row[8], row[9], row[10], row[11], row[12], row[13]));
         }
-
         Load();
         PointerClick(0); //기본 첫번째 디테일 메뉴가 뜨도록
-
     }
-
 
     private void Update()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
             if (IsMove)
@@ -98,8 +105,6 @@ public class GameDataManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isMouseDragging = false;
-            Debug.Log("Building position :" + AllModels[selectionIndex].transform.position);
-
         }
         if (isMouseDragging)
         {
@@ -111,7 +116,6 @@ public class GameDataManager : MonoBehaviour
                 isMouseDragging = false;
                 x = 0;
             }
-
             else if (selectionIndex > 17 && selectionIndex < 38) z = frontZ;
             else z = backz;
 
@@ -120,11 +124,9 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
-    //배치눌렀을때
+    //첫번째 배치눌렀을때
     public void GetItemClick()
     {
-        //Item curItem = MyItemList.Find(x => x.Name == Slot.text);
-
         //선택아이템 -> 노랑클릭 true될때
         IsMove = true;
         Item curItem = CurItemList.Find(x => x.isUsing == true);
@@ -139,6 +141,7 @@ public class GameDataManager : MonoBehaviour
         selectionIndex = int.Parse(curItem.Index);
         AllModels[selectionIndex].SetActive(true);
 
+        //Finish tag = mani building setactive false 
         if (AllModels[selectionIndex].tag == "Finish")
         {
             AllModels[testIndex].SetActive(false);
@@ -156,12 +159,9 @@ public class GameDataManager : MonoBehaviour
             AllModels[selectionIndex].transform.position = new Vector3(0, 0, z);
 
         }
-        main.BuildingOnMain();
-      
+        main.BuildingOnMain(); 
     }
-
-
-    public void DeleteOnMainModels()
+    public void ChangeOnMainModels()
     {
         if (selectionIndex < 18)
         {
@@ -174,54 +174,18 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
-    public void NoDrag()
+    //최종 배치눌렀을때  
+    public void NoDragForSave()
     {
         main.OnClickBuildingBack();
-        Debug.Log("노드래긍");
         IsMove = false;
+        Save();
     }
-
-    public void EndBuilding()
-    {
-
-        //Load();
-
-    }
-
-    //public void RemoveItemClick()
-    //{
-    //    Item curItem = MyItemList.Find(x => x.isUsing == true);
-    //    if (curItem != null)
-    //    {
-    //        MyItemList.Remove(curItem);
-    //    }
-    //    MyItemList.Sort((p1, p2) => p1.Index.CompareTo(p2.Index));
-    //    Save();
-    //}
 
     public void SlotClick(int slotNum)
     {
-
         Item CurItem = CurItemList[slotNum];
         Item UsingItem = CurItemList.Find(x => x.isUsing == true);
-
-        //if(curType== "Building")
-        //{
-        //    if(UsingItem != null)
-        //    {
-        //        UsingItem.isUsing = false;
-        //        CurItem.isUsing = true;
-        //    }
-
-        //}
-        //else
-        //{
-        //    CurItem.isUsing = !CurItem.isUsing;
-        //    if(UsingItem != null)
-        //    {
-        //        UsingItem.isUsing = false;
-        //    }
-        //} 
 
         CurItem.isUsing = !CurItem.isUsing;
         if (UsingItem != null)
@@ -232,6 +196,7 @@ public class GameDataManager : MonoBehaviour
         Debug.Log(CurItem.Index);
         Save();
     }
+
     public void TapClick(string tapName)
     {
         //현재 아이템 리스트에 클릭한 타입만 추가
@@ -262,14 +227,7 @@ public class GameDataManager : MonoBehaviour
             case "BackFurniture": tabNum = 2; break;
         }
 
-        // 탭 이미지 교환
-        //for (int i = 0; i < TapImage.Length; i++)
-        //{
-        //    TapImage[i].sprite = i == tabNum ? TapSelectSprite : TabIdleSprite;
-        //}
     }
-
-
 
     //디테일 메뉴와 설명이 뜨도록 로드
     public void PointerClick(int slotNum)
@@ -287,20 +245,53 @@ public class GameDataManager : MonoBehaviour
 
     void Save()
     {
-        
-
         string jdata = JsonConvert.SerializeObject(MyItemList);
         File.WriteAllText(Application.dataPath + "/SongHaJung/BuildingData.txt", jdata); //text 저장
 
+        for (var i = 0; i < buildingInfoList.Count; ++i)
+        {
+            // Load와 반대로 
+            AllModels[i].SetActive(buildingInfoList[i].Istrue);
+            var pos = AllModels[i].transform.position;
+            pos.x = buildingInfoList[i].positionX;
+            AllModels[i].transform.position = pos;
+        }
+
+        string bdata = JsonConvert.SerializeObject(buildingInfoList);
+        File.WriteAllText(Application.dataPath + "/SongHaJung/PositionData.txt", bdata);
+
         TapClick(curType);
     }
+
 
     void Load()
     {
         string jdata = File.ReadAllText(Application.dataPath + "/SongHaJung/BuildingData.txt");
         MyItemList = JsonConvert.DeserializeObject<List<Item>>(jdata);
-        //gameInfo = JsonConvert.DeserializeObject<GameInfo>(jdata);
 
+        var path = Application.dataPath + "/SongHaJung/PositionData.txt";
+        if (File.Exists(path))
+        {
+            string bdata = File.ReadAllText(Application.dataPath + "/SongHaJung/PositionData.txt");
+            buildingInfoList = JsonConvert.DeserializeObject<List<BuildingInfo>>(bdata);
+        }
+        else
+        {
+            int finalIndex = 57;
+            for (int i = 0; i <= finalIndex; i++)
+            {
+                buildingInfoList.Add(new BuildingInfo(i, 0f, false));
+            }
+            buildingInfoList[0].Istrue = true;
+        }
         TapClick(curType);
+
+        for (var i = 0; i < buildingInfoList.Count; ++i)
+        {
+            AllModels[i].SetActive(buildingInfoList[i].Istrue);
+            var pos = AllModels[i].transform.position;
+            pos.x = buildingInfoList[i].positionX;
+            AllModels[i].transform.position = pos;
+        }
     }
 }
