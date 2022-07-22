@@ -64,7 +64,13 @@ public class MainMenu : MonoBehaviour
         
         Blur.SetActive(true);
         buttons.SetActive(false);
-    } 
+    }
+    public void OffClickMap()
+    {
+        maps.SetActive(false);
+        Blur.SetActive(false);
+        buttons.SetActive(true);
+    }
     public void OnClickMap()
     {
         maps.SetActive(true);
