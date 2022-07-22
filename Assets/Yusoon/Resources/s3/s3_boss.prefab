@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 8093617634158131888}
   - component: {fileID: 4227966256587536444}
   - component: {fileID: 4395043979635779747}
-  m_Layer: 0
+  - component: {fileID: -7812301599235580286}
+  - component: {fileID: 4172627860568388699}
+  m_Layer: 9
   m_Name: s3_boss
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 6717611680440305098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.43, y: 4.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -136,3 +138,38 @@ MonoBehaviour:
   translator:
     autoReset: 1
     layerMixModes: 00000000
+--- !u!114 &-7812301599235580286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717611680440305098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecd99c5aa74e42489d0c6a4220af8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prevState: 
+  animator: {fileID: 0}
+  speed: 3
+  speedDebuff: 1
+  dmg: 3
+  attackAreaX: 0
+  attackArea: {x: 0, y: 0, z: 0}
+  hp: 100
+  attackCool: 0.5
+  target: {fileID: 0}
+--- !u!65 &4172627860568388699
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6717611680440305098}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 71.620636, y: 51.280903, z: 1}
+  m_Center: {x: -4.088564, y: 16.36861, z: 0}

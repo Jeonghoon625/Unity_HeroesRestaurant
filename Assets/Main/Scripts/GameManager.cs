@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    int test = 625;
     public int masterStage = 1;
     public List<int> slaveStage = new List<int>();
 
     public GameManager()
     {
         Debug.Log("게임 매니저 초기화");
+        goodsManager = new GoodsManager();
+        resourceManager = new ResourceManager();
     }
 
     public void GoBattleScene()
@@ -18,8 +19,19 @@ public class GameManager : Singleton<GameManager>
         SceneLoader.LoadScene("Gang");
     }
 
-    public void DoSomething()
+    public void ChanageScene(string sceneName)
     {
-        Debug.Log(test);
+        SceneLoader.LoadScene(sceneName);
     }
+
+    public void Init()
+    {
+    }
+
+    //Cook
+    public ResourceManager resourceManager;
+
+    //Goods
+    public GoodsManager goodsManager;
+
 }
