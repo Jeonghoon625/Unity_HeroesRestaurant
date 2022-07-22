@@ -14522,7 +14522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63259d00232bcf746a9c6a4611c0ed1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillType: 1
+  skillType: 2
   particleObjects:
   - {fileID: 2651494051248237026}
   - {fileID: 2651494052370496486}

@@ -176,11 +176,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillManager: {fileID: 2322842550712715423, guid: 2bf0568dfa968f849af0deb9698638e4, type: 3}
-  HeroCount: 0
   VictoryUI: {fileID: 1384737525470407326, guid: 51e18a1760c09ec408558c0141b77418, type: 3}
   DefeatUI: {fileID: 1384737525470407326, guid: b514ddf2f2ad9e04dadef193d57b2f66, type: 3}
   herosList: []
-  objectPool: {fileID: 751929730}
+  enemyList: []
 --- !u!1 &417198354
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &751929729
 Transform:
   m_ObjectHideFlags: 0
@@ -1009,7 +1008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8734886078376390246, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ca02d0ed41696148a613e677b8bcdf8, type: 3}
@@ -2085,10 +2084,6 @@ PrefabInstance:
     - target: {fileID: 6244866692470110030, guid: cfa9a3a12028e60429a5b9f129986916, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6244866692470110030, guid: cfa9a3a12028e60429a5b9f129986916, type: 3}
-      propertyPath: m_TagString
-      value: HeroSellect
       objectReference: {fileID: 0}
     - target: {fileID: 6244866692470110064, guid: cfa9a3a12028e60429a5b9f129986916, type: 3}
       propertyPath: m_RootOrder

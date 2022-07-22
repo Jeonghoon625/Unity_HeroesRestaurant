@@ -63,6 +63,7 @@ public class EnemySpawner : MonoBehaviour
                 }
 
                 Enemy spawnedEnemy = Instantiate(currentWave.enemies[i], pos, rot);
+                stageManager.enemyList.Add(spawnedEnemy.gameObject);
                 spawnedEnemy.OnDeath += OnEnemyDeath;
             }
         }

@@ -134,7 +134,27 @@ public class SkillManager : MonoBehaviour
     /******************************************
      * 리무 스킬
      * ***************************************/
+    public void OnClickLimuSkill()
+    {
+        var heroList = GameObject.FindGameObjectsWithTag("Hero");
+        foreach (var heroInfo in heroList)
+        {
+            var hero = heroInfo.GetComponent<Heros>();
 
+            if (hero.name == "Limu")
+            {
+                hero.prevStateString = hero.curStateString;
+                hero.animator.SetTrigger("Skill");
+                hero.SetState("None");
+            }
+            hero.isShield = true;
+            hero.curShield = hero.maxHp * 0.2f;
+            hero.hpBar.GetComponent<HpBar>().OnShield();
+            var pos = hero.transform.position;
+            pos.y += yPosUp;
+            Instantiate(heroSkills[(int)SkillParticle.Limu], pos, hero.transform.rotation).transform.parent = hero.transform;
+        }
+    }
     /******************************************
      * 범위 스킬
      * ***************************************/
