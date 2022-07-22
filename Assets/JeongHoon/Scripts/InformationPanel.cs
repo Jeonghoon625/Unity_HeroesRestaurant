@@ -53,9 +53,11 @@ public class InformationPanel : MonoBehaviour
             currentReserve.text = GameManager.Instance.goodsManager.foodReserve[slotInfo.id].ToString();
             maxReserve.text = slotInfo.maxReserve.ToString();
 
+            /*
             reserveSlider.minValue = 0;
             reserveSlider.maxValue = slotInfo.maxReserve;
             reserveSlider.value = GameManager.Instance.goodsManager.foodReserve[slotInfo.id];
+            */
         }
     }
 
@@ -64,14 +66,14 @@ public class InformationPanel : MonoBehaviour
         ShowInfo(this.slotInfo, this.uiManager);
     }
 
-    private void UpdateReserve()
+    public void UpdateReserve()
     {
         if(slotInfo != null)
         {
             currentReserve.text = GameManager.Instance.goodsManager.foodReserve[slotInfo.id].ToString();
         }
     }
-    
+
     /*
     public void Init()
     {

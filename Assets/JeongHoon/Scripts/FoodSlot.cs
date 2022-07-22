@@ -21,6 +21,9 @@ public class FoodSlot : MonoBehaviour
     public Color color;
     public Button button;
 
+    public int sellGold;
+    public int sellTime;
+
     private void Awake()
     {
         image = GetComponent<Image>();

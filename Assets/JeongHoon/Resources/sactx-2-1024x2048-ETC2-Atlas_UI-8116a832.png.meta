@@ -124,7 +124,7 @@ TextureImporter:
         width: 85
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -132,6 +132,27 @@ TextureImporter:
       bones: []
       spriteID: 3847b09f6399f8549b3202b7eb9a7c34
       internalID: 353241386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-2-1024x2048-ETC2-Atlas_UI-8116a832_1
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 1902
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319a8e6ad2fe1ad489df8983239b097c
+      internalID: -1006088784
       vertices: []
       indices: 
       edges: []
@@ -147,6 +168,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      sactx-2-1024x2048-ETC2-Atlas_UI-8116a832_1: -1006088784
       sactx-2-1024x2048-ETC2-Atlas_UI-8116a832_0: 353241386
   spritePackingTag: 
   pSDRemoveMatte: 0

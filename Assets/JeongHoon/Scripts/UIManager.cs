@@ -60,6 +60,9 @@ public class UIManager : MonoBehaviour
             Sprite sprite = Resources.Load<Sprite>("Food\\" + (string)GameManager.Instance.resourceManager.foodData[i]["image"]);
             int stage = (int)GameManager.Instance.resourceManager.foodData[i]["stage"];
 
+            int sellTime = (int)GameManager.Instance.resourceManager.foodData[i]["sellTime"];
+            int sellGold = (int)GameManager.Instance.resourceManager.foodData[i]["sellGold"];
+
             GameObject foodGO = Object.Instantiate(foodPrefab, foodSection.transform);
             FoodSlot slot = foodGO.GetComponent<FoodSlot>();
             slot.id = id;
@@ -68,6 +71,9 @@ public class UIManager : MonoBehaviour
             slot.sprite = sprite;
             slot.maxReserve = maxReserve;
             slot.stage = stage;
+            slot.sellTime = sellTime;
+            slot.sellGold = sellGold;
+
             slot.GetComponent<Button>().onClick.AddListener(() => SelectFood(slot));
 
             foodSlots.Add(slot);

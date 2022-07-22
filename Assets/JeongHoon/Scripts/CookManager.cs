@@ -9,11 +9,15 @@ public class CookManager : MonoBehaviour
     public UIManager uiManager;
 
     public CookingManager cookingManager;
+
+    public SellManager sellManager;
+
     private void Awake()
     {
         GameManager.Instance.Init();
         GameManager.Instance.goodsManager.Load();
         uiManager.Init();
+        sellManager.Init(this);
     }
 
     private void OnEnable()

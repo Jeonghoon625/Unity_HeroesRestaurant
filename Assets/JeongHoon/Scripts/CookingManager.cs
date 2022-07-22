@@ -22,4 +22,20 @@ public class CookingManager : MonoBehaviour
         cookManager.uiManager.informationPanel.ShowInfo();
         cookManager.uiManager.produceTable.Init();
     }
+
+    public void CookingMax()
+    {
+        int produceValue = cookManager.selectFood.maxReserve - GameManager.Instance.goodsManager.foodReserve[cookManager.selectFood.id];
+        this.selectFood = cookManager.selectFood;
+
+        GameManager.Instance.goodsManager.foodReserve[selectFood.id] += produceValue;
+        for (var i = 0; i < selectFood.currencyList.Count; i++)
+        {
+            GameManager.Instance.goodsManager.currencyReserve[i] -= selectFood.currencyList[i] * produceValue;
+        }
+
+        cookManager.uiManager.UpdateCurrencyReserveText();
+        cookManager.uiManager.informationPanel.ShowInfo();
+        cookManager.uiManager.produceTable.Init();
+    }
 }
