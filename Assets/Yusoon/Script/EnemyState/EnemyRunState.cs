@@ -16,16 +16,24 @@ public class EnemyRunState : IEnemyState
 
         target = enemy.target;
         hero = target.GetComponent<Heros>();
+
+        var rot = Quaternion.identity;
         if (enemy.transform.position.x - target.transform.position.x > 0)
         {
             dir.x = -1f;
-            enemy.transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
+            rot.y = 180f;
         }
         else
         {
             dir.x = 1f;
-            enemy.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+            rot.y = 0f;
         }
+
+        if(enemy.monsterType == MonsterType.Boss)
+        {
+            rot.y += 180f;
+        }
+        enemy.transform.rotation = rot;
     }
 
     public void IUpdate()

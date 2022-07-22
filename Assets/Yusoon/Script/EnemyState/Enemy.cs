@@ -3,8 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
+public enum MonsterType
+{
+    Normal,
+    Boss,
+}
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
+    public MonsterType monsterType;
+
     public StageManager stageManager;
     /******************************************
      * ป๓ลย
@@ -109,6 +118,7 @@ public class Enemy : MonoBehaviour
     {
         col.enabled = true;
         SetState("Idle");
+        stageManager.enemyList.Add(gameObject);
     }
 
     /******************************************

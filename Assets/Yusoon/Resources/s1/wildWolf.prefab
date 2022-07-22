@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ecd99c5aa74e42489d0c6a4220af8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterType: 0
   stageManager: {fileID: 0}
   prevState: 
   animator: {fileID: 4345294620634015476}
