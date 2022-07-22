@@ -72,7 +72,7 @@ public class StageManager : MonoBehaviour
         {
             Debug.Log("Next Scene");
             // 메인 씬으로 이동...
-            //GameManager.Instance.ChangeScene("Main01");
+            GameManager.Instance.ChanageScene("Main01");
         }
         /***************************************************
          * 스킬 관리
