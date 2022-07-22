@@ -40,4 +40,9 @@ public class Stage2Controller : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    public void ShowCharacterSelectWindow()
+    {
+        gameObject.SetActive(true);
+    }
 }
