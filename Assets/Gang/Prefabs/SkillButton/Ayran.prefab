@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillFilter: {fileID: 1001162892}
   coolTimeCounter: {fileID: 7517765375146410093}
-  coolTime: 1
+  coolTime: 10
 --- !u!1 &5827687817884228869
 GameObject:
   m_ObjectHideFlags: 0

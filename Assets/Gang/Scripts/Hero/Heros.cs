@@ -12,6 +12,8 @@ public enum AttackTypes
 }
 public class Heros : MonoBehaviour
 {
+    public Vector3 bossPos;
+
     public Image hpBar;
     public StageManager stageManager;
     public GameObject stunPrefab;
@@ -50,6 +52,7 @@ public class Heros : MonoBehaviour
     public float maxHp;                                        // 체력
 
     public GameObject skillButtonPrefab;                        // 스킬 버튼
+    public GameObject skillButton;                        // 스킬 버튼
     //public GameObject skillPrefab;                              // 스킬
     [SerializeField]
     public GameObject shootPrefab;                             // 투사체
@@ -91,7 +94,8 @@ public class Heros : MonoBehaviour
         // 체력, 공격력 => 데이터 세이브 로드를 통하여 관리
         /*******************************************************************************/
         // 스킬 창에 스킬 버튼 추가
-        Instantiate(skillButtonPrefab).transform.SetParent(GameObject.Find("Skill").transform, false);
+        skillButton = Instantiate(skillButtonPrefab);
+        skillButton.transform.SetParent(GameObject.Find("Skill").transform, false);
         // StageManager에 정보 전달
         stageManager = GameObject.FindWithTag("GameController").GetComponent<StageManager>();
         stageManager.herosList.Add(gameObject);
@@ -114,11 +118,6 @@ public class Heros : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            SetState("Stun");
-        }
-
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !doneControll)
         {
             target = null;
@@ -262,6 +261,7 @@ public class Heros : MonoBehaviour
         col.enabled = false;
         hp = 0;
         doneControll = true;
+        skillButton.GetComponent<Button>().interactable = false;
 
         stageManager.Defeat(gameObject);
     }

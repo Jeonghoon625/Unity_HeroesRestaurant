@@ -9,6 +9,8 @@ public class EnemyRunState : IEnemyState
     private GameObject target;
 
     private Vector3 dir = Vector3.zero;
+
+    private Quaternion hpRot = Quaternion.identity;
     public void IEnter(Enemy enemy)
     {
         enemy.animator.SetBool("Run", true);
@@ -31,9 +33,11 @@ public class EnemyRunState : IEnemyState
 
         if(enemy.monsterType == MonsterType.Boss)
         {
-            rot.y += 180f;
+            rot.y = (rot.y == 180f ? 0f : 180f);
         }
         enemy.transform.rotation = rot;
+
+        enemy.hpBar.rectTransform.rotation = hpRot;
     }
 
     public void IUpdate()

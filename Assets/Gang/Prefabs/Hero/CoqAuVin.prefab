@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465eee2279c51814fb17f44ed603d9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossPos: {x: 0, y: 0, z: 0}
   hpBar: {fileID: 2566888653567803706}
   stageManager: {fileID: 0}
   stunPrefab: {fileID: 9202385621312539522, guid: 87b786fd61491424395b52830b32e619, type: 3}
@@ -213,6 +214,7 @@ MonoBehaviour:
   hp: 100
   maxHp: 0
   skillButtonPrefab: {fileID: 2557322121503452124, guid: 6e1624b38939f9f49baa828609aa2c32, type: 3}
+  skillButton: {fileID: 0}
   shootPrefab: {fileID: 3654254246184495155, guid: 2c795780d95bcde46acb89381106a3b1, type: 3}
   startShoot: {fileID: 69802530}
   m_Position: {x: 0, y: 0, z: 0}
