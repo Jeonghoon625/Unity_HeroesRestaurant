@@ -198,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBar: {fileID: 2566888653567803706}
   stageManager: {fileID: 0}
+  stunPrefab: {fileID: 9202385621312539522, guid: 87b786fd61491424395b52830b32e619, type: 3}
   curStateString: 
   prevStateString: 
   animator: {fileID: 0}

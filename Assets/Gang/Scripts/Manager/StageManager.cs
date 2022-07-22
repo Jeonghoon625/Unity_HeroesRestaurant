@@ -55,7 +55,8 @@ public class StageManager : MonoBehaviour
             if (isSellect[i] == true)
             {
                 pos.x = startPos;
-                herosList.Add(Instantiate(heroPrefab[i], pos, rot));
+                Instantiate(heroPrefab[i], pos, rot);
+                //herosList.Add(Instantiate(heroPrefab[i], pos, rot));
                 startPos += 1.5f;
             }
         }

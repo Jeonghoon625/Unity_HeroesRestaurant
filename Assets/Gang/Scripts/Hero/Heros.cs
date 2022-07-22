@@ -14,6 +14,8 @@ public class Heros : MonoBehaviour
 {
     public Image hpBar;
     public StageManager stageManager;
+    public GameObject stunPrefab;
+    private GameObject stunObj;
     /******************************************
      * 상태
      * ***************************************/
@@ -92,6 +94,7 @@ public class Heros : MonoBehaviour
         Instantiate(skillButtonPrefab).transform.SetParent(GameObject.Find("Skill").transform, false);
         // StageManager에 정보 전달
         stageManager = GameObject.FindWithTag("GameController").GetComponent<StageManager>();
+        stageManager.herosList.Add(gameObject);
 
         /*******************************************************************************/
         // 캐릭터 상태 설정
@@ -111,6 +114,11 @@ public class Heros : MonoBehaviour
     }
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            SetState("Stun");
+        }
+
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !doneControll)
         {
             target = null;
@@ -263,5 +271,20 @@ public class Heros : MonoBehaviour
     void SkillEnd()
     {
         SetState(prevStateString);
+    }
+    /******************************************
+     * 스턴
+     * ***************************************/
+    public void StartStun()
+    {
+        var pos = transform.position;
+        pos.y += 2.5f;
+        //stunObj = (Instantiate(stunPrefab, pos, transform.rotation).transform.parent = transform);
+        stunObj = Instantiate(stunPrefab, pos, transform.rotation);
+        stunObj.transform.parent = transform;
+    }
+    public void EndStun()
+    {
+        Destroy(stunObj);
     }
 }
