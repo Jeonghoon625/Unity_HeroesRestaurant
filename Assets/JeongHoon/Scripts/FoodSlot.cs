@@ -24,6 +24,8 @@ public class FoodSlot : MonoBehaviour
     public int sellGold;
     public int sellTime;
 
+    public float currentSellingTime;
+
     private void Awake()
     {
         image = GetComponent<Image>();
@@ -58,5 +60,4 @@ public class FoodSlot : MonoBehaviour
         }
     }
     */
-
 }

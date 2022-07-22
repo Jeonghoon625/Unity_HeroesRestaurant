@@ -27,6 +27,7 @@ public class SellManager : MonoBehaviour
     {
         if(isInit)
         {
+            cookManager.uiManager.informationPanel.UpdateReserveSlider();
             for (var i = 0; i < GameManager.Instance.goodsManager.foodReserve.Count; i++)
             {
                 if (GameManager.Instance.goodsManager.foodReserve[i] > 0)
@@ -45,22 +46,18 @@ public class SellManager : MonoBehaviour
     {
         cool /= 5;
         Debug.Log(cookManager.uiManager.foodSlots[foodId].title + " 판매 시작");
-        
-        cookManager.uiManager.informationPanel.reserveSlider.value = 0;
-        cookManager.uiManager.informationPanel.reserveSlider.minValue = 0;
-        cookManager.uiManager.informationPanel.reserveSlider.maxValue = cool;
 
         while (cool > 0.0f) 
         { 
             cool -= Time.deltaTime;
-            cookManager.uiManager.informationPanel.reserveSlider.value += Time.deltaTime;
+            cookManager.uiManager.foodSlots[foodId].currentSellingTime += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
 
         GameManager.Instance.goodsManager.foodReserve[foodId] -= 1;
         GameManager.Instance.goodsManager.gold += cookManager.uiManager.foodSlots[foodId].sellGold;
         foodIsSells[foodId] = false;
-        cookManager.uiManager.informationPanel.reserveSlider.value = 0;
+        cookManager.uiManager.foodSlots[foodId].currentSellingTime = 0;
         cookManager.uiManager.informationPanel.UpdateReserve();
         Debug.Log("판매 완료"); 
     }

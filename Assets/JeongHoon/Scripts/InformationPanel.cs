@@ -58,6 +58,10 @@ public class InformationPanel : MonoBehaviour
             reserveSlider.maxValue = slotInfo.maxReserve;
             reserveSlider.value = GameManager.Instance.goodsManager.foodReserve[slotInfo.id];
             */
+
+            reserveSlider.value = 0;
+            reserveSlider.minValue = 0;
+            reserveSlider.maxValue = slotInfo.sellTime / 5;
         }
     }
 
@@ -71,6 +75,14 @@ public class InformationPanel : MonoBehaviour
         if(slotInfo != null)
         {
             currentReserve.text = GameManager.Instance.goodsManager.foodReserve[slotInfo.id].ToString();
+        }
+    }
+
+    public void UpdateReserveSlider()
+    {
+        if (slotInfo != null)
+        {
+            reserveSlider.value = slotInfo.currentSellingTime;
         }
     }
 
