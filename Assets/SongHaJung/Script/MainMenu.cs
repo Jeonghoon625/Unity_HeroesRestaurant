@@ -59,12 +59,20 @@ public class MainMenu : MonoBehaviour
        
     }
 
-    public void OnClickCookStore()
+    public void OnClickCookStore(GameObject CookMenu)
     {
-        
         Blur.SetActive(true);
         buttons.SetActive(false);
+        CookMenu.SetActive(true);
     }
+
+    public void OffClickCookStore(GameObject CookMenu)
+    {
+        Blur.SetActive(false);
+        buttons.SetActive(true);
+        CookMenu.SetActive(false);
+    }
+
     public void OffClickMap()
     {
         maps.SetActive(false);

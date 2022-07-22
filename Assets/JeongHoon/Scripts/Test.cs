@@ -10,6 +10,6 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
-        goldText.text = GameManager.Instance.goodsManager.gold.ToString();
+        goldText.text = GameManager.Instance.goodsManager.gold.ToString() + "a";
     }
 }
