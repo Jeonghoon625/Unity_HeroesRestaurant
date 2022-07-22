@@ -89,4 +89,3 @@ MonoBehaviour:
     - {x: 2, y: 0, z: 0}
     - {x: 4, y: 0, z: 0}
     - {x: 6, y: 0, z: 0}
-  enemy: {fileID: 7815264672219747190, guid: 51380bce7655278489d3927ea9e6594f, type: 3}

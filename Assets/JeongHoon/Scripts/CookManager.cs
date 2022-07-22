@@ -4,39 +4,25 @@ using UnityEngine;
 
 public class CookManager : MonoBehaviour
 {
-    ResourceManager resourceMgr = new ResourceManager();
-    public InformationLoadManager infoMgr;
-
-    public GameObject foodSection;
-    public GameObject currencySection;
-    public GameObject foodPrefab;
-    public GameObject currencyPrefab;
-
-    public List<FoodSlot> foodSlots = new List<FoodSlot>();
-    public List<CurrencySlot> currencySlots = new List<CurrencySlot>();
-
-    public List<int> currencyReserve = new List<int>();
-    public List<int> foodReserve = new List<int>();
-
-
     public FoodSlot selectFood;
 
+    public UIManager uiManager;
+
+    public CookingManager cookingManager;
     private void Awake()
     {
-        Init();
+        GameManager.Instance.Init();
+        GameManager.Instance.goodsManager.Load();
+        uiManager.Init();
+    }
+
+    private void OnEnable()
+    {
+        uiManager.UpdateStageState();
     }
 
     private void Start()
     {
         
-    }
-
-    private void Init()
-    {
-        resourceMgr.Init(this);
-        resourceMgr.Load(currencySection, currencyPrefab, foodSection, foodPrefab);
-        selectFood = foodSlots[0];
-        infoMgr.Init();
-        infoMgr.ShowInfo(selectFood, this);
     }
 }

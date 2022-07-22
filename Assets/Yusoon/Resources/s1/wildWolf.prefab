@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4128296019164284006}
   - component: {fileID: 1516233061}
   - component: {fileID: 1516233060}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: wildWolf
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.161018, y: 6.8254, z: 0}
+  m_Size: {x: 11.161018, y: 6.8254, z: 0.3}
   m_Center: {x: -0.5394826, y: 3.2106907, z: 0}
 --- !u!114 &1516233060
 MonoBehaviour:
@@ -163,13 +163,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ecd99c5aa74e42489d0c6a4220af8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageManager: {fileID: 0}
   prevState: 
   animator: {fileID: 4345294620634015476}
   speed: 2
+  speedDebuff: 1
   dmg: 3
   attackAreaX: 2
   attackArea: {x: 2, y: 0, z: 0}
-  hp: 6
+  hp: 40
   attackCool: 1
-  m_Position: {x: 0, y: 0, z: 0}
   target: {fileID: 0}

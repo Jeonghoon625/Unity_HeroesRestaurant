@@ -15,12 +15,36 @@ public class FoodSlot : MonoBehaviour
 
     public List<int> currencyList;
 
-    private void Start()
+    public int stage;
+    public GameObject lockGO;
+
+    public Color color;
+    public Button button;
+
+    private void Awake()
     {
         image = GetComponent<Image>();
+        button = GetComponent<Button>();
+    }
+
+    private void Start()
+    {
         image.sprite = sprite;
     }
 
+    public void Lock()
+    { 
+        lockGO.SetActive(true);
+        image.color = Color.black; 
+        button.enabled = false;
+    }
+
+    public void Open()
+    {
+        lockGO.SetActive(false);
+        image.color = Color.white;
+        button.enabled = true;
+    }
     /*
     public void OnClick()
     {

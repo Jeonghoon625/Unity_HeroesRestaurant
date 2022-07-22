@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public enum AttackTypes
@@ -11,7 +12,10 @@ public enum AttackTypes
 }
 public class Heros : MonoBehaviour
 {
-    private StageManager stageManager;
+    public Image hpBar;
+    public StageManager stageManager;
+    public GameObject stunPrefab;
+    private GameObject stunObj;
     /******************************************
      * 상태
      * ***************************************/
@@ -36,14 +40,19 @@ public class Heros : MonoBehaviour
     private int dmg = 3;                                        // 공격력
     [SerializeField]
     private float attackCool = 1f;                              // 공격 쿨타임
+    [SerializeField]
+    private float armor = 0f;                                  // 방어력
+    public float maxShield;                                      // 쉴드
+    public float curShield;                                      // 쉴드
 
     public Vector3 attackArea = new Vector3(1f, 0f, 0f);        // 공격 범위
-    public int hp = 100;                                        // 체력
+    public float hp = 100;                                        // 체력
+    public float maxHp;                                        // 체력
 
     public GameObject skillButtonPrefab;                        // 스킬 버튼
     //public GameObject skillPrefab;                              // 스킬
     [SerializeField]
-    private GameObject shootPrefab;                             // 투사체
+    public GameObject shootPrefab;                             // 투사체
     public GameObject startShoot;                               // 투사체 발사 위치
 
     public Vector3 m_Position;                                  // 목표 이동지점
@@ -52,7 +61,8 @@ public class Heros : MonoBehaviour
      * 버프
      * ***************************************/
     public bool isInvincibility;                                // 무적
-    public bool doneMove;                                  // 스킬 시전 중
+    public bool isShield;                                       // 쉴드
+    public bool doneControll;                                  // 스킬 시전 중
 
     public float runSpeed
     {
@@ -73,15 +83,18 @@ public class Heros : MonoBehaviour
 
     private void Awake()
     {
+        maxHp = hp;
+        maxShield = hp * 0.2f;
+        curShield = maxShield;
+        gameObject.name = gameObject.name.Replace("(Clone)", "");
         /*******************************************************************************/
         // 체력, 공격력 => 데이터 세이브 로드를 통하여 관리
         /*******************************************************************************/
-
         // 스킬 창에 스킬 버튼 추가
         Instantiate(skillButtonPrefab).transform.SetParent(GameObject.Find("Skill").transform, false);
         // StageManager에 정보 전달
         stageManager = GameObject.FindWithTag("GameController").GetComponent<StageManager>();
-        stageManager.HeroCount += 1;
+        stageManager.herosList.Add(gameObject);
 
         /*******************************************************************************/
         // 캐릭터 상태 설정
@@ -101,7 +114,12 @@ public class Heros : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !doneMove)
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            SetState("Stun");
+        }
+
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !doneControll)
         {
             target = null;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -182,10 +200,6 @@ public class Heros : MonoBehaviour
         if (monster != null)
         {
             monster.OnHit(this, Dmg);
-            //if (monster.OnHit(this, Dmg) == 0)
-            //{
-            //    //SetState("Idle");
-            //}
         }
     }
     private void RangeAttack(Enemy monster)
@@ -199,7 +213,7 @@ public class Heros : MonoBehaviour
     {
         var rot = Quaternion.identity;
         rot.y = transform.rotation.y == 0 ? 180f : 0f;
-        Instantiate(shootPrefab, startShoot.transform.position, rot);
+        Instantiate(shootPrefab).GetComponent<ShootableObject>().Set(this, startShoot.transform.position, rot);
     }
     /******************************************
      * 맞은 판정
@@ -209,18 +223,33 @@ public class Heros : MonoBehaviour
         // 사라질 때 이펙트
         Destroy(gameObject);
     }
-    public int OnHit(Enemy attacker, int dmg)
+    public float OnHit(Enemy attacker, int dmg)
     {
         // 무적 상태
         if(isInvincibility)
         {
             return hp;
         }
+        if(isShield)
+        {
+            curShield -= (dmg - armor);
+            if(hpBar.GetComponent<HpBar>().HitShield(curShield, maxShield) <= 0)
+            {
+                isShield = false;
+                Destroy(gameObject.GetComponentInChildren<HeroSkill>().gameObject);
+            }
+            
+            return hp;
+        }
         // hp 감소
-        hp -= dmg;
-
+        hp -= (dmg - armor);
+        hpBar.GetComponent<HpBar>().HitHp(hp, maxHp);
         if(hp <= 0)
         {
+            foreach (var s in stageManager.enemyList)
+            {
+                s.GetComponent<Enemy>().target = null;
+            }
             Dead(attacker.target);
         }
         return hp;
@@ -232,9 +261,9 @@ public class Heros : MonoBehaviour
         target = null;
         col.enabled = false;
         hp = 0;
-        doneMove = true;
+        doneControll = true;
 
-        stageManager.Defeat();
+        stageManager.Defeat(gameObject);
     }
     /******************************************
      * 스킬
@@ -242,5 +271,20 @@ public class Heros : MonoBehaviour
     void SkillEnd()
     {
         SetState(prevStateString);
+    }
+    /******************************************
+     * 스턴
+     * ***************************************/
+    public void StartStun()
+    {
+        var pos = transform.position;
+        pos.y += 2.5f;
+        //stunObj = (Instantiate(stunPrefab, pos, transform.rotation).transform.parent = transform);
+        stunObj = Instantiate(stunPrefab, pos, transform.rotation);
+        stunObj.transform.parent = transform;
+    }
+    public void EndStun()
+    {
+        Destroy(stunObj);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public StageManager stageManager;
     /******************************************
      * 상태
      * ***************************************/
@@ -20,12 +21,13 @@ public class Enemy : MonoBehaviour
      * ***************************************/
     [SerializeField]
     private float speed = 3f;
+    public int speedDebuff = 1;
     [SerializeField]
     private int dmg = 3;
 
     public float attackAreaX;
     public Vector3 attackArea;
-    public int hp = 100;
+    public float hp = 100;
 
     [SerializeField]
     private float attackCool = 0.5f;
@@ -54,6 +56,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        stageManager = GameObject.FindWithTag("GameController").GetComponent<StageManager>();
         /*******************************************************************************/
         // 체력, 공격력 => 데이터 세이브 로드를 통하여 관리
         /*******************************************************************************/
@@ -138,12 +141,16 @@ public class Enemy : MonoBehaviour
         // 사라질 때 이펙트
         Destroy(gameObject);
     }
-    public int OnHit(Heros attacker, int dmg)
+    public float OnHit(Heros attacker, float dmg)
     {
         // hp 감소
         hp -= dmg;
         if (hp <= 0)
         {
+            foreach(var s in stageManager.herosList)
+            {
+                s.GetComponent<Heros>().target = null;
+            }
             Dead(attacker);
         }
         return hp;
@@ -155,6 +162,8 @@ public class Enemy : MonoBehaviour
         target.target = null;
         col.enabled = false;
         hp = 0;
+
+        stageManager.DeadEnemy(gameObject);
 
         if (OnDeath != null)
             OnDeath();

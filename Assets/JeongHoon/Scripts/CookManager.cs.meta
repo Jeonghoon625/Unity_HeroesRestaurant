@@ -3,7 +3,13 @@ guid: 0d2c8d549749f1945baf0f3cf33255e1
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - infoMgr: {instanceID: 0}
+  - foodSection: {instanceID: 0}
+  - currencySection: {instanceID: 0}
+  - foodPrefab: {fileID: 4358892774959400640, guid: 4818b779c00e7fd4db83bd39aaba7853, type: 3}
+  - currencyPrefab: {fileID: 1608822806546743553, guid: fdd5fd3dbc18b084bab5a20755136455, type: 3}
+  - selectFood: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
