@@ -8,14 +8,17 @@ public class CookManager : MonoBehaviour
 
     public UIManager uiManager;
 
+    public CookingManager cookingManager;
     private void Awake()
     {
+        GameManager.Instance.Init();
+        GameManager.Instance.goodsManager.Load();
         uiManager.Init();
     }
 
     private void OnEnable()
     {
-        Debug.Log("È°¼º");
+        uiManager.UpdateStageState();
     }
 
     private void Start()

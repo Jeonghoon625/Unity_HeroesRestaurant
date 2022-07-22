@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum SkillType
 {
-    Buff,
+    Invincibilit,
+    Shield,
     Attack,
 }
 public class HeroSkill : MonoBehaviour
@@ -16,7 +17,6 @@ public class HeroSkill : MonoBehaviour
     [SerializeField]
     private float duration;
     private float timer;
-    private bool playAura = true;
 
 
     private void Start()
@@ -25,19 +25,26 @@ public class HeroSkill : MonoBehaviour
     }
     private void Update()
     {
-        if (playAura)
+        timer += Time.deltaTime;
+        if (timer > duration)
         {
-            timer += Time.deltaTime;
-            if(timer > duration)
+            ParticleStop();
+
+            if(skillType != SkillType.Attack)
             {
-                ParticleStop();
-                if(skillType == SkillType.Buff)
+                var hero = transform.parent.gameObject.GetComponent<Heros>();
+                if (skillType == SkillType.Invincibilit)
                 {
-                    var tmep = transform.parent.gameObject.GetComponent<Heros>();
-                    tmep.isInvincibility = false;
+                    hero.isInvincibility = false;
                 }
-                Destroy(gameObject);
+                else if (skillType == SkillType.Shield)
+                {
+                    hero.isShield = false;
+                    hero.hpBar.GetComponent<HpBar>().OffShield();
+                }
             }
+
+            Destroy(gameObject);
         }
     }
     private void ParticlePlay()

@@ -24,7 +24,7 @@ public class GameManager : Singleton<GameManager>
         SceneLoader.LoadScene(sceneName);
     }
 
-    public void DoSomething()
+    public void Init()
     {
     }
 

@@ -8,12 +8,14 @@ public class RecipeCurrencySlot : MonoBehaviour
 {
     public GameObject imageGO;
     public Image image;
-    public TextMeshProUGUI quantityText;
+    public TextMeshProUGUI currentQuantity;
+    public int initialQuantity;
 
-    public void Change(Sprite sprite, string text)
+    public void Init(Sprite sprite, string text)
     {
         image = imageGO.GetComponent<Image>();
         image.sprite = sprite;
-        quantityText.text = text;
+        initialQuantity = int.Parse(text);
+        currentQuantity.text = text;
     }
 }

@@ -18,12 +18,33 @@ public class FoodSlot : MonoBehaviour
     public int stage;
     public GameObject lockGO;
 
-    private void Start()
+    public Color color;
+    public Button button;
+
+    private void Awake()
     {
         image = GetComponent<Image>();
+        button = GetComponent<Button>();
+    }
+
+    private void Start()
+    {
         image.sprite = sprite;
     }
 
+    public void Lock()
+    { 
+        lockGO.SetActive(true);
+        image.color = Color.black; 
+        button.enabled = false;
+    }
+
+    public void Open()
+    {
+        lockGO.SetActive(false);
+        image.color = Color.white;
+        button.enabled = true;
+    }
     /*
     public void OnClick()
     {
