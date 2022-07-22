@@ -25,8 +25,9 @@ public class CookManager : MonoBehaviour
         uiManager.UpdateStageState();
     }
 
-    private void Start()
+    private void Update()
     {
-        
+        uiManager.UpdateSelectLight();
+        uiManager.UpdateSoldOut();
     }
 }

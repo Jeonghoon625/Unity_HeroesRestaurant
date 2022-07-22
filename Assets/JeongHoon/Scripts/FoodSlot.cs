@@ -26,6 +26,8 @@ public class FoodSlot : MonoBehaviour
 
     public float currentSellingTime;
 
+    public GameObject lightGO;
+
     private void Awake()
     {
         image = GetComponent<Image>();
@@ -50,6 +52,17 @@ public class FoodSlot : MonoBehaviour
         image.color = Color.white;
         button.enabled = true;
     }
+
+    public void OnLight()
+    {
+        lightGO.SetActive(true);
+    }
+
+    public void OffLight()
+    {
+        lightGO.SetActive(false);
+    }
+
     /*
     public void OnClick()
     {

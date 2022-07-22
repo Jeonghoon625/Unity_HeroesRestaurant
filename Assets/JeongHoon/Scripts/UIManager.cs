@@ -123,6 +123,39 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateSelectLight()
+    {
+        for (var i = 0; i < foodSlots.Count; i++)
+        {
+            if (cookManager.selectFood.id == foodSlots[i].id) 
+            {
+                foodSlots[i].OnLight();
+            }
+            else //Open
+            {
+                foodSlots[i].OffLight();
+            }
+        }
+    }
+
+    public void UpdateSoldOut()
+    {
+        for (var i = 0; i < foodSlots.Count; i++)
+        {
+            if(!foodSlots[i].lockGO.activeSelf)
+            {
+                if (GameManager.Instance.goodsManager.foodReserve[foodSlots[i].id] == 0)
+                {
+                    foodSlots[i].image.color = new Color32(90, 90, 90, 255);
+                }
+                else
+                {
+                    foodSlots[i].image.color = Color.white;
+                }
+            }
+        }
+    }
+
     public void SelectFood(FoodSlot slot)
     {
         cookManager.selectFood = slot;
