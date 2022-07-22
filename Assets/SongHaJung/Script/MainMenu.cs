@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 
-    public GameObject building, Blur, buttons;
+    public GameObject building, Blur, buttons, maps;
+
     public GameObject backbutton;
    
     private void Start()
@@ -61,6 +62,12 @@ public class MainMenu : MonoBehaviour
     public void OnClickCookStore()
     {
         
+        Blur.SetActive(true);
+        buttons.SetActive(false);
+    } 
+    public void OnClickMap()
+    {
+        maps.SetActive(true);
         Blur.SetActive(true);
         buttons.SetActive(false);
     }
