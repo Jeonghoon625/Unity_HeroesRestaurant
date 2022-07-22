@@ -52,18 +52,19 @@ public class EnemySpawner : MonoBehaviour
             for (int i = 0; i < monsterRemains; i++)
             {
                 var pos = currentWave.pos[i];
-                Quaternion rot = Quaternion.identity;
+                //Quaternion rot = Quaternion.identity;
+                Quaternion rot = currentWave.enemies[i].transform.rotation;
                 if (pos.x > 0)
                 {
-                    rot.y = 180f;
+                    rot.y += 180f;
                 }
                 else
                 {
-                    rot.y = 0f;
+                    rot.y += 0f;
                 }
 
                 Enemy spawnedEnemy = Instantiate(currentWave.enemies[i], pos, rot);
-                stageManager.enemyList.Add(spawnedEnemy.gameObject);
+                //stageManager.enemyList.Add(spawnedEnemy.gameObject);
                 spawnedEnemy.OnDeath += OnEnemyDeath;
             }
         }
