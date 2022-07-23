@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossPos: {x: 0, y: 0, z: 0}
+  reinforcement: {fileID: 11400000, guid: aef496bcb84c6ad4f8d23912b4b9d87a, type: 2}
   hpBar: {fileID: 7620479356278927265}
   stageManager: {fileID: 0}
   stunPrefab: {fileID: 9202385621312539522, guid: 87b786fd61491424395b52830b32e619, type: 3}

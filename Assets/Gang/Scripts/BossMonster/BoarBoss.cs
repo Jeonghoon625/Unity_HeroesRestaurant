@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BoarBoss : MonoBehaviour
 {
+    public CameraShake cameraShake;
     public StageManager stageManager;
     public Enemy Board;
     /******************************************
@@ -23,15 +24,17 @@ public class BoarBoss : MonoBehaviour
 
     [SerializeField]
     private List<Vector3> spawnPoint;
+    private Quaternion rot = Quaternion.identity;
 
     [SerializeField]
     private GameObject boarPrefab;
-    void Start()
+    private void Start()
     {
         stageManager = Board.stageManager;
+        rot.y += 180f;
     }
 
-    void Update()
+    public void BossUpdate()
     {
         if(!isAlive)
         {
@@ -59,6 +62,7 @@ public class BoarBoss : MonoBehaviour
     }
     public void StunSkill()
     {
+        cameraShake.Shake();
         Destroy(stunSkill);
         foreach (var hero in stageManager.herosList)
         {
@@ -90,7 +94,7 @@ public class BoarBoss : MonoBehaviour
         isFirstSkill = true;
         foreach(var pos in spawnPoint)
         {
-            Instantiate(boarPrefab).transform.position = pos;
+            Instantiate(boarPrefab, pos, rot);
         }
     }
 }

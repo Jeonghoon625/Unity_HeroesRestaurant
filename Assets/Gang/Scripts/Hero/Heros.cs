@@ -14,6 +14,7 @@ public class Heros : MonoBehaviour
 {
     public Vector3 bossPos;
 
+    public Reinforcement reinforcement;
     public Image hpBar;
     public StageManager stageManager;
     public GameObject stunPrefab;
@@ -61,7 +62,7 @@ public class Heros : MonoBehaviour
     public Vector3 m_Position;                                  // 목표 이동지점
     public GameObject target;                                   // 공격 대상
     /******************************************
-     * 버프
+     * 스킬
      * ***************************************/
     public bool isInvincibility;                                // 무적
     public bool isShield;                                       // 쉴드
@@ -86,6 +87,10 @@ public class Heros : MonoBehaviour
 
     private void Awake()
     {
+        // 강화 적용
+        dmg += Mathf.RoundToInt(dmg * reinforcement.power / 100);
+        hp += Mathf.Round(hp * reinforcement.health / 100);
+
         maxHp = hp;
         maxShield = hp * 0.2f;
         curShield = maxShield;

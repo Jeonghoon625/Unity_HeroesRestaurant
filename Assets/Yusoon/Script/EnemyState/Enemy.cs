@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +12,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     public MonsterType monsterType;
+    public BoarBoss boarBoss;
+
     public Image hpBar;
     public StageManager stageManager;
     /******************************************
@@ -95,6 +95,10 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        if(monsterType == MonsterType.Boss)
+        {
+            boarBoss.BossUpdate();
+        }
         currentState.IUpdate();
     }
     private void FixedUpdate()
@@ -145,7 +149,7 @@ public class Enemy : MonoBehaviour
         {
             if (hero.OnHit(this, Dmg) == 0)
             {
-                SetState("Idle");
+                //SetState("Idle");
             }
         }
     }

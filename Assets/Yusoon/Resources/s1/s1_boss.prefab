@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -3430751804253121188}
   - component: {fileID: 3754405619664105051}
   - component: {fileID: 437502028}
+  - component: {fileID: 8228499766595779555}
   m_Layer: 9
   m_Name: s1_boss
   m_TagString: Monster
@@ -153,15 +154,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterType: 1
+  boarBoss: {fileID: 437502028}
   hpBar: {fileID: 3404901341317012432}
   stageManager: {fileID: 0}
   prevState: 
   animator: {fileID: 2913084686275710787}
   speed: 2
   speedDebuff: 1
-  dmg: 3
-  attackAreaX: 3.5
-  attackArea: {x: 3.5, y: 0, z: 0}
+  dmg: 10
+  attackAreaX: 4
+  attackArea: {x: 4, y: 0, z: 0}
   hp: 500
   maxHp: 0
   attackCool: 2
@@ -191,6 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21329502bb6bdff48a8bb01cf43f87b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraShake: {fileID: 8228499766595779555}
   stageManager: {fileID: 0}
   Board: {fileID: -3430751804253121188}
   isAlive: 1
@@ -202,6 +205,21 @@ MonoBehaviour:
   - {x: 6.5, y: 0, z: 0}
   - {x: 6, y: 0, z: 0}
   boarPrefab: {fileID: 4087794226412669592, guid: 51380bce7655278489d3927ea9e6594f, type: 3}
+--- !u!114 &8228499766595779555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575332639036207146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a532e6719b5b02d4ba0e114e46d21a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  shakeRange: 0.05
+  duration: 0.5
 --- !u!1001 &687591050
 PrefabInstance:
   m_ObjectHideFlags: 0

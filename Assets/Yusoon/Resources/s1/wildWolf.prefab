@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterType: 0
+  boarBoss: {fileID: 0}
   hpBar: {fileID: 3404901340808615063}
   stageManager: {fileID: 0}
   prevState: 

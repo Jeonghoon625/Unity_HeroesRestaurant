@@ -13,7 +13,7 @@ public class StageManager : MonoBehaviour
     /******************************************
      * 스테이지 성공, 실패 여부 확인
      * ***************************************/
-    private bool stageEnd = false;          //
+    public bool stageEnd = false;          //
     public GameObject VictoryUI;
     public GameObject DefeatUI;
 
@@ -160,9 +160,14 @@ public class StageManager : MonoBehaviour
 
         if(herosList.Count == 0)
         {
-            Instantiate(DefeatUI).transform.SetParent(GameObject.Find("Canvas").transform, false);
-            stageEnd = true;
+            Defeat();
         }
+    }
+
+    public void Defeat()
+    {
+        Instantiate(DefeatUI).transform.SetParent(GameObject.Find("Canvas").transform, false);
+        stageEnd = true;
     }
     /***************************************************
      * 몬스터 사망
