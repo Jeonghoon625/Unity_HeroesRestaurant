@@ -163,6 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ecd99c5aa74e42489d0c6a4220af8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterType: 0
+  boarBoss: {fileID: 0}
+  hpBar: {fileID: 0}
   stageManager: {fileID: 0}
   prevState: 
   animator: {fileID: 1802909615509526397}
@@ -172,5 +175,6 @@ MonoBehaviour:
   attackAreaX: 0
   attackArea: {x: 1, y: 0, z: 0}
   hp: 10
+  maxHp: 0
   attackCool: 1
   target: {fileID: 0}

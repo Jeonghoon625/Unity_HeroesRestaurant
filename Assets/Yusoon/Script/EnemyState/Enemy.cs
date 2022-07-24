@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public enum MonsterType
@@ -13,7 +12,9 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     public MonsterType monsterType;
+    public BoarBoss boarBoss;
 
+    public Image hpBar;
     public StageManager stageManager;
     /******************************************
      * 상태
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour
     public float attackAreaX;
     public Vector3 attackArea;
     public float hp = 100;
+    public float maxHp;
 
     [SerializeField]
     private float attackCool = 0.5f;
@@ -65,6 +67,9 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        maxHp = hp;
+        hpBar.gameObject.SetActive(false);
+
         stageManager = GameObject.FindWithTag("GameController").GetComponent<StageManager>();
         /*******************************************************************************/
         // 체력, 공격력 => 데이터 세이브 로드를 통하여 관리
@@ -90,6 +95,10 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        if(monsterType == MonsterType.Boss)
+        {
+            boarBoss.BossUpdate();
+        }
         currentState.IUpdate();
     }
     private void FixedUpdate()
@@ -116,6 +125,7 @@ public class Enemy : MonoBehaviour
      * ***************************************/
     void Create()
     {
+        hpBar.gameObject.SetActive(true);
         col.enabled = true;
         SetState("Idle");
         stageManager.enemyList.Add(gameObject);
@@ -139,7 +149,7 @@ public class Enemy : MonoBehaviour
         {
             if (hero.OnHit(this, Dmg) == 0)
             {
-                SetState("Idle");
+                //SetState("Idle");
             }
         }
     }
@@ -149,15 +159,19 @@ public class Enemy : MonoBehaviour
     void DeadEffect()
     {
         // 사라질 때 이펙트
-        Destroy(gameObject);
+        if (monsterType != MonsterType.Boss)
+        {
+            Destroy(gameObject);
+        }
     }
     public float OnHit(Heros attacker, float dmg)
     {
         // hp 감소
         hp -= dmg;
+        hpBar.GetComponent<HpBar>().HitHp(hp, maxHp);
         if (hp <= 0)
         {
-            foreach(var s in stageManager.herosList)
+            foreach (var s in stageManager.herosList)
             {
                 s.GetComponent<Heros>().target = null;
             }
@@ -167,6 +181,12 @@ public class Enemy : MonoBehaviour
     }
     private void Dead(Heros target)
     {
+        if (OnDeath != null)
+            OnDeath();
+        if(monsterType == MonsterType.Boss)
+        {
+            gameObject.GetComponent<BoarBoss>().isAlive = false;
+        }
         SetState("None");
         animator.SetTrigger("Dead");
         target.target = null;
@@ -175,7 +195,5 @@ public class Enemy : MonoBehaviour
 
         stageManager.DeadEnemy(gameObject);
 
-        if (OnDeath != null)
-            OnDeath();
     }
 }

@@ -8,29 +8,6 @@ public class HpBar : MonoBehaviour
     public Image hpImage;
     public Image shieldImage;
 
-    private GameObject obj;
-    private void Start()
-    {
-        obj = GetComponentInParent<Heros>().gameObject;
-    }
-    void Update()
-    {
-        //gameObject.transform.rotation = Camera.main.transform.rotation;
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            OnShield();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            OffShield();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            Debug.Log(obj);
-        }
-    }
-
     public void OnShield()
     {
         shieldImage.fillAmount = 1f;
