@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public bool isInit;
+    public bool isCookInit;
     public int masterStage = 1;
     public List<int> slaveStage = new List<int>();
 
     public GameManager()
     {
-        isInit = false;
+        isCookInit = false;
         Debug.Log("게임 매니저 초기화");
         goodsManager = new GoodsManager();
         resourceManager = new ResourceManager();
@@ -27,9 +27,9 @@ public class GameManager : Singleton<GameManager>
         SceneLoader.LoadScene(sceneName);
     }
 
-    public void Init()
+    public void CookInit()
     {
-        isInit = true;
+        isCookInit = true;
     }
 
     //Cook

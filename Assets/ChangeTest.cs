@@ -7,7 +7,8 @@ public class ChangeTest : MonoBehaviour
 {
     public void OnClick()
     {
-        GameManager.Instance.saveLoadManager.Save();
+        //GameManager.Instance.saveLoadManager.Save();
+        GameManager.Instance.saveLoadManager.SaveTime();
         SceneManager.LoadScene("Cook");
     }
 }

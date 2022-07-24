@@ -45,8 +45,8 @@ public class SellManager : MonoBehaviour
 
     IEnumerator Selling(float cool, int foodId) 
     {
-        cool /= 5;
-        Debug.Log(cookManager.uiManager.foodSlots[foodId].title + " 판매 시작");
+        //cool /= 5;
+        //Debug.Log(cookManager.uiManager.foodSlots[foodId].title + " 판매 시작");
 
         while (cool > 0.0f) 
         { 
@@ -60,7 +60,40 @@ public class SellManager : MonoBehaviour
         foodIsSells[foodId] = false;
         cookManager.uiManager.foodSlots[foodId].currentSellingTime = 0;
         cookManager.uiManager.informationPanel.UpdateReserve();
-        Debug.Log("판매 완료"); 
+
+        //Debug.Log(cookManager.uiManager.foodSlots[foodId].title + " 판매 완료"); 
     }
     
+    public void TimeSell(double times)
+    {
+        for (var i = 0; i < GameManager.Instance.goodsManager.foodReserve.Count; i++)
+        {
+            if(GameManager.Instance.goodsManager.foodReserve[i] > 0 && !cookManager.uiManager.foodSlots[i].lockGO.activeSelf)
+            {
+                int foodId = i;
+                int sellTime = cookManager.uiManager.foodSlots[foodId].sellTime;
+                int sellSum = (int)(times / sellTime);
+
+                if (GameManager.Instance.goodsManager.foodReserve[i] >= sellSum)
+                {
+
+                    GameManager.Instance.goodsManager.foodReserve[foodId] -= sellSum;
+                    GameManager.Instance.goodsManager.gold += sellSum * cookManager.uiManager.foodSlots[foodId].sellGold;
+
+                    Debug.Log(cookManager.uiManager.foodSlots[i].title + sellSum + "개" + sellSum * cookManager.uiManager.foodSlots[foodId].sellGold + "원" + "시간차 판매");
+                    cookManager.uiManager.informationPanel.UpdateReserve();
+                }
+                else if (GameManager.Instance.goodsManager.foodReserve[i] < sellSum)
+                {
+                    Debug.Log(cookManager.uiManager.foodSlots[i].title + GameManager.Instance.goodsManager.foodReserve[i] + "개" +
+                       GameManager.Instance.goodsManager.foodReserve[i] * cookManager.uiManager.foodSlots[foodId].sellGold + "원" + "시간차 판매");
+
+                    GameManager.Instance.goodsManager.gold += GameManager.Instance.goodsManager.foodReserve[i] * cookManager.uiManager.foodSlots[foodId].sellGold;
+                    GameManager.Instance.goodsManager.foodReserve[i] = 0;
+                   
+                    cookManager.uiManager.informationPanel.UpdateReserve();
+                }
+            }
+        }
+    }
 }

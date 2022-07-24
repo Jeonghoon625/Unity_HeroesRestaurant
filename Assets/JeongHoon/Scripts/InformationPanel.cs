@@ -61,7 +61,7 @@ public class InformationPanel : MonoBehaviour
 
             reserveSlider.value = 0;
             reserveSlider.minValue = 0;
-            reserveSlider.maxValue = slotInfo.sellTime / 5;
+            reserveSlider.maxValue = slotInfo.sellTime;
         }
     }
 

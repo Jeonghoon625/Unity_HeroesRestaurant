@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -35,7 +36,39 @@ public class SaveLoadManager
         SaveCurrencyReserve();
     }
 
-    public void GenerateDefalutCurrencyReserve()
+    public void SaveTime()
+    {
+        Debug.Log("시간 저장");
+        string fileName = "Time";
+        string path = Application.dataPath + fileName + ".Json";
+
+        var setJson = JsonConvert.SerializeObject(System.DateTime.Now.TimeOfDay.TotalSeconds);
+        File.WriteAllText(path, setJson);
+    }
+
+    public double LoadTime()
+    {
+        Debug.Log("시간 로드");
+
+        string fileName = "Time";
+        string path = Application.dataPath + fileName + ".Json";
+
+        fileInfo = new FileInfo(path);
+
+        if (!fileInfo.Exists)
+        {
+            return -1;
+        }
+        else
+        {
+            string json = File.ReadAllText(path);
+            float times = JsonConvert.DeserializeObject<float>(json);
+            return times;
+        }
+    }
+
+
+    public void GenerateDefaultCurrencyReserve()
     {
         Debug.Log($"초기 재료 보유량 데이터 생성");
 
@@ -103,7 +136,7 @@ public class SaveLoadManager
 
         if (!fileInfo.Exists)
         {
-            GenerateDefalutCurrencyReserve();
+            GenerateDefaultCurrencyReserve();
         }
         else
         {
