@@ -13,6 +13,7 @@ public class CookManager : MonoBehaviour
     public SellManager sellManager;
 
     private void Awake()
+
     {
         if(!GameManager.Instance.isCookInit)
         {

@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
         goodsManager = new GoodsManager();
         resourceManager = new ResourceManager();
         saveLoadManager = new SaveLoadManager();
+        awardManager = new AwardManager();
     }
 
     public void GoBattleScene()
@@ -39,4 +40,6 @@ public class GameManager : Singleton<GameManager>
     public GoodsManager goodsManager;
 
     public SaveLoadManager saveLoadManager;
+
+    public AwardManager awardManager;
 }
