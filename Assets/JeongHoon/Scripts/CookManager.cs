@@ -15,7 +15,9 @@ public class CookManager : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.Init();
-        GameManager.Instance.goodsManager.Load();
+
+        GameManager.Instance.saveLoadManager.Load();
+
         uiManager.Init();
         sellManager.Init(this);
     }

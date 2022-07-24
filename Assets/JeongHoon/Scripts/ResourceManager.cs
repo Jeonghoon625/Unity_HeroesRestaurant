@@ -21,13 +21,6 @@ public class ResourceManager
         LoadCurrency();
         LoadFood();
         LoadRecipe();
-        LoadReserve();
-    }
-
-    public void LoadReserve()
-    {
-        LoadReserveCurrency();
-        LoadReserveFood();
     }
 
     public void LoadCurrency()
@@ -43,15 +36,5 @@ public class ResourceManager
     public void LoadRecipe()
     {
         recipeData = CSVReader.Read("Tables\\Recipe_DataTable");
-    }
-
-    public void LoadReserveCurrency()
-    {
-        reserveCurrencyData = CSVReader.Read("Tables\\Currency_ReserveTable");
-    }
-
-    public void LoadReserveFood()
-    {
-        reserveFoodData = CSVReader.Read("Tables\\Food_ReserveTable");
     }
 }

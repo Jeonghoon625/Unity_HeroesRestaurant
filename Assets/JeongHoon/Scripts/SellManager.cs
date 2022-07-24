@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SellManager : MonoBehaviour
 {
-    float timer = 0;
-
     bool isInit = false;
 
     List<bool> foodIsSells = new List<bool>();
@@ -14,12 +12,15 @@ public class SellManager : MonoBehaviour
 
     public void Init(CookManager cookManager)
     {
+        Debug.Log("Sell √ ±‚»≠");
         this.cookManager = cookManager;
+
         for (int i = 0; i < GameManager.Instance.resourceManager.foodData.Count; i++)
         {
             foodIsSells.Add(false);
         }
 
+        Debug.Log(foodIsSells.Count);
         isInit = true;
     }
 
