@@ -11,7 +11,6 @@ public class CharacterSelectController : MonoBehaviour
     public TextMeshProUGUI combatAvr;
     public Image[] glowRound;
     public GameObject window;
-    public GameObject[] heroesPrefab;
 
     public HeroList heroList;
 
@@ -27,16 +26,14 @@ public class CharacterSelectController : MonoBehaviour
     {
         for (int i = 0; i < heroList.isSellect.Length; i++)
         {
-            selectedHeroes.text = "{i} / 4";
+            selectedHeroes.text = i +" / 4";
         }
     }
-    public void ShowSelectedHeroes()
-    {
-        
-    }
+
     public void OnAyranSelected()
     {
         glowRound[0].gameObject.SetActive(heroList.isSellect[0]);
+
     }
     public void OnCoqAuVinSelected()
     {
