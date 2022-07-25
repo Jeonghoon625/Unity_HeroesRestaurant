@@ -26,9 +26,12 @@ public class CookManager : MonoBehaviour
         uiManager.UpdateStageState();
 
         System.DateTime StartDate = System.DateTime.Now;
+        Debug.Log(StartDate);
         System.DateTime EndDate = GameManager.Instance.saveLoadManager.LoadTime();
-        System.TimeSpan timeCal = EndDate - StartDate;
-        sellManager.TimeSell(timeCal.Seconds + 40);
+        Debug.Log(EndDate);
+        System.TimeSpan timeCal = StartDate - EndDate;
+        Debug.Log(timeCal);
+        sellManager.TimeSell(timeCal.TotalSeconds);
     }
 
     private void OnEnable()

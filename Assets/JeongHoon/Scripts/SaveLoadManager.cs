@@ -99,7 +99,7 @@ public class SaveLoadManager
         {
             int foodId = i;
 
-            GameManager.Instance.goodsManager.foodReserve.Insert(foodId, 10);
+            GameManager.Instance.goodsManager.foodReserve.Insert(foodId, 0);
         }
 
         var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.foodReserve);

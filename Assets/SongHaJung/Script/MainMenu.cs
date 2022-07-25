@@ -13,7 +13,6 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         backbutton.gameObject.SetActive(false);
-
     }
 
     //public void SceneChange()
@@ -56,22 +55,22 @@ public class MainMenu : MonoBehaviour
         building.SetActive(false);
 
         backbutton.gameObject.SetActive(true);
-       
     }
 
-    //public void OnClickCookStore(GameObject CookMenu)
-    //{
-    //    Blur.SetActive(true);
-    //    buttons.SetActive(false);
-    //    CookMenu.SetActive(true);
-    //}
+    public void OnClickCookStore(GameObject CookMenu)
+    {
+        Blur.SetActive(true);
+        buttons.SetActive(false);
+        CookMenu.SetActive(true);
+    }
 
-    //public void OffClickCookStore(GameObject CookMenu)
-    //{
-    //    Blur.SetActive(false);
-    //    buttons.SetActive(true);
-    //    CookMenu.SetActive(false);
-    //}
+    public void OffClickCookStore(GameObject CookMenu)
+    {
+        Blur.SetActive(false);
+        buttons.SetActive(true);
+        CookMenu.SetActive(false);
+    }
+
 
     public void OffClickMap()
     {
