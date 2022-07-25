@@ -116,6 +116,7 @@ public class GameDataManager : MonoBehaviour
 
         filepath = Application.persistentDataPath + "/MyItemText.txt";
         filepath2 = Application.persistentDataPath + "/PositionData.txt";
+        Debug.Log(filepath);
 
         Load();
     
