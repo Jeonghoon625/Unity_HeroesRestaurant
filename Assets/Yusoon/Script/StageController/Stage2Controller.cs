@@ -11,6 +11,23 @@ public class Stage2Controller : MonoBehaviour
     public GameObject firstRewardPrefab;
     public TextMeshProUGUI properCompatPower;
     public TextMeshProUGUI stage;
+    public CharacterSelectController characterSelectController;
+
+    public void Update()
+    {
+        for(int i = 0; i < characterSelectController.heroList.isSellect.Length; i++)
+        {
+            if (characterSelectController.heroList.isSellect[i])
+            {
+                heroPrefab[i].SetActive(true);
+            }
+
+            if(!characterSelectController.heroList.isSellect[i])
+            {
+                heroPrefab[i].SetActive(false);
+            }
+        }
+    }
 
     public void stage1Btn()
     {
@@ -39,5 +56,10 @@ public class Stage2Controller : MonoBehaviour
     public void exitBtn()
     {
         gameObject.SetActive(false);
+    }
+
+    public void ShowCharacterSelectWindow()
+    {
+        gameObject.SetActive(true);
     }
 }

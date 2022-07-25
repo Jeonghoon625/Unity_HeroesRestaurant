@@ -7,16 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class Loading : MonoBehaviour
 {
-    static string nextScene;
+    public string nextScene;
 
     [SerializeField]
     Image progressBar;
-
-    public static void Load(string sceneName)
-    {
-        nextScene = sceneName;
-        SceneManager.LoadScene("Loading");
-    }
 
     private void Start()
     {
@@ -25,28 +19,27 @@ public class Loading : MonoBehaviour
 
     IEnumerator LoadSceneProgress()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(nextScene);
-        operation.allowSceneActivation = false;
+        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
+        op.allowSceneActivation = false;
 
         float timer = 0f;
-        while (!operation.isDone)
-        {
-            yield return null;
 
-            if(operation.progress < 0.9f)
+        
+        while (!op.isDone)
+        {
+            if (op.progress < 0.9f)
             {
-                progressBar.fillAmount = operation.progress;
+                progressBar.fillAmount = op.progress;
             }
-            else
+            else if(op.progress >= 0.9f)
             {
-                timer += Time.unscaledDeltaTime;
+                timer += Time.deltaTime;
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
-                if(progressBar.fillAmount >= 1f)
-                {
-                    operation.allowSceneActivation = true;
-                    yield break;
-                }
+                
+                op.allowSceneActivation = true;
+              
             }
+            yield return null;
         }
     }
 }
