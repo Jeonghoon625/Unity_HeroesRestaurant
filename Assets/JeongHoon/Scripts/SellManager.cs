@@ -10,6 +10,13 @@ public class SellManager : MonoBehaviour
 
     CookManager cookManager;
 
+    public CookManager CookMenu;
+
+    private void Start()
+    {
+        CookMenu.Init();
+    }
+
     public void Init(CookManager cookManager)
     {
         Debug.Log("Sell 초기화");
@@ -66,9 +73,11 @@ public class SellManager : MonoBehaviour
     
     public void TimeSell(double times)
     {
+        Debug.Log("불러부러");
+        Debug.Log(times);
         for (var i = 0; i < GameManager.Instance.goodsManager.foodReserve.Count; i++)
         {
-            if(GameManager.Instance.goodsManager.foodReserve[i] > 0 && !cookManager.uiManager.foodSlots[i].lockGO.activeSelf)
+            if(GameManager.Instance.goodsManager.foodReserve[i] > 0)
             {
                 int foodId = i;
                 int sellTime = cookManager.uiManager.foodSlots[foodId].sellTime;

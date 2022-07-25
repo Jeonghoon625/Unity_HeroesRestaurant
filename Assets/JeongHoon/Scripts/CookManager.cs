@@ -12,7 +12,7 @@ public class CookManager : MonoBehaviour
 
     public SellManager sellManager;
 
-    private void Awake()
+    public void Init()
 
     {
         if(!GameManager.Instance.isCookInit)
@@ -23,7 +23,7 @@ public class CookManager : MonoBehaviour
 
         uiManager.Init();
         sellManager.Init(this);
-        uiManager.UpdateStageState();
+        //uiManager.UpdateStageState();
 
         System.DateTime StartDate = System.DateTime.Now;
         Debug.Log(StartDate);
@@ -34,9 +34,9 @@ public class CookManager : MonoBehaviour
         sellManager.TimeSell(timeCal.TotalSeconds);
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        //uiManager.UpdateStageState();
+        uiManager.UpdateStageState();
     }
 
     private void Update()

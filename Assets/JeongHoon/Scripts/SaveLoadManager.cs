@@ -15,12 +15,20 @@ public class SaveLoadManager
 
     public void Save()
     {
+        Debug.Log("SaveData");
         SaveReserve();
+        SaveGold();
+        SaveWood();
+        SaveStageInfo();
+        SaveTime();
     }
 
     public void Load()
     {
         LoadReserve();
+        LoadGold();
+        LoadWood();
+        LoadStageInfo();
         isInit = true;
     }
 
@@ -40,7 +48,7 @@ public class SaveLoadManager
     {
         Debug.Log("시간 저장");
         string fileName = "Time";
-        string path = Application.dataPath + fileName + ".Json";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
         var setJson = JsonConvert.SerializeObject(System.DateTime.Now);
         File.WriteAllText(path, setJson);
@@ -51,7 +59,7 @@ public class SaveLoadManager
         Debug.Log("시간 로드");
 
         string fileName = "Time";
-        string path = Application.dataPath + fileName + ".Json";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
         fileInfo = new FileInfo(path);
 
@@ -68,6 +76,7 @@ public class SaveLoadManager
         }
     }
 
+    /*
     public void GenerateDefaultProduceTime()
     {
         Debug.Log($"초기 제작 시간 생성");
@@ -86,6 +95,7 @@ public class SaveLoadManager
         var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.currencyReserve);
         File.WriteAllText(path, setJson);
     }
+    */
 
     public void GenerateDefaultCurrencyReserve()
     {
@@ -93,7 +103,7 @@ public class SaveLoadManager
 
         //Currency 보유량
         string fileName = "CurrencyReserve";
-        string path = Application.dataPath + fileName + ".Json";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
         for (var i = 0; i < GameManager.Instance.resourceManager.currencyData.Count; i++)
         {
@@ -112,7 +122,7 @@ public class SaveLoadManager
 
         //Food 보유량
         string fileName = "FoodReserve";
-        string path = Application.dataPath + fileName + ".Json";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
         for (var i = 0; i < GameManager.Instance.resourceManager.foodData.Count; i++)
         {
             int foodId = i;
@@ -129,7 +139,7 @@ public class SaveLoadManager
         Debug.Log("음식 보유량 로드");
 
         string fileName = "FoodReserve";
-        string path = Application.dataPath + fileName + ".Json";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
         fileInfo = new FileInfo(path);
 
@@ -149,7 +159,7 @@ public class SaveLoadManager
         Debug.Log("재료 보유량 로드");
 
         string fileName = "CurrencyReserve";
-        string path = Application.dataPath + fileName + ".Json";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
         fileInfo = new FileInfo(path);
 
@@ -168,7 +178,7 @@ public class SaveLoadManager
     {
         //Food 보유량
         string fileName = "FoodReserve";
-        string path = Application.dataPath + fileName + ".Json";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
         var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.foodReserve);
         File.WriteAllText(path, setJson);
@@ -178,9 +188,97 @@ public class SaveLoadManager
     {
         //Currency 보유량
         string fileName = "CurrencyReserve";
-        string path = Application.dataPath + fileName + ".Json";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
         var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.currencyReserve);
         File.WriteAllText(path, setJson);
+    }
+
+    public void SaveGold()
+    {
+        string fileName = "Gold";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        Debug.Log(path);
+        var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.gold);
+        File.WriteAllText(path, setJson);
+    }
+
+    public void LoadGold()
+    {
+        string fileName = "Gold";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        fileInfo = new FileInfo(path);
+
+        if (!fileInfo.Exists)
+        {
+            GameManager.Instance.goodsManager.gold = 1000;
+            var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.gold);
+            File.WriteAllText(path, setJson);
+        }
+        else
+        {
+            string json = File.ReadAllText(path);
+            GameManager.Instance.goodsManager.gold = JsonConvert.DeserializeObject<int>(json);
+        }
+    }
+
+    public void SaveWood()
+    {
+        string fileName = "Wood";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.wood);
+        File.WriteAllText(path, setJson);
+    }
+
+    public void LoadWood()
+    {
+        string fileName = "Wood";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        fileInfo = new FileInfo(path);
+
+        if (!fileInfo.Exists)
+        {
+            GameManager.Instance.goodsManager.wood = 500;
+            var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.wood);
+            File.WriteAllText(path, setJson);
+        }
+        else
+        {
+            string json = File.ReadAllText(path);
+            GameManager.Instance.goodsManager.wood = JsonConvert.DeserializeObject<int>(json);
+        }
+    }
+
+    public void SaveStageInfo()
+    {
+        string fileName = "StageInfo";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        var setJson = JsonConvert.SerializeObject(GameManager.Instance.masterStage);
+        File.WriteAllText(path, setJson);
+    }
+
+    public void LoadStageInfo()
+    {
+        string fileName = "StageInfo";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        fileInfo = new FileInfo(path);
+
+        if (!fileInfo.Exists)
+        {
+            GameManager.Instance.masterStage = 1;
+            var setJson = JsonConvert.SerializeObject(GameManager.Instance.masterStage);
+            File.WriteAllText(path, setJson);
+        }
+        else
+        {
+            string json = File.ReadAllText(path);
+            GameManager.Instance.masterStage = JsonConvert.DeserializeObject<int>(json);
+        }
     }
 }

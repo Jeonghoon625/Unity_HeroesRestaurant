@@ -132,4 +132,24 @@ public class MainMenu : MonoBehaviour
         building.SetActive(false);
     }
 
+    public void OnClickExit(GameObject ExitMenu)
+    {
+        Blur.SetActive(true);
+        buttons.SetActive(false);
+        ExitMenu.SetActive(true);
+    }
+
+    public void OffClickExit(GameObject ExitMenu)
+    {
+        Blur.SetActive(false);
+        buttons.SetActive(true);
+        ExitMenu.SetActive(false);
+    }
+
+    public void OnClickQuit()
+    {
+        GameManager.Instance.saveLoadManager.Save();
+        Application.Quit();
+    }
+
 }
