@@ -9,17 +9,17 @@ public class MainMenu : MonoBehaviour
     public GameObject building, Blur, buttons, maps;
 
     public GameObject backbutton;
-   
+
     private void Start()
     {
         backbutton.gameObject.SetActive(false);
 
     }
 
-    public void SceneChange()
-    {
-        GameManager.Instance.GoBattleScene();
-    }
+    //public void SceneChange()
+    //{
+    //    GameManager.Instance.GoBattleScene();
+    //}
 
     public void OnclickSystem()
     {
@@ -59,19 +59,19 @@ public class MainMenu : MonoBehaviour
        
     }
 
-    public void OnClickCookStore(GameObject CookMenu)
-    {
-        Blur.SetActive(true);
-        buttons.SetActive(false);
-        CookMenu.SetActive(true);
-    }
+    //public void OnClickCookStore(GameObject CookMenu)
+    //{
+    //    Blur.SetActive(true);
+    //    buttons.SetActive(false);
+    //    CookMenu.SetActive(true);
+    //}
 
-    public void OffClickCookStore(GameObject CookMenu)
-    {
-        Blur.SetActive(false);
-        buttons.SetActive(true);
-        CookMenu.SetActive(false);
-    }
+    //public void OffClickCookStore(GameObject CookMenu)
+    //{
+    //    Blur.SetActive(false);
+    //    buttons.SetActive(true);
+    //    CookMenu.SetActive(false);
+    //}
 
     public void OffClickMap()
     {
@@ -104,9 +104,7 @@ public class MainMenu : MonoBehaviour
     {
         buttons.SetActive(true);
         Blur.SetActive(false);
-
         backbutton.gameObject.SetActive(false);
-
         building.SetActive(false);
     }
 
