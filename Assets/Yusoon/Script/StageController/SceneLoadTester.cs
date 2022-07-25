@@ -9,7 +9,7 @@ public class SceneLoadTester : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetMouseButtonDown(0))
         {
             SceneManager.LoadScene("LoadingScene");
         }
