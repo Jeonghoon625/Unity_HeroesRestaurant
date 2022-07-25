@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ecd99c5aa74e42489d0c6a4220af8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageManager: {fileID: 0}
   prevState: 
   animator: {fileID: 3242038279660165284}
   speed: 3
@@ -171,5 +172,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 34.593594, y: 43.4601, z: 0}
+  m_Size: {x: 34.593594, y: 43.4601, z: 0.3}
   m_Center: {x: 1.0136282, y: 20.229948, z: 0}

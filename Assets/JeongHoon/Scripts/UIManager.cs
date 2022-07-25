@@ -60,6 +60,9 @@ public class UIManager : MonoBehaviour
             Sprite sprite = Resources.Load<Sprite>("Food\\" + (string)GameManager.Instance.resourceManager.foodData[i]["image"]);
             int stage = (int)GameManager.Instance.resourceManager.foodData[i]["stage"];
 
+            int sellTime = (int)GameManager.Instance.resourceManager.foodData[i]["sellTime"];
+            int sellGold = (int)GameManager.Instance.resourceManager.foodData[i]["sellGold"];
+
             GameObject foodGO = Object.Instantiate(foodPrefab, foodSection.transform);
             FoodSlot slot = foodGO.GetComponent<FoodSlot>();
             slot.id = id;
@@ -68,6 +71,9 @@ public class UIManager : MonoBehaviour
             slot.sprite = sprite;
             slot.maxReserve = maxReserve;
             slot.stage = stage;
+            slot.sellTime = sellTime;
+            slot.sellGold = sellGold;
+
             slot.GetComponent<Button>().onClick.AddListener(() => SelectFood(slot));
 
             foodSlots.Add(slot);
@@ -114,6 +120,39 @@ public class UIManager : MonoBehaviour
         for (var i = 0; i < currencySlots.Count; i++)
         {
             currencySlots[i].reserveText.text = GameManager.Instance.goodsManager.currencyReserve[i].ToString();
+        }
+    }
+
+    public void UpdateSelectLight()
+    {
+        for (var i = 0; i < foodSlots.Count; i++)
+        {
+            if (cookManager.selectFood.id == foodSlots[i].id) 
+            {
+                foodSlots[i].OnLight();
+            }
+            else //Open
+            {
+                foodSlots[i].OffLight();
+            }
+        }
+    }
+
+    public void UpdateSoldOut()
+    {
+        for (var i = 0; i < foodSlots.Count; i++)
+        {
+            if(!foodSlots[i].lockGO.activeSelf)
+            {
+                if (GameManager.Instance.goodsManager.foodReserve[foodSlots[i].id] == 0)
+                {
+                    foodSlots[i].image.color = new Color32(90, 90, 90, 255);
+                }
+                else
+                {
+                    foodSlots[i].image.color = Color.white;
+                }
+            }
         }
     }
 

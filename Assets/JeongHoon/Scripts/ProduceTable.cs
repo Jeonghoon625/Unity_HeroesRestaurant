@@ -13,6 +13,9 @@ public class ProduceTable : MonoBehaviour
     public GameObject[] recipeCurrencySlots;
     public int quantityValue = 0;
 
+    public TextMeshProUGUI sellTimeText;
+    public TextMeshProUGUI sellGoldText;
+
     private void Update()
     {
         if (cookManager.selectFood.maxReserve - GameManager.Instance.goodsManager.foodReserve[cookManager.selectFood.id] == 0)
@@ -37,6 +40,18 @@ public class ProduceTable : MonoBehaviour
                 }
             }
         }
+
+        if(quantityValue == 0)
+        {
+            sellGoldText.text = (cookManager.selectFood.sellGold).ToString();
+            sellTimeText.text = (cookManager.selectFood.sellTime).ToString();
+        }
+        else
+        {
+            sellGoldText.text = (cookManager.selectFood.sellGold * quantityValue).ToString();
+            sellTimeText.text = (cookManager.selectFood.sellTime * quantityValue).ToString();
+        }
+        
 
         quantity.text = quantityValue.ToString();
     }

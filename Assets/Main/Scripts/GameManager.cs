@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    public bool isCookInit;
     public int masterStage = 1;
     public List<int> slaveStage = new List<int>();
 
     public GameManager()
     {
+        isCookInit = false;
         Debug.Log("게임 매니저 초기화");
         goodsManager = new GoodsManager();
         resourceManager = new ResourceManager();
+        saveLoadManager = new SaveLoadManager();
+        awardManager = new AwardManager();
     }
 
     public void GoBattleScene()
@@ -24,8 +28,9 @@ public class GameManager : Singleton<GameManager>
         SceneLoader.LoadScene(sceneName);
     }
 
-    public void Init()
+    public void CookInit()
     {
+        isCookInit = true;
     }
 
     //Cook
@@ -34,4 +39,7 @@ public class GameManager : Singleton<GameManager>
     //Goods
     public GoodsManager goodsManager;
 
+    public SaveLoadManager saveLoadManager;
+
+    public AwardManager awardManager;
 }

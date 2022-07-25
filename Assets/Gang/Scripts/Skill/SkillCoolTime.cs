@@ -25,15 +25,6 @@ public class SkillCoolTime : MonoBehaviour
         button = GetComponent<Button>();
         UseSkill();
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            UseSkill();
-        }
-    }
-
     public void UseSkill()
     {
         if(canUseSkill)

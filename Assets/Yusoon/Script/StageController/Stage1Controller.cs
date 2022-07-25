@@ -44,7 +44,7 @@ public class Stage1Controller : MonoBehaviour
     {
         if (stage.text == "1-1")
         {
-            GameManager.Instance.ChanageScene("stage1-1");
+            GameManager.Instance.ChanageScene("Gang");
         }
         else if (stage.text == "1-2")
         {
