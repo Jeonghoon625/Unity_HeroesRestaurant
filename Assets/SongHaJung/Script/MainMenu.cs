@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 
-    public GameObject building, Blur, buttons, maps;
+    public GameObject building, Blur, buttons, maps, upgrade;
 
     public GameObject backbutton;
 
@@ -70,7 +70,19 @@ public class MainMenu : MonoBehaviour
         buttons.SetActive(true);
         CookMenu.SetActive(false);
     }
-
+    
+    public void OnClickUpgrade(GameObject Upgrade)
+    {
+        Blur.SetActive(true);
+        buttons.SetActive(false);
+        Upgrade.SetActive(true);
+    }
+    public void OffClickUpgrade(GameObject Upgrade)
+    {
+        Blur.SetActive(false);
+        buttons.SetActive(true);
+        Upgrade.SetActive(false);
+    }
 
     public void OffClickMap()
     {
