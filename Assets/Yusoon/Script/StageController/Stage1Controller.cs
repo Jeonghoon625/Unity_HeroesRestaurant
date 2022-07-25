@@ -12,6 +12,7 @@ public class Stage1Controller : MonoBehaviour
     public TextMeshProUGUI properCompatPower;
     public TextMeshProUGUI stage;
     public CharacterSelectController characterSelectController;
+    public HeroList herolist;
 
     public void Update()
     {
@@ -42,6 +43,21 @@ public class Stage1Controller : MonoBehaviour
 
     public void StartStage1Btn()
     {
+        var count = 0;
+        foreach(var list in herolist.isSellect)
+        {
+            if(list == true)
+            {
+                count++;
+            }
+        }
+        if(count == 0)
+        {
+            return;
+        }
+
+        GameManager.Instance.saveLoadManager.SaveTime();
+
         if (stage.text == "1-1")
         {
             GameManager.Instance.ChanageScene("Gang");

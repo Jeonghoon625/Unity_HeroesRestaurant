@@ -24,10 +24,10 @@ public class ReinforcementButton : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI healthGold;
 
-    private void Awake()
-    {
-        gameObject.SetActive(false);
-    }
+    //private void Awake()
+    //{
+    //    gameObject.SetActive(false);
+    //}
     private void OnEnable()
     {
         waponLv.text = $"LV.{reinforcement.powerLevel}";
