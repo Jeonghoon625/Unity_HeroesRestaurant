@@ -68,12 +68,12 @@ public class GameDataManager : MonoBehaviour
     public MainMenu main;
 
     public static int selectionIndex;
-    public static float enhance;
+    //public static float enhance;
     public int fixPosition;
     public int beforeSelect;
 
-    public static int buildingWoodMoney;
-    public static int allWoodMoney = 500;
+    public int buildingWoodMoney;
+    //public int allWoodMoney;
     public TextMeshProUGUI showWoodMoney;
     public TextMeshProUGUI checkbu;
 
@@ -125,7 +125,7 @@ public class GameDataManager : MonoBehaviour
 
     private void Update()
     {
-        showWoodMoney.text = allWoodMoney.ToString();
+        showWoodMoney.text = GameManager.Instance.goodsManager.wood.ToString();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -178,7 +178,7 @@ public class GameDataManager : MonoBehaviour
 
         selectionIndex = int.Parse(curItem.Index);
         AllModels[selectionIndex].SetActive(true);
-        enhance = float.Parse(curItem.SpecOfEnhance);
+        GameManager.Instance.goodsManager.enhance += float.Parse(curItem.SpecOfEnhance);
         buildingWoodMoney = int.Parse(curItem.WoodMoney);
 
         if (AllModels[selectionIndex].tag == "Finish")
@@ -207,10 +207,10 @@ public class GameDataManager : MonoBehaviour
     {
         // woodmoney 깎이고, 강화정보 전투에 넘겨줘야함
         main.OnClickBuildingBack();
-        allWoodMoney -= buildingWoodMoney;
+        GameManager.Instance.goodsManager.wood -= buildingWoodMoney;
         selectionIndex = beforeSelect;
 
-        Debug.Log("Enhance: " + enhance);
+        Debug.Log("Enhance: " + GameManager.Instance.goodsManager.enhance);
 
         IsMove = false;
         Save();
@@ -289,7 +289,7 @@ public class GameDataManager : MonoBehaviour
     {
         buildingWoodMoney = int.Parse(CurItemList[slotNum].WoodMoney);
 
-        if(buildingWoodMoney > allWoodMoney)
+        if(buildingWoodMoney > GameManager.Instance.goodsManager.wood)
         {
             checkbtn.interactable = false;
         }
