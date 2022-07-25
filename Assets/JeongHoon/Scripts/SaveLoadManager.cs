@@ -42,11 +42,11 @@ public class SaveLoadManager
         string fileName = "Time";
         string path = Application.dataPath + fileName + ".Json";
 
-        var setJson = JsonConvert.SerializeObject(System.DateTime.Now.TimeOfDay.TotalSeconds);
+        var setJson = JsonConvert.SerializeObject(System.DateTime.Now);
         File.WriteAllText(path, setJson);
     }
 
-    public double LoadTime()
+    public System.DateTime LoadTime()
     {
         Debug.Log("시간 로드");
 
@@ -57,16 +57,35 @@ public class SaveLoadManager
 
         if (!fileInfo.Exists)
         {
-            return -1;
+            SaveTime();
+            return System.DateTime.Now;
         }
         else
         {
             string json = File.ReadAllText(path);
-            float times = JsonConvert.DeserializeObject<float>(json);
+            System.DateTime times = JsonConvert.DeserializeObject<System.DateTime>(json);
             return times;
         }
     }
 
+    public void GenerateDefaultProduceTime()
+    {
+        Debug.Log($"초기 제작 시간 생성");
+
+        //Currency 보유량
+        string fileName = "ProduceTime";
+        string path = Application.dataPath + fileName + ".Json";
+
+        for (var i = 0; i < GameManager.Instance.resourceManager.currencyData.Count; i++)
+        {
+            int currencyId = i;
+
+            GameManager.Instance.goodsManager.currencyReserve.Insert(currencyId, 999);
+        }
+
+        var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.currencyReserve);
+        File.WriteAllText(path, setJson);
+    }
 
     public void GenerateDefaultCurrencyReserve()
     {
@@ -98,7 +117,7 @@ public class SaveLoadManager
         {
             int foodId = i;
 
-            GameManager.Instance.goodsManager.foodReserve.Insert(foodId, 10);
+            GameManager.Instance.goodsManager.foodReserve.Insert(foodId, 0);
         }
 
         var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.foodReserve);

@@ -24,6 +24,12 @@ public class StageManager : MonoBehaviour
      * 오브젝트 풀
      * ***************************************/
     //public MultipleObjectPooling objectPool;
+
+    [SerializeField]
+    private int stageNumber;
+    [SerializeField]
+    private int clearReward;
+
     private void Start()
     {
         // 영웅 소환
@@ -140,7 +146,8 @@ public class StageManager : MonoBehaviour
      * ************************************************/
     public void Victory()
     {
-        Instantiate(VictoryUI).transform.SetParent(GameObject.Find("Canvas").transform, false);
+        var reward = Instantiate(VictoryUI);
+        reward.transform.SetParent(GameObject.Find("Canvas").transform, false);
         stageEnd = true;
 
         foreach (var heroState in herosList)
@@ -149,7 +156,10 @@ public class StageManager : MonoBehaviour
             con.animator.SetTrigger("Clear");
             con.SetState("None");
         }
+
         // GameManager에게 보상 전달
+        reward.GetComponent<Reward>().ClearReward(stageNumber, clearReward);
+        GameManager.Instance.awardManager.Award(stageNumber - 1, clearReward);
     }
     /***************************************************
      * 실패 영웅 사망
@@ -158,7 +168,7 @@ public class StageManager : MonoBehaviour
     {
         herosList.Remove(hero);
 
-        if(herosList.Count == 0)
+        if (herosList.Count == 0)
         {
             Defeat();
         }

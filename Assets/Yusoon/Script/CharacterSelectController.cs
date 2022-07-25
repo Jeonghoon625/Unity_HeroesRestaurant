@@ -16,18 +16,25 @@ public class CharacterSelectController : MonoBehaviour
 
     public void OnEnable()
     {
-        for(int i = 0; i < heroList.isSellect.Length; i++)
+        for (int i = 0; i < heroList.isSellect.Length; i++)
         {
             glowRound[i].gameObject.SetActive(heroList.isSellect[i]);
         }
+
+        ChangeSelectedHeroesNumber();
     }
 
     public void ChangeSelectedHeroesNumber()
     {
+        var count = 0;
         for (int i = 0; i < heroList.isSellect.Length; i++)
         {
-            selectedHeroes.text = i +" / 4";
+            if (heroList.isSellect[i] == true)
+            {
+                count++;
+            }
         }
+        selectedHeroes.text = count + " / 4";
     }
 
     public void OnAyranSelected()

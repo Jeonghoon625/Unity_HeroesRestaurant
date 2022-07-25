@@ -12,6 +12,7 @@ public class Stage2Controller : MonoBehaviour
     public TextMeshProUGUI properCompatPower;
     public TextMeshProUGUI stage;
     public CharacterSelectController characterSelectController;
+    public HeroList herolist;
 
     public void Update()
     {
@@ -43,6 +44,21 @@ public class Stage2Controller : MonoBehaviour
 
     public void StartStageBtn()
     {
+        var count = 0;
+        foreach (var list in herolist.isSellect)
+        {
+            if (list == true)
+            {
+                count++;
+            }
+        }
+        if (count == 0)
+        {
+            return;
+        }
+
+        GameManager.Instance.saveLoadManager.SaveTime();
+
         if (stage.text == "2-1")
         {
             GameManager.Instance.ChanageScene("stage2-1");
