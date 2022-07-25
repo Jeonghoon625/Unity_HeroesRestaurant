@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HeroInfo : MonoBehaviour
 {
@@ -9,6 +10,27 @@ public class HeroInfo : MonoBehaviour
 
     public Image prevCard;
     public GameObject prevHeroCard;
+
+    [SerializeField]
+    private Reinforcement reinforcement;
+    [SerializeField]
+    private TextMeshProUGUI[] power;
+    [SerializeField]
+    private TextMeshProUGUI[] health;
+
+    private void OnEnable()
+    {
+        var enhance = GameManager.Instance.goodsManager.enhance;
+        foreach (var po in power)
+        {
+            po.text = $"{3 + Mathf.RoundToInt(3 * (reinforcement.power / 100f + enhance))}";
+        }
+
+        foreach (var heal in health)
+        {
+            heal.text = $"{100 + Mathf.RoundToInt(100 * (reinforcement.health / 100f + enhance))}";
+        }
+    }
     public void ShowHeroesInfo(Image select)
     {
         prevCard.color = Color.black;
@@ -21,22 +43,4 @@ public class HeroInfo : MonoBehaviour
         prevHeroCard = heroesCard[count];
         heroesCard[count].SetActive(true);
     }
-    //public void ShowCoQueVanInfo()
-    //{
-    //    prevHeroCard.SetActive(false);
-    //    prevHeroCard = heroesCard[1];
-    //    heroesCard[1].SetActive(true);
-    //}
-    //public void ShowFondueInfo()
-    //{
-    //    prevHeroCard.SetActive(false);
-    //    prevHeroCard = heroesCard[1];
-    //    heroesCard[1].SetActive(true);
-    //}
-    //public void ShowLimuInfo()
-    //{
-    //    prevHeroCard.SetActive(false);
-    //    prevHeroCard = heroesCard[1];
-    //    heroesCard[1].SetActive(true);
-    //}
 }

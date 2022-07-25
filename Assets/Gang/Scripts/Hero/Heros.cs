@@ -87,9 +87,10 @@ public class Heros : MonoBehaviour
 
     private void Awake()
     {
+        var enhance = GameManager.Instance.goodsManager.enhance;
         // 강화 적용
-        dmg += Mathf.RoundToInt(dmg * reinforcement.power / 100);
-        hp += Mathf.Round(hp * reinforcement.health / 100);
+        dmg += Mathf.RoundToInt(dmg * reinforcement.power / 100f + enhance);
+        hp += Mathf.Round(hp * reinforcement.health / 100f + enhance);
 
         maxHp = hp;
         maxShield = hp * 0.2f;

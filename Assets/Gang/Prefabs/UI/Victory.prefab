@@ -1043,3 +1043,4 @@ MonoBehaviour:
   - {fileID: 7535300205141385965, guid: f9b8f33688eb1cd43bb1046e3bf405c9, type: 3}
   - {fileID: 1834078660901477070, guid: 3fb965c94f7a9ab498a80bd940ac9d66, type: 3}
   - {fileID: 51905742311010552, guid: 0d8f6f63b042f2a4c865da7c8c2ef640, type: 3}
+  wood: {fileID: 51905742311010552, guid: b356fc20aafd8a14b9b3835fe09d50b2, type: 3}

@@ -262,14 +262,14 @@ public class GameDataManager : MonoBehaviour
             }
         }
         //≈«¿ÃπÃ¡ˆ
-        int tabNum = 0;
-        switch (tapName)
-        {
-            case "Building": tabNum = 0;  break;
-            case "FrontFurniture": tabNum = 1;  break;
-            case "BackFurniture": tabNum = 2;  break;
+        //int tabNum = 0;
+        //switch (tapName)
+        //{
+        //    case "Building": tabNum = 0;  break;
+        //    case "FrontFurniture": tabNum = 1;  break;
+        //    case "BackFurniture": tabNum = 2;  break;
 
-        }
+        //}
         //if (curType == tapName)
         //{
         //    slotbu[tabNum].interactable = true;

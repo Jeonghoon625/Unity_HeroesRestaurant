@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 5947092376368130174}
   - component: {fileID: 4885940142850212427}
   - component: {fileID: 4681721742692092327}
+  - component: {fileID: -146457550699811069}
   m_Layer: 5
   m_Name: cardC
   m_TagString: Untagged
@@ -198,6 +199,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-146457550699811069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708396213309440279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc3b75d2c9227a4db9e2b1d1d03ac5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reinforcement: {fileID: 11400000, guid: aef496bcb84c6ad4f8d23912b4b9d87a, type: 2}
+  power: {fileID: 8016360178051159333}
 --- !u!1 &5893796948954030120
 GameObject:
   m_ObjectHideFlags: 0

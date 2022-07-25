@@ -16,5 +16,5 @@ MonoBehaviour:
   health: 0
   powerLevel: 1
   healthLevel: 1
-  powerUpGold: 50
-  healthUpGold: 50
+  powerUpGold: 0
+  healthUpGold: 0

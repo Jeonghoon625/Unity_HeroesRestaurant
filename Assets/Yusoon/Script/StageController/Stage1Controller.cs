@@ -11,6 +11,7 @@ public class Stage1Controller : MonoBehaviour
     public GameObject firstRewardPrefab;
     public TextMeshProUGUI properCompatPower;
     public TextMeshProUGUI stage;
+    public TextMeshProUGUI reward;
     public CharacterSelectController characterSelectController;
     public HeroList herolist;
 
@@ -32,13 +33,15 @@ public class Stage1Controller : MonoBehaviour
     public void stage1Btn()
     {
         stage.text = "1-1";
-        properCompatPower.text = "3";
+        reward.text = "50";
+        //properCompatPower.text = "3";
     }
 
     public void stage2Btn()
     {
         stage.text = "1-2";
-        properCompatPower.text = "3";
+        reward.text = "120";
+        //properCompatPower.text = "3";
     }
 
     public void StartStage1Btn()

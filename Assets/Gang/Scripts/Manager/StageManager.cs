@@ -146,6 +146,7 @@ public class StageManager : MonoBehaviour
      * ************************************************/
     public void Victory()
     {
+        
         var reward = Instantiate(VictoryUI);
         reward.transform.SetParent(GameObject.Find("Canvas").transform, false);
         stageEnd = true;
@@ -158,8 +159,21 @@ public class StageManager : MonoBehaviour
         }
 
         // GameManager에게 보상 전달
+        var gameManager = GameManager.Instance;
+        if(stageNumber == 1)
+        {
+            if(clearReward == 120)
+            {
+                gameManager.masterStage++;
+            }
+        }
+        else
+        {
+            gameManager.masterStage++;
+        }
         reward.GetComponent<Reward>().ClearReward(stageNumber, clearReward);
-        GameManager.Instance.awardManager.Award(stageNumber - 1, clearReward);
+        gameManager.awardManager.Award(stageNumber - 1, clearReward);
+        gameManager.goodsManager.wood += 10;
     }
     /***************************************************
      * 실패 영웅 사망

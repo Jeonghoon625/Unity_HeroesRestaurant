@@ -14,11 +14,13 @@ public class Reward : MonoBehaviour
 {
     public GameObject rewardSlot;
     public GameObject[] prefabs;
+    public GameObject wood;
 
     public void ClearReward(int prefabNum, int count)
     {
         var re = Instantiate(prefabs[prefabNum - 1]);
         re.transform.SetParent(rewardSlot.transform, false);
         re.GetComponentInChildren<TextMeshProUGUI>().text = $"{count}";
+        Instantiate(wood).transform.SetParent(rewardSlot.transform, false);
     }
 }
