@@ -84,6 +84,19 @@ public class MainMenu : MonoBehaviour
         Upgrade.SetActive(false);
     }
 
+    public void OnClickInfo(GameObject Info)
+    {
+        Blur.SetActive(true);
+        buttons.SetActive(false);
+        Info.SetActive(true);
+    }
+    public void OffClickInfo(GameObject Info)
+    {
+        Blur.SetActive(false);
+        buttons.SetActive(true);
+        Info.SetActive(false);
+    }
+
     public void OffClickMap()
     {
         maps.SetActive(false);
