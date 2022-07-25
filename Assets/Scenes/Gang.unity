@@ -283,6 +283,8 @@ MonoBehaviour:
   DefeatUI: {fileID: 1384737525470407326, guid: b514ddf2f2ad9e04dadef193d57b2f66, type: 3}
   herosList: []
   enemyList: []
+  stageNumber: 1
+  clearReward: 50
 --- !u!1 &417198354
 GameObject:
   m_ObjectHideFlags: 0
