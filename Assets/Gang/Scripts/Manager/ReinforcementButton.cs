@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -32,7 +30,6 @@ public class ReinforcementButton : MonoBehaviour
     }
     private void OnEnable()
     {
-        Debug.Log("활성화");
         waponLv.text = $"LV.{reinforcement.powerLevel}";
         currentWapon.text = $"모든 영웅 공력력 {reinforcement.power}% 증가";
         nextwapon.text = $"다음:모든 영웅 공력력 {reinforcement.power + up}% 증가";
@@ -45,6 +42,11 @@ public class ReinforcementButton : MonoBehaviour
     }
     public void WaponUpgrade()
     {
+        if (GameManager.Instance.goodsManager.gold < reinforcement.powerUpGold)
+        {
+            return;
+        }
+        GameManager.Instance.goodsManager.gold -= reinforcement.powerUpGold;
         // if 골드 체크 소비
         reinforcement.powerLevel++;
         reinforcement.power += up;
@@ -58,6 +60,11 @@ public class ReinforcementButton : MonoBehaviour
     }
     public void HealthUpgrade()
     {
+        if (GameManager.Instance.goodsManager.gold < reinforcement.healthUpGold)
+        {
+            return;
+        }
+        GameManager.Instance.goodsManager.gold -= reinforcement.healthUpGold;
         // if 골드 체크 소비
         reinforcement.healthLevel++;
         reinforcement.health += up;

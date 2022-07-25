@@ -186,6 +186,8 @@ MonoBehaviour:
   DefeatUI: {fileID: 1384737525470407326, guid: b514ddf2f2ad9e04dadef193d57b2f66, type: 3}
   herosList: []
   enemyList: []
+  stageNumber: 1
+  clearReward: 120
 --- !u!1 &417198354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,7 +1052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8303471357209157220, guid: 3089b290b45cd644e9ad5e7494c1a658, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8303471357209157220, guid: 3089b290b45cd644e9ad5e7494c1a658, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1367,59 +1369,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5442f81a70910c4e95fd6514c7391cf, type: 3}
---- !u!1 &1628579941
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1628579943}
-  - component: {fileID: 1628579942}
-  m_Layer: 0
-  m_Name: ReinforcementButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1628579942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628579941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 006b6220168c24e4e92216d5b405b9db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reinforcement: {fileID: 11400000, guid: aef496bcb84c6ad4f8d23912b4b9d87a, type: 2}
-  waponLv: {fileID: 0}
-  currentWapon: {fileID: 0}
-  nextwapon: {fileID: 0}
-  waponGold: {fileID: 0}
-  healthLv: {fileID: 0}
-  currentHealth: {fileID: 0}
-  nextHealth: {fileID: 0}
-  healthGold: {fileID: 0}
---- !u!4 &1628579943
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628579941}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 609.99713, y: 296.16806, z: 3.440273}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2062376317
 GameObject:
   m_ObjectHideFlags: 0
