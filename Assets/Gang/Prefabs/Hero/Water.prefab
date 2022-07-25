@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3654254246184495149}
   - component: {fileID: 3654254246184495148}
-  - component: {fileID: -3879668938703426529}
   - component: {fileID: 5268596534232865465}
+  - component: {fileID: 5670370152033926914}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -87,23 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3879668938703426529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3654254246184495155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b19816b361d78148bab213ca965a2ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  curveSpeed: 0
-  curveHeight: 0
-  damageType: 0
-  splashRange: {x: 0, y: 0, z: 0}
 --- !u!95 &5268596534232865465
 Animator:
   serializedVersion: 4
@@ -124,6 +107,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5670370152033926914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3654254246184495155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a2fa9cabfc2c74c84c59cb7cc3afe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  curveSpeed: 0
+  curveHeight: 0
+  damageType: 0
+  splashRange: {x: 0, y: 0, z: 0}
 --- !u!1 &8187196697815975971
 GameObject:
   m_ObjectHideFlags: 0

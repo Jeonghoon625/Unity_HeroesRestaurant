@@ -98,11 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a2fa9cabfc2c74c84c59cb7cc3afe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 6
   curveSpeed: 20
-  curveHeight: 2
+  curveHeight: 0.5
   damageType: 1
-  splashRange: {x: 0, y: 0, z: 0}
+  splashRange: {x: 2, y: 0, z: 0}
 --- !u!1 &8187196697815975971
 GameObject:
   m_ObjectHideFlags: 0
