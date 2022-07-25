@@ -42,11 +42,11 @@ public class SaveLoadManager
         string fileName = "Time";
         string path = Application.dataPath + fileName + ".Json";
 
-        var setJson = JsonConvert.SerializeObject(System.DateTime.Now.TimeOfDay.TotalSeconds);
+        var setJson = JsonConvert.SerializeObject(System.DateTime.Now);
         File.WriteAllText(path, setJson);
     }
 
-    public double LoadTime()
+    public System.DateTime LoadTime()
     {
         Debug.Log("시간 로드");
 
@@ -57,12 +57,13 @@ public class SaveLoadManager
 
         if (!fileInfo.Exists)
         {
-            return -1;
+            SaveTime();
+            return System.DateTime.Now;
         }
         else
         {
             string json = File.ReadAllText(path);
-            float times = JsonConvert.DeserializeObject<float>(json);
+            System.DateTime times = JsonConvert.DeserializeObject<System.DateTime>(json);
             return times;
         }
     }
