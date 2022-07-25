@@ -10,6 +10,13 @@ public class SellManager : MonoBehaviour
 
     CookManager cookManager;
 
+    public CookManager CookMenu;
+
+    private void Start()
+    {
+        CookMenu.Init();
+    }
+
     public void Init(CookManager cookManager)
     {
         Debug.Log("Sell √ ±‚»≠");

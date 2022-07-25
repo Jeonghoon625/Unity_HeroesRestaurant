@@ -9292,6 +9292,10 @@ PrefabInstance:
       value: SellManager
       objectReference: {fileID: 0}
     - target: {fileID: 4098519993733548457, guid: 029c530d769024d44bfa820e7dd5f70f, type: 3}
+      propertyPath: CookMenu
+      value: 
+      objectReference: {fileID: 2137531288}
+    - target: {fileID: 4098519993733548457, guid: 029c530d769024d44bfa820e7dd5f70f, type: 3}
       propertyPath: cookManager
       value: 
       objectReference: {fileID: 2137531288}
@@ -24011,6 +24015,7 @@ MonoBehaviour:
   main: {fileID: 1827867162}
   fixPosition: 0
   beforeSelect: 0
+  buildingWoodMoney: 0
   showWoodMoney: {fileID: 38396476}
   checkbu: {fileID: 416832407}
   slotbu:
