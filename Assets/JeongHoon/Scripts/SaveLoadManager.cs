@@ -68,6 +68,24 @@ public class SaveLoadManager
         }
     }
 
+    public void GenerateDefaultProduceTime()
+    {
+        Debug.Log($"초기 제작 시간 생성");
+
+        //Currency 보유량
+        string fileName = "ProduceTime";
+        string path = Application.dataPath + fileName + ".Json";
+
+        for (var i = 0; i < GameManager.Instance.resourceManager.currencyData.Count; i++)
+        {
+            int currencyId = i;
+
+            GameManager.Instance.goodsManager.currencyReserve.Insert(currencyId, 999);
+        }
+
+        var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.currencyReserve);
+        File.WriteAllText(path, setJson);
+    }
 
     public void GenerateDefaultCurrencyReserve()
     {
