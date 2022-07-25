@@ -150,7 +150,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.161018, y: 6.8254, z: 0.3}
+  m_Size: {x: 11.161018, y: 6.8254, z: 0.5}
   m_Center: {x: -0.5394826, y: 3.2106907, z: 0}
 --- !u!114 &1516233060
 MonoBehaviour:
@@ -175,7 +175,7 @@ MonoBehaviour:
   dmg: 3
   attackAreaX: 2
   attackArea: {x: 2, y: 0, z: 0}
-  hp: 40
+  hp: 20
   maxHp: 0
   attackCool: 1
   target: {fileID: 0}

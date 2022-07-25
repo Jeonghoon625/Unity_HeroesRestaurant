@@ -175,11 +175,12 @@ public class Enemy : MonoBehaviour
             {
                 s.GetComponent<Heros>().target = null;
             }
-            Dead(attacker);
+            Dead();
+            attacker.target = null;
         }
         return hp;
     }
-    private void Dead(Heros target)
+    public void Dead()
     {
         if (OnDeath != null)
             OnDeath();
@@ -189,7 +190,6 @@ public class Enemy : MonoBehaviour
         }
         SetState("None");
         animator.SetTrigger("Dead");
-        target.target = null;
         col.enabled = false;
         hp = 0;
 

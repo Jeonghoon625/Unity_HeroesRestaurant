@@ -41,6 +41,10 @@ public class GameMenu : MonoBehaviour
         foreach (var enemy in stageManager.enemyList)
         {
             enemy.GetComponent<Enemy>().SetState("None");
+            if(enemy.GetComponent<BoarBoss>() != null)
+            {
+                enemy.GetComponent<BoarBoss>().isAlive = false;
+            }
         }
 
         stageManager.Defeat();

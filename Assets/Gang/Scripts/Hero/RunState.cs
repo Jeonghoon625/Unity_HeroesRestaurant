@@ -41,26 +41,24 @@ public class RunState : IState
 
     public void IUpdate()
     {
-        if (hero.target != null && enemy.hp == 0)
+        if (target != null)
         {
-            hero.target = null;
-            hero.SetState("Idle");
+            OnTarget();
+            if (enemy.hp == 0)
+            {
+                hero.target = null;
+                hero.SetState("Idle");
+            }
         }
         // ¿Ãµø
-        var dir = hero.transform.position.x - m_Position.x;
-        if (dir < 0.1f && dir > -0.1f)
+        var dist = hero.transform.position.x - m_Position.x;
+        if (dist < 0.1f && dist > -0.1f)
         {
             hero.SetState("Idle");
         }
         else
         {
             hero.transform.position += this.dir * hero.runSpeed * Time.deltaTime;
-        }
-
-
-        if (target != null)
-        {
-            OnTarget();
         }
     }
 
@@ -77,9 +75,9 @@ public class RunState : IState
     private void OnTarget()
     {
         var cols = Physics.OverlapBox(hero.transform.position, hero.attackArea);
-        foreach(var col in cols)
+        foreach (var col in cols)
         {
-            if(col.gameObject == target)
+            if (col.gameObject == target)
             {
                 hero.SetState("Attack");
             }

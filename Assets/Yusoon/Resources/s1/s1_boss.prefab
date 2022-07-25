@@ -164,7 +164,7 @@ MonoBehaviour:
   dmg: 10
   attackAreaX: 4
   attackArea: {x: 4, y: 0, z: 0}
-  hp: 500
+  hp: 200
   maxHp: 0
   attackCool: 2
   target: {fileID: 0}
@@ -179,7 +179,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 31.070686, y: 17.331753, z: 0.3}
+  m_Size: {x: 31.070686, y: 17.331753, z: 0.5}
   m_Center: {x: 0, y: 7.7, z: 0}
 --- !u!114 &437502028
 MonoBehaviour:

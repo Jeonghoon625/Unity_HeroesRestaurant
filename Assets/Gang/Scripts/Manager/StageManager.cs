@@ -54,6 +54,7 @@ public class StageManager : MonoBehaviour
         }
         float startPos = -0.75f * (count - 1);
         var pos = Vector3.zero;
+        pos.z += 0.1f;
         var rot = Quaternion.identity;
         rot.y = 180f;
         for (int i = 0; i < ren; i++)

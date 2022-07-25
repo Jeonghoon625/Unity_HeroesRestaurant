@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c6365da2d713147acea1a37acfa828, type: 3}
   m_Name: Reinforcement
   m_EditorClassIdentifier: 
-  power: 0
+  power: 96
   health: 0
-  powerLevel: 1
+  powerLevel: 5
   healthLevel: 1
-  powerUpGold: 0
-  healthUpGold: 0
+  powerUpGold: 800
+  healthUpGold: 50

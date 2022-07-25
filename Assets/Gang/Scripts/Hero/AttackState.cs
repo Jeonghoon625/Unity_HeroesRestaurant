@@ -59,6 +59,6 @@ public class AttackState : IState
 
     public void IExit()
     {
-        hero.target = null;
+        //hero.target = null;
     }
 }

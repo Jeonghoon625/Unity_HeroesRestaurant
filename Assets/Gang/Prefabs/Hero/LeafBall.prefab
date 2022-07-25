@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3654254246184495149}
   - component: {fileID: 3654254246184495148}
-  - component: {fileID: -3879668938703426529}
+  - component: {fileID: 1438987629948036621}
   m_Layer: 0
   m_Name: LeafBall
   m_TagString: Untagged
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3879668938703426529
+--- !u!114 &1438987629948036621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,11 +95,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3654254246184495155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7a2fa9cabfc2c74c84c59cb7cc3afe3, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b19816b361d78148bab213ca965a2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  curveSpeed: 20
+  curveSpeed: 10
   curveHeight: 0.5
   damageType: 1
   splashRange: {x: 2, y: 0, z: 0}
