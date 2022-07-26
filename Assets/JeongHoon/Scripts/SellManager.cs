@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SellManager : MonoBehaviour
 {
@@ -11,6 +12,46 @@ public class SellManager : MonoBehaviour
     CookManager cookManager;
 
     public CookManager CookMenu;
+
+    public List<sellSlot> sellSlots = new List<sellSlot>();
+
+    public GameObject soldOutPanel;
+
+    public GameObject itemPrefab;
+
+    public Transform itemSection;
+
+    private bool isSell = false;
+
+    public void GenerateSellSlots(int foodId, int sum)
+    {
+        if(sum >= 1)
+        {
+            Debug.Log("아디" + foodId);
+            Debug.Log("합" + sum);
+
+            Sprite sprite = Resources.Load<Sprite>("Food\\" + (string)GameManager.Instance.resourceManager.foodData[foodId]["image"]); ;
+
+            GameObject sellGO = Object.Instantiate(itemPrefab, itemSection.transform);
+            sellSlot slot = itemPrefab.GetComponent<sellSlot>();
+
+            slot.sprite = sprite;
+            slot.sum = sum;
+
+            sellSlots.Add(slot);
+            isSell = true;
+        }
+    }
+
+    public void DestroySellSlots()
+    {
+        for(int i = 0; i < sellSlots.Count; i++)
+        {
+            Destroy(sellSlots[i].GetComponent<GameObject>());
+        }
+
+        sellSlots.Clear();
+    }
 
     private void Start()
     {
@@ -73,7 +114,6 @@ public class SellManager : MonoBehaviour
     
     public void TimeSell(double times)
     {
-        Debug.Log("불러부러");
         Debug.Log(times);
         for (var i = 0; i < GameManager.Instance.goodsManager.foodReserve.Count; i++)
         {
@@ -88,15 +128,20 @@ public class SellManager : MonoBehaviour
 
                     GameManager.Instance.goodsManager.foodReserve[foodId] -= sellSum;
                     GameManager.Instance.goodsManager.gold += sellSum * cookManager.uiManager.foodSlots[foodId].sellGold;
-
-                    Debug.Log(cookManager.uiManager.foodSlots[i].title + sellSum + "개" + sellSum * cookManager.uiManager.foodSlots[foodId].sellGold + "원" + "시간차 판매");
+                    
+                    GenerateSellSlots(foodId, sellSum);
+                    //Debug.Log(cookManager.uiManager.foodSlots[i].title + sellSum + "개" + sellSum * cookManager.uiManager.foodSlots[foodId].sellGold + "원" + "시간차 판매");
                     cookManager.uiManager.informationPanel.UpdateReserve();
+
+                    
                 }
                 else if (GameManager.Instance.goodsManager.foodReserve[i] < sellSum)
                 {
-                    Debug.Log(cookManager.uiManager.foodSlots[i].title + GameManager.Instance.goodsManager.foodReserve[i] + "개" +
-                       GameManager.Instance.goodsManager.foodReserve[i] * cookManager.uiManager.foodSlots[foodId].sellGold + "원" + "시간차 판매");
-
+                    //Debug.Log(cookManager.uiManager.foodSlots[i].title + GameManager.Instance.goodsManager.foodReserve[i] + "개" +
+                    //GameManager.Instance.goodsManager.foodReserve[i] * cookManager.uiManager.foodSlots[foodId].sellGold + "원" + "시간차 판매");
+                    int sellSum2 = GameManager.Instance.goodsManager.foodReserve[i];
+                
+                    GenerateSellSlots(foodId, sellSum2);
                     GameManager.Instance.goodsManager.gold += GameManager.Instance.goodsManager.foodReserve[i] * cookManager.uiManager.foodSlots[foodId].sellGold;
                     GameManager.Instance.goodsManager.foodReserve[i] = 0;
                    
@@ -104,5 +149,18 @@ public class SellManager : MonoBehaviour
                 }
             }
         }
+
+        GenerateSellSlots(GameManager.Instance.goodsManager.foodReserve.Count + 1, 0);
+
+        if (isSell)
+        {
+            soldOutPanel.SetActive(true);
+        }
+    }
+
+    public void OffPanel(GameObject panel)
+    {
+        DestroySellSlots();
+        panel.SetActive(false);
     }
 }
