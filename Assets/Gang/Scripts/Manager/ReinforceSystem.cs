@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class ReinforceSystem
 {
-	private static string SavePath => Application.persistentDataPath + "/saves/";
+	private static string SavePath => Application.persistentDataPath + "/";
 
 	public static void Save(Reinforce saveData, string saveFileName)
 	{

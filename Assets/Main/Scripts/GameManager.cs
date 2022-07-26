@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
         resourceManager = new ResourceManager();
         saveLoadManager = new SaveLoadManager();
         awardManager = new AwardManager();
+        soundManager = new SoundManager();
     }
 
     public void GoBattleScene()
@@ -42,4 +43,6 @@ public class GameManager : Singleton<GameManager>
     public SaveLoadManager saveLoadManager;
 
     public AwardManager awardManager;
+
+    public SoundManager soundManager;
 }

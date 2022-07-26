@@ -38,7 +38,7 @@ public class ReinforcementButton : MonoBehaviour
 
         character = new Reinforce(upgradeLoad.power, upgradeLoad.health, upgradeLoad.powerLevel, upgradeLoad.healthLevel, upgradeLoad.powerUpGold, upgradeLoad.healthUpGold);
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
     private void OnEnable()
     {
@@ -68,6 +68,8 @@ public class ReinforcementButton : MonoBehaviour
         currentWapon.text = $"모든 영웅 공력력 {reinforcement.power}% 증가";
         nextwapon.text = $"다음:모든 영웅 공력력 {reinforcement.power + up}% 증가";
         waponGold.text = $"{reinforcement.powerUpGold}a";
+
+        Save();
     }
     public void HealthUpgrade()
     {
@@ -85,6 +87,8 @@ public class ReinforcementButton : MonoBehaviour
         currentHealth.text = $"모든 영웅 체력 {reinforcement.health}% 증가";
         nextHealth.text = $"다음:모든 영웅 체력 {reinforcement.health + up}% 증가";
         healthGold.text = $"{reinforcement.healthUpGold}a";
+
+        Save();
     }
 
     public void Save()
