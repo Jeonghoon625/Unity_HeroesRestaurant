@@ -164,7 +164,7 @@ MonoBehaviour:
   dmg: 10
   attackAreaX: 4
   attackArea: {x: 4, y: 0, z: 0}
-  hp: 200
+  hp: 250
   maxHp: 0
   attackCool: 2
   target: {fileID: 0}

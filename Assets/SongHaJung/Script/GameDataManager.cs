@@ -122,6 +122,16 @@ public class GameDataManager : MonoBehaviour
     
         PointerClick(0); //기본 첫번째 디테일 메뉴가 뜨도록
 
+
+        for (var i = 0; i < AllModels.Length; ++i)
+        {
+            if (AllModels[i].tag == "Finish" && AllModels[i].activeSelf == true)
+            {
+                fixPosition = i;
+                break;
+                //AllModels[fixPosition].SetActive(false);
+            }
+        }
     }
 
     private void Update()
