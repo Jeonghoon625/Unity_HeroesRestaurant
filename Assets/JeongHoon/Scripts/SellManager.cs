@@ -13,7 +13,7 @@ public class SellManager : MonoBehaviour
 
     public CookManager CookMenu;
 
-    public List<sellSlot> sellSlots = new List<sellSlot>();
+    public List<GameObject> sellSlots = new List<GameObject>();
 
     public GameObject soldOutPanel;
 
@@ -32,22 +32,22 @@ public class SellManager : MonoBehaviour
 
             Sprite sprite = Resources.Load<Sprite>("Food\\" + (string)GameManager.Instance.resourceManager.foodData[foodId]["image"]); ;
 
-            GameObject sellGO = Object.Instantiate(itemPrefab, itemSection.transform);
-            sellSlot slot = itemPrefab.GetComponent<sellSlot>();
+            GameObject sellGO = Object.Instantiate(itemPrefab, itemSection);
+            sellSlot slot = sellGO.GetComponent<sellSlot>();
 
             slot.sprite = sprite;
             slot.sum = sum;
 
-            sellSlots.Add(slot);
+            sellSlots.Add(sellGO);
             isSell = true;
         }
     }
 
     public void DestroySellSlots()
     {
-        for(int i = 0; i < sellSlots.Count; i++)
+        for(int i = 0; i < sellSlots.Count - 1; i++)
         {
-            Destroy(sellSlots[i].GetComponent<GameObject>());
+            Destroy(sellSlots[i]);
         }
 
         sellSlots.Clear();
@@ -114,6 +114,7 @@ public class SellManager : MonoBehaviour
     
     public void TimeSell(double times)
     {
+        DestroySellSlots();
         Debug.Log(times);
         for (var i = 0; i < GameManager.Instance.goodsManager.foodReserve.Count; i++)
         {
@@ -149,8 +150,6 @@ public class SellManager : MonoBehaviour
                 }
             }
         }
-
-        GenerateSellSlots(GameManager.Instance.goodsManager.foodReserve.Count + 1, 0);
 
         if (isSell)
         {
