@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class ReinforcementButton : MonoBehaviour
 {
@@ -28,6 +29,19 @@ public class ReinforcementButton : MonoBehaviour
 
     private void Awake()
     {
+        string fileName = "Upgrade";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        var fileInfo = new FileInfo(path);
+
+        if (!fileInfo.Exists)
+        {
+            character = new Reinforce(0, 0, 1, 1, 50, 50);
+            ReinforceSystem.Save(character, fileName);
+        }
+    }
+    private void OnEnable()
+    {
         Reinforce upgradeLoad = ReinforceSystem.Load("Upgrade");
         reinforcement.power = upgradeLoad.power;
         reinforcement.health = upgradeLoad.health;
@@ -36,12 +50,8 @@ public class ReinforcementButton : MonoBehaviour
         reinforcement.powerUpGold = upgradeLoad.powerUpGold;
         reinforcement.healthUpGold = upgradeLoad.healthUpGold;
 
-        character = new Reinforce(upgradeLoad.power, upgradeLoad.health, upgradeLoad.powerLevel, upgradeLoad.healthLevel, upgradeLoad.powerUpGold, upgradeLoad.healthUpGold);
+        character.Update(upgradeLoad.power, upgradeLoad.health, upgradeLoad.powerLevel, upgradeLoad.healthLevel, upgradeLoad.powerUpGold, upgradeLoad.healthUpGold);
 
-        //gameObject.SetActive(false);
-    }
-    private void OnEnable()
-    {
         waponLv.text = $"LV.{reinforcement.powerLevel}";
         currentWapon.text = $"모든 영웅 공력력 {reinforcement.power}% 증가";
         nextwapon.text = $"다음:모든 영웅 공력력 {reinforcement.power + up}% 증가";
