@@ -50,7 +50,7 @@ public class ReinforcementButton : MonoBehaviour
         reinforcement.powerUpGold = upgradeLoad.powerUpGold;
         reinforcement.healthUpGold = upgradeLoad.healthUpGold;
 
-        character.Update(upgradeLoad.power, upgradeLoad.health, upgradeLoad.powerLevel, upgradeLoad.healthLevel, upgradeLoad.powerUpGold, upgradeLoad.healthUpGold);
+        character = new Reinforce(upgradeLoad.power, upgradeLoad.health, upgradeLoad.powerLevel, upgradeLoad.healthLevel, upgradeLoad.powerUpGold, upgradeLoad.healthUpGold);
 
         waponLv.text = $"LV.{reinforcement.powerLevel}";
         currentWapon.text = $"모든 영웅 공력력 {reinforcement.power}% 증가";
