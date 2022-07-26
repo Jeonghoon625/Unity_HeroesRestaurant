@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3654254246184495149}
   - component: {fileID: 3654254246184495148}
   - component: {fileID: 5268596534232865465}
-  - component: {fileID: 5463645608308614616}
+  - component: {fileID: 5536171835649173747}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5463645608308614616
+--- !u!114 &5536171835649173747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3654254246184495155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b19816b361d78148bab213ca965a2ee, type: 3}
+  m_Script: {fileID: 11500000, guid: e7a2fa9cabfc2c74c84c59cb7cc3afe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
