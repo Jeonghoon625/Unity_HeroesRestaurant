@@ -152,4 +152,13 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void OnClickStamina(GameObject staminaMenu)
+    {
+        staminaMenu.SetActive(true);
+    }
+    
+    public void OffClickStamina(GameObject staminaMenu)
+    {
+        staminaMenu.SetActive(false);
+    }
 }

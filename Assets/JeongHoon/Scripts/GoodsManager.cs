@@ -9,6 +9,6 @@ public class GoodsManager
     public int gold;
     public int wood;
     public float enhance;
-
+    public int stamina;
     //private bool isInit = false;
 }

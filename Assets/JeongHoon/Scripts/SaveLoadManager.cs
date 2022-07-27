@@ -20,6 +20,7 @@ public class SaveLoadManager
         SaveGold();
         SaveWood();
         SaveStageInfo();
+        SaveStamina();
         SaveTime();
     }
 
@@ -29,6 +30,7 @@ public class SaveLoadManager
         LoadGold();
         LoadWood();
         LoadStageInfo();
+        LoadStamina();
         isInit = true;
     }
 
@@ -42,6 +44,37 @@ public class SaveLoadManager
     {
         SaveFoodReserve();
         SaveCurrencyReserve();
+    }
+
+    public void SaveStamina()
+    {
+        Debug.Log("스태미너 저장");
+        string fileName = "Stamina";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.stamina);
+        File.WriteAllText(path, setJson);
+    }
+
+    public void LoadStamina()
+    {
+        Debug.Log("스태미너 로드");
+
+        string fileName = "Stamina";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        fileInfo = new FileInfo(path);
+
+        if (!fileInfo.Exists)
+        {
+            GameManager.Instance.goodsManager.stamina = 0;
+            SaveStamina();
+        }
+        else
+        {
+            string json = File.ReadAllText(path);
+            GameManager.Instance.goodsManager.stamina = JsonConvert.DeserializeObject<int>(json);
+        }
     }
 
     public void SaveTime()
