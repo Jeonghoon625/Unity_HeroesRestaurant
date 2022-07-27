@@ -161,8 +161,8 @@ public class Enemy : MonoBehaviour
         // 사라질 때 이펙트
         if (monsterType != MonsterType.Boss)
         {
-            Destroy(gameObject);
         }
+            Destroy(gameObject);
     }
     public float OnHit(Heros attacker, float dmg)
     {
@@ -187,11 +187,19 @@ public class Enemy : MonoBehaviour
         if(monsterType == MonsterType.Boss)
         {
             gameObject.GetComponent<BoarBoss>().isAlive = false;
+
+            var boarList = gameObject.GetComponent<BoarBoss>().boarList;
+            foreach (var boar in boarList)
+            {
+                boar.GetComponent<Enemy>().Dead();
+                stageManager.enemyList.Clear();
+            }
         }
         SetState("None");
         animator.SetTrigger("Dead");
         col.enabled = false;
         hp = 0;
+        hpBar.GetComponent<HpBar>().HitHp(hp, maxHp);
 
         stageManager.DeadEnemy(gameObject);
 

@@ -15,25 +15,36 @@ public class EnemySpawner : MonoBehaviour
 
     private float startWaitTime = 4f;
     private float waveWaitTime = 1.5f;
+    private float timer;
 
     private StageManager stageManager;
     private void Start()
     {
+        timer = startWaitTime;
         StartCoroutine(NextWave(startWaitTime));
 
         stageManager = GameObject.FindWithTag("GameController").GetComponent<StageManager>();
     }
-
+    private void Update()
+    {
+        if (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0f)
+            {
+                timer = waveWaitTime;
+            }
+        }
+    }
     private void OnEnemyDeath()
     {
         enemyRemainingAlive--;
 
-        if(enemyRemainingAlive == 0)
+        if (enemyRemainingAlive == 0)
         {
             StartCoroutine(NextWave(waveWaitTime));
         }
     }
-
     IEnumerator NextWave(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
@@ -62,16 +73,23 @@ public class EnemySpawner : MonoBehaviour
 
                 Enemy spawnedEnemy = Instantiate(currentWave.enemies[i], pos, rot);
                 spawnedEnemy.OnDeath += OnEnemyDeath;
+                var ren = spawnedEnemy.GetComponent<Renderer>();
+                ren.enabled = false;
+                yield return 0;
+                ren.enabled = true;
+                //Debug.LogError("!");
+                //yield return 0;
             }
         }
         else
         {
             stageManager.Victory();
         }
+        yield break;
     }
 
-   [System.Serializable]
-   public class Wave
+    [System.Serializable]
+    public class Wave
     {
         public List<Enemy> enemies;// = new List<Enemy>();
         public List<Vector3> pos;// = new List<Vector3>();

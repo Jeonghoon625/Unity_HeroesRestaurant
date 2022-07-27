@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class StageManager : MonoBehaviour
 {
@@ -29,9 +30,19 @@ public class StageManager : MonoBehaviour
     private int stageNumber;
     [SerializeField]
     private int clearReward;
+    /******************************************
+     * 깃발을세워요~
+     * ***************************************/
+    [SerializeField]
+    private GameObject flagPrefab;
+    private GameObject flag;
+    private Vector3 flagPos;
 
     private void Start()
     {
+        flag = Instantiate(flagPrefab);
+        flagPos = flag.transform.position;
+        flag.SetActive(false);
         // 영웅 소환
         //heroList = GameManager.Instance.heroSellectManager.heroList;
         heroList = GameObject.FindWithTag("HeroSellect").GetComponent<HeroSellectManager>().heroList;
@@ -75,12 +86,54 @@ public class StageManager : MonoBehaviour
     }
     private void Update()
     {
-        if (stageEnd && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Next Scene");
-            // 메인 씬으로 이동...
-            GameManager.Instance.ChanageScene("Main01");
+            if(stageEnd)
+            {
+                GameManager.Instance.ChanageScene("Main01");
+                return;
+            }
+
+            if(!EventSystem.current.IsPointerOverGameObject())
+            {
+                //flag.SetActive(false);
+                foreach (var hero in herosList)
+                {
+                    var heroScript = hero.GetComponent<Heros>();
+                    if (!heroScript.doneControll)
+                    {
+                        heroScript.target = null;
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit;
+                        if (Physics.Raycast(ray, out hit, 100f))
+                        {
+                            // 이동
+                            heroScript.isMovePoint = true;
+                            flagPos.x = hit.point.x;
+                            heroScript.m_Position = flagPos;
+                            // 이때!! 깃발 설치
+                            flagPos.x = hit.point.x;
+                            flag.SetActive(true);
+                            flag.transform.position = flagPos;
+                            if (hit.transform.tag == "Monster")
+                            {
+                                // 타겟팅
+                                heroScript.target = hit.transform.gameObject;
+                                flag.SetActive(false);
+                            }
+                            heroScript.SetState("Run");
+                        }
+                    }
+                }
+            }
         }
+
+        //if (stageEnd && Input.GetMouseButtonDown(0))
+        //{
+        //    Debug.Log("Next Scene");
+        //    // 메인 씬으로 이동...
+        //    GameManager.Instance.ChanageScene("Main01");
+        //}
         /***************************************************
          * 스킬 관리
          * ************************************************/
@@ -117,29 +170,29 @@ public class StageManager : MonoBehaviour
                 }
             }
         }
-        /***************************************************
-         * 스킬 시전 딜레이
-         * ************************************************/
-        IEnumerator Delay()
+    }
+    /***************************************************
+     * 스킬 시전 딜레이
+     * ************************************************/
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1f);
+        var cols = Physics.OverlapBox(skillArea.transform.position, skillArea.transform.localScale);
+        List<GameObject> lists = new List<GameObject>();
+        foreach (var col in cols)
         {
-            yield return new WaitForSeconds(1f);
-            var cols = Physics.OverlapBox(skillArea.transform.position, skillArea.transform.localScale);
-            List<GameObject> lists = new List<GameObject>();
-            foreach (var col in cols)
+            if (col.gameObject.tag == "Monster")
             {
-                if (col.gameObject.tag == "Monster")
-                {
-                    lists.Add(col.gameObject);
-                }
+                lists.Add(col.gameObject);
             }
-            //
-            switch (skillManager.taker)
-            {
-                case "CoqAuVin":
-                    skillManager.CoqAuVinAttack(lists);
-                    Destroy(skillArea);
-                    break;
-            }
+        }
+        //
+        switch (skillManager.taker)
+        {
+            case "CoqAuVin":
+                skillManager.CoqAuVinAttack(lists);
+                Destroy(skillArea);
+                break;
         }
     }
     /***************************************************
@@ -200,5 +253,22 @@ public class StageManager : MonoBehaviour
     public void DeadEnemy(GameObject enemy)
     {
         enemyList.Remove(enemy);
+    }
+
+    /***************************************************
+     * 깃발 제거
+     * ************************************************/
+    public void FlagDel()
+    {
+        foreach(var hero in herosList)
+        {
+            var heroScript = hero.GetComponent<Heros>();
+            if (heroScript.isMovePoint)
+            {
+                return;
+            }
+        }
+
+        flag.SetActive(false);
     }
 }
