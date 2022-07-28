@@ -16,7 +16,7 @@ public class StaminaManager : MonoBehaviour
 
     private bool isInit = false;
 
-    private float coolTime = 60f;
+    private float coolTime = 30f;
 
     private float timer = 0;
 
@@ -29,7 +29,7 @@ public class StaminaManager : MonoBehaviour
     public void TimeStamina(double times)
     {
         maxStamina = GameManager.Instance.goodsManager.maxStaminaLV * 12;
-        coolTime = coolTime + coolTime / 10 * GameManager.Instance.goodsManager.coolTimeStaminaLV;
+        coolTime = coolTime - coolTime / 10 * (GameManager.Instance.goodsManager.coolTimeStaminaLV - 1);
         int sum = (int)(times / coolTime);
         
         if(sum >= 1)
@@ -53,8 +53,9 @@ public class StaminaManager : MonoBehaviour
         if(isInit)
         {
             timer += Time.deltaTime;
+            timeText.text = "Time : " + (coolTime * maxStamina - (int)timer).ToString() + "s";
 
-            if(timer > coolTime)
+            if (timer > coolTime)
             {
                 if (GameManager.Instance.goodsManager.stamina >= maxStamina)
                 {

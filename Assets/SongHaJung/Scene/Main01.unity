@@ -3468,7 +3468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaText: {fileID: 706023308}
   maxStaminaText: {fileID: 1736468852}
-  timeText: {fileID: 0}
+  timeText: {fileID: 1497915639}
   fulltimeText: {fileID: 0}
 --- !u!4 &170472570
 Transform:
@@ -22507,6 +22507,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1497915639 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2072296212836548060, guid: f9f7e2f64ae9d4f4481026066933f9b1, type: 3}
+  m_PrefabInstance: {fileID: 1017152737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1498096558
 GameObject:
   m_ObjectHideFlags: 0
