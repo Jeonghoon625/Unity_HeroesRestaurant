@@ -10,5 +10,8 @@ public class GoodsManager
     public int wood;
     public float enhance;
     public int stamina;
+    public int maxStaminaLV;
+    public int coolTimeStaminaLV;
+
     //private bool isInit = false;
 }

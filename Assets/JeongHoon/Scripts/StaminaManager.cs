@@ -6,7 +6,7 @@ using TMPro;
 
 public class StaminaManager : MonoBehaviour
 {
-    private int maxStamina;
+    private int maxStamina = 12;
 
     public TextMeshProUGUI staminaText;
     public TextMeshProUGUI maxStaminaText;
@@ -23,13 +23,13 @@ public class StaminaManager : MonoBehaviour
     public void Show()
     {
         staminaText.text = (GameManager.Instance.goodsManager.stamina).ToString();
-        maxStaminaText.text = (GameManager.Instance.masterStage * 12).ToString();
+        maxStaminaText.text = "/" + maxStamina.ToString();
     }
 
     public void TimeStamina(double times)
     {
-        maxStamina = (GameManager.Instance.masterStage * 12);
-
+        maxStamina = GameManager.Instance.goodsManager.maxStaminaLV * 12;
+        coolTime = coolTime + coolTime / 10 * GameManager.Instance.goodsManager.coolTimeStaminaLV;
         int sum = (int)(times / coolTime);
         
         if(sum >= 1)
@@ -44,6 +44,7 @@ public class StaminaManager : MonoBehaviour
             }
         }
 
+        Show();
         isInit = true;
     }
 
@@ -63,7 +64,8 @@ public class StaminaManager : MonoBehaviour
                 {
                     GameManager.Instance.goodsManager.stamina += 1;
                 }
-                    
+
+                Show();
                 timer = 0;
             }
         }

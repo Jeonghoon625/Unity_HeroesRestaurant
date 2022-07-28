@@ -46,6 +46,15 @@ public class Stage1Controller : MonoBehaviour
 
     public void StartStage1Btn()
     {
+        var gameManager = GameManager.Instance;
+
+        if(gameManager.goodsManager.stamina <= 0)
+        {
+            Debug.Log("³ª Èûµé¾î...");
+            return;
+        }
+        gameManager.goodsManager.stamina--;
+
         var count = 0;
         foreach(var list in herolist.isSellect)
         {
@@ -59,15 +68,15 @@ public class Stage1Controller : MonoBehaviour
             return;
         }
 
-        GameManager.Instance.saveLoadManager.SaveTime();
+        gameManager.saveLoadManager.SaveTime();
 
         if (stage.text == "1-1")
         {
-            GameManager.Instance.ChanageScene("Gang");
+            gameManager.ChanageScene("Gang");
         }
         else if (stage.text == "1-2")
         {
-            GameManager.Instance.ChanageScene("stage1-2");
+            gameManager.ChanageScene("stage1-2");
         }
     }
 

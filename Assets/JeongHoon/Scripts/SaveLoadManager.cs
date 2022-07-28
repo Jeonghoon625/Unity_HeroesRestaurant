@@ -21,6 +21,8 @@ public class SaveLoadManager
         SaveWood();
         SaveStageInfo();
         SaveStamina();
+        SaveMaxStamina();
+        SaveCoolTimeStamina();
         SaveTime();
     }
 
@@ -31,6 +33,8 @@ public class SaveLoadManager
         LoadWood();
         LoadStageInfo();
         LoadStamina();
+        LoadMaxStamina();
+        LoadCollTimeStamina();
         isInit = true;
     }
 
@@ -44,6 +48,68 @@ public class SaveLoadManager
     {
         SaveFoodReserve();
         SaveCurrencyReserve();
+    }
+
+    public void SaveCoolTimeStamina()
+    {
+        Debug.Log("스태미너 쿨타임 저장");
+        string fileName = "CoolTimeStamina";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.coolTimeStaminaLV);
+        File.WriteAllText(path, setJson);
+    }
+
+    public void LoadCollTimeStamina()
+    {
+        Debug.Log("스태미너 쿨타임 로드");
+
+        string fileName = "CoolTimeStamina";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        fileInfo = new FileInfo(path);
+
+        if (!fileInfo.Exists)
+        {
+            GameManager.Instance.goodsManager.coolTimeStaminaLV = 1;
+            SaveCoolTimeStamina();
+        }
+        else
+        {
+            string json = File.ReadAllText(path);
+            GameManager.Instance.goodsManager.coolTimeStaminaLV = JsonConvert.DeserializeObject<int>(json);
+        }
+    }
+
+    public void SaveMaxStamina()
+    {
+        Debug.Log("스태미너 최대 보유량 저장");
+        string fileName = "MaxStamina";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.maxStaminaLV);
+        File.WriteAllText(path, setJson);
+    }
+
+    public void LoadMaxStamina()
+    {
+        Debug.Log("스태미너 최대 보유량 로드");
+
+        string fileName = "MaxStamina";
+        string path = Application.persistentDataPath + "/" + fileName + ".Json";
+
+        fileInfo = new FileInfo(path);
+
+        if (!fileInfo.Exists)
+        {
+            GameManager.Instance.goodsManager.maxStaminaLV = 1;
+            SaveMaxStamina();
+        }
+        else
+        {
+            string json = File.ReadAllText(path);
+            GameManager.Instance.goodsManager.maxStaminaLV = JsonConvert.DeserializeObject<int>(json);
+        }
     }
 
     public void SaveStamina()
@@ -67,7 +133,7 @@ public class SaveLoadManager
 
         if (!fileInfo.Exists)
         {
-            GameManager.Instance.goodsManager.stamina = 0;
+            GameManager.Instance.goodsManager.stamina = 10;
             SaveStamina();
         }
         else
