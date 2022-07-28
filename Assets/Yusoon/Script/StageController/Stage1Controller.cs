@@ -15,6 +15,13 @@ public class Stage1Controller : MonoBehaviour
     public CharacterSelectController characterSelectController;
     public HeroList herolist;
 
+    public GameObject cannotSelect;
+
+    private void OnEnable()
+    {
+        herolist.isSellect[2] = false;
+        herolist.isSellect[3] = false;
+    }
     public void Update()
     {
         for (int i = 0; i < characterSelectController.heroList.isSellect.Length; i++)
@@ -69,6 +76,11 @@ public class Stage1Controller : MonoBehaviour
         {
             GameManager.Instance.ChanageScene("stage1-2");
         }
+    }
+
+    public void CannotSelect()
+    {
+        cannotSelect.gameObject.SetActive(true);
     }
 
     public void exitBtn()
