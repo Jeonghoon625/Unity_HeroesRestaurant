@@ -4,40 +4,49 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField][Header("Tutorials items")] TutorialsItemControl[] items;
-    int itemIndex = 0;
-    // Start is called before the first frame update
-    void Start()
+    public GameObject[] tutorials;
+    private int idx = 0;
+
+    public GameObject spawner;
+
+    private void Start()
     {
-        if (items == null)
-            return;
-
-        if (items.Length == 0)
-            return;
-
-        foreach (var item in items)
+        ShowUI();
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            item.gameObject.SetActive(false);
+            Time.timeScale = 1f;
+            tutorials[idx].gameObject.SetActive(false);
+            idx++;
+            //ShowUI();
+            //tutorials[1].gameObject.SetActive(true);
         }
 
-        itemIndex = -1;
-        ActiveNextItem();
+        //Time.timeScale = 0f;
+        //tutorials[2].gameObject.SetActive(true);
+
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    Time.timeScale = 1f;
+        //}
+
+        //Time.timeScale = 0f;
+        //tutorials[3].gameObject.SetActive(true);
+
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    Time.timeScale = 1f;
+        //}
+
+        //tutorials[4].gameObject.SetActive(true);
+        //tutorials[5].gameObject.SetActive(true);
     }
 
-    public void ActiveNextItem()
+    public void ShowUI()
     {
-        // 현재 아이템 비활성화
-        if (itemIndex > -1 && itemIndex < items.Length)
-        {
-            items[itemIndex].gameObject.SetActive(false);
-        }
-
-        // 인덱스 변경
-        itemIndex++;
-
-        if (itemIndex > -1 && itemIndex < items.Length)
-        {
-            items[itemIndex].gameObject.SetActive(true);
-        }
+        tutorials[idx].gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
