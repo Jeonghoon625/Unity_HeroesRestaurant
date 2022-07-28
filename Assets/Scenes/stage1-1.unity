@@ -285,6 +285,7 @@ MonoBehaviour:
   enemyList: []
   stageNumber: 1
   clearReward: 50
+  flagPrefab: {fileID: 0}
 --- !u!1 &417198354
 GameObject:
   m_ObjectHideFlags: 0
