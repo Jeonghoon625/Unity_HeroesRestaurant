@@ -8,17 +8,13 @@ public class MainMenu : MonoBehaviour
 
     public GameObject building, Blur, buttons, maps, upgrade;
 
-    public GameObject backbutton;
+    public GameObject backbutton,rebuild;
 
     private void Start()
     {
         backbutton.gameObject.SetActive(false);
     }
 
-    //public void SceneChange()
-    //{
-    //    GameManager.Instance.GoBattleScene();
-    //}
 
     public void OnclickSystem()
     {
@@ -32,14 +28,6 @@ public class MainMenu : MonoBehaviour
         Blur.SetActive(true);
         buttons.SetActive(false);
     }
-    /*
-    public void OnclickCook()
-    {
-        cookStore.SetActive(true);
-        Blur.SetActive(true);
-        buttons.SetActive(false);
-    }
-    */
 
     public void BackclickSystem()
     {
@@ -57,11 +45,26 @@ public class MainMenu : MonoBehaviour
         backbutton.gameObject.SetActive(true);
     }
 
+    public void BuildingOnMain2(GameObject rebuild)
+    {
+        buttons.SetActive(false);
+        Blur.SetActive(false);
+        building.SetActive(false);
+
+        rebuild.gameObject.SetActive(true);
+    }
+
     public void OnClickCookStore(GameObject CookMenu)
     {
         Blur.SetActive(true);
         buttons.SetActive(false);
         CookMenu.SetActive(true);
+
+
+
+
+
+
     }
 
     public void OffClickCookStore(GameObject CookMenu)

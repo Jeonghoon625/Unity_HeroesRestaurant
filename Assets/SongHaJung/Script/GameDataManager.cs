@@ -31,10 +31,10 @@ public class BuildingInfo
 public class Item
 {
     //생성자
-    public Item(string _Type, string _Name, string _Explain, string _SpecOfEnhance, string _SpecOfLevel, string _SpecOfContent, string _WoodMoney, bool _isUsing, string _Index, string _FloatX, string _FloatY, string _FloatZ, string _UsingChange, string _PositionChange)
+    public Item(string _Type, string _buildNum, string _Explain, string _SpecOfEnhance, string _SpecOfLevel, string _SpecOfContent, string _WoodMoney, bool _isUsing, string _Index, string _FloatX, string _FloatY, string _FloatZ, string _UsingChange, string _PositionChange)
     {
         Type = _Type;
-        Name = _Name;
+        buildNum = _buildNum;
         Explain = _Explain;
         SpecOfEnhance = _SpecOfEnhance;
         SpecOfLevel = _SpecOfLevel;
@@ -49,7 +49,7 @@ public class Item
         PositionChange = _PositionChange;
     }
 
-    public string Type, Name, Explain, SpecOfEnhance, SpecOfLevel, SpecOfContent, WoodMoney, Index, FloatX, FloatY, FloatZ, UsingChange, PositionChange;
+    public string Type, buildNum, Explain, SpecOfEnhance, SpecOfLevel, SpecOfContent, WoodMoney, Index, FloatX, FloatY, FloatZ, UsingChange, PositionChange;
     public bool isUsing;
 }
 
@@ -57,25 +57,22 @@ public class GameDataManager : MonoBehaviour
 {
     public TextAsset ItemDataBase;
 
-    public List<Item> AllItemList, MyItemList, CurItemList, PositionList;
+    public List<Item> AllItemList, CurItemList;
     public string curType = "Building";
     public GameObject[] Slot, UsingImage, AllModels;
-    public Image[] TapImage, ItemImage;
+    public Image[] ItemImage;
     public Sprite[] ItemSprite;
     public GameObject ExplainPanel;
-    public GameObject Tag;
     public GameObject wood;
     public MainMenu main;
+    public float enhance;
 
     public static int selectionIndex;
-    //public static float enhance;
     public int fixPosition;
     public int beforeSelect;
 
     public int buildingWoodMoney;
-    //public int allWoodMoney;
     public TextMeshProUGUI showWoodMoney;
-    public TextMeshProUGUI checkbu;
 
     string filepath;
     string filepath2;
@@ -91,8 +88,10 @@ public class GameDataManager : MonoBehaviour
 
     //구매하고난뒤 버튼 상태 바꿔주기
     private Button checkbtn;
-
     public Button[] slotbu;
+
+
+
 
 
     //건물위치, 상태값 저장
@@ -100,7 +99,6 @@ public class GameDataManager : MonoBehaviour
 
     private void Start()
     {
-       
         checkbtn = ExplainPanel.transform.Find("ClickBuilding").GetComponent<Button>();
 
         int startIndex = 0;
@@ -122,14 +120,12 @@ public class GameDataManager : MonoBehaviour
     
         PointerClick(0); //기본 첫번째 디테일 메뉴가 뜨도록
 
-
         for (var i = 0; i < AllModels.Length; ++i)
         {
             if (AllModels[i].tag == "Finish" && AllModels[i].activeSelf == true)
             {
                 fixPosition = i;
                 break;
-                //AllModels[fixPosition].SetActive(false);
             }
         }
     }
@@ -151,7 +147,7 @@ public class GameDataManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isMouseDragging = false;
-            Debug.Log("Building position :" + AllModels[selectionIndex].transform.position);
+           
 
         }
         if (isMouseDragging)
@@ -181,17 +177,14 @@ public class GameDataManager : MonoBehaviour
         //선택아이템 -> 노랑클릭 true될때
         IsMove = true;
         Item curItem = CurItemList.Find(x => x.isUsing == true);
-
         if (curItem != null)
         {
             Save();
         }
-
         selectionIndex = int.Parse(curItem.Index);
         AllModels[selectionIndex].SetActive(true);
-        GameManager.Instance.goodsManager.enhance += float.Parse(curItem.SpecOfEnhance);
         buildingWoodMoney = int.Parse(curItem.WoodMoney);
-
+        enhance=float.Parse(curItem.SpecOfEnhance);
         if (AllModels[selectionIndex].tag == "Finish")
         {
             AllModels[fixPosition].SetActive(false);
@@ -220,8 +213,11 @@ public class GameDataManager : MonoBehaviour
         main.OnClickBuildingBack();
         GameManager.Instance.goodsManager.wood -= buildingWoodMoney;
         selectionIndex = beforeSelect;
+        GameManager.Instance.goodsManager.enhance += enhance;
+        Debug.Log("All Enhance: " + GameManager.Instance.goodsManager.enhance);
 
-        Debug.Log("Enhance: " + GameManager.Instance.goodsManager.enhance);
+        //AllModels[selectionIndex].gameObject.GetComponent<Renderer>().material.color = new Color(233, 79, 55);
+
 
         IsMove = false;
         Save();
@@ -236,7 +232,7 @@ public class GameDataManager : MonoBehaviour
         AllModels[selectionIndex].SetActive(false);
 
     }
-
+  
 
     public void SlotClick(int slotNum)
     {
@@ -267,23 +263,20 @@ public class GameDataManager : MonoBehaviour
 
             if (isExist)
             {
-                ItemImage[i].sprite = ItemSprite[AllItemList.FindIndex(x => x.Name == CurItemList[i].Name)];
+                ItemImage[i].sprite = ItemSprite[AllItemList.FindIndex(x => x.Index == CurItemList[i].Index)];
                 UsingImage[i].SetActive(CurItemList[i].isUsing);
             }
         }
-        //탭이미지
-        //int tabNum = 0;
-        //switch (tapName)
-        //{
-        //    case "Building": tabNum = 0;  break;
-        //    case "FrontFurniture": tabNum = 1;  break;
-        //    case "BackFurniture": tabNum = 2;  break;
+      
+        int tabNum = 0;
+        switch (tapName)
+        {
+            case "Building": tabNum = 0;  break;
+            case "FrontFurniture": tabNum = 1;  break;
+            case "BackFurniture": tabNum = 2;  break;
 
-        //}
-        //if (curType == tapName)
-        //{
-        //    slotbu[tabNum].interactable = true;
-        //}
+
+        }
 
 
         // 탭 이미지 교환
@@ -291,6 +284,8 @@ public class GameDataManager : MonoBehaviour
         //{
         //    slotbu[i].interactable = i == tabNum ? true : false;
         //}
+
+
     }
 
 
@@ -309,12 +304,12 @@ public class GameDataManager : MonoBehaviour
             checkbtn.interactable = true;
         }
 
-        ExplainPanel.SetActive(true);
+        //checkbtn.GetComponent<TextMeshProUGUI>().text = 
+        
         wood.SetActive(true);
 
         ExplainPanel.GetComponentInChildren<TextMeshProUGUI>().text = CurItemList[slotNum].Explain;
         ExplainPanel.transform.GetChild(2).GetComponentInChildren<Image>().sprite = Slot[slotNum].transform.GetChild(0).GetComponent<Image>().sprite;
-        //ExplainPanel.transform.GetChild(2).GetComponentInChildren<Image>().sprite = Slot[slotNum].transform.GetComponent<Image>().sprite; 
         ExplainPanel.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "모든 영웅 체력 및 공격력" + CurItemList[slotNum].SpecOfEnhance + "% 증가";
         ExplainPanel.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "(레벨 당" + CurItemList[slotNum].SpecOfLevel + "% 증가)";
         ExplainPanel.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = CurItemList[slotNum].SpecOfContent;
