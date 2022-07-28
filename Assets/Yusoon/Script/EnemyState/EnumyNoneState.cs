@@ -6,7 +6,7 @@ public class EnumyNoneState : IEnemyState
 {
     public void IEnter(Enemy enemy)
     {
-        enemy.animator.SetBool("Run", false);
+        //enemy.animator.SetBool("Run", false);
     }
 
     public void IExit()

@@ -54,6 +54,8 @@ public class RunState : IState
         var dist = hero.transform.position.x - m_Position.x;
         if (dist < 0.1f && dist > -0.1f)
         {
+            hero.isMovePoint = false;
+            hero.stageManager.FlagDel();
             hero.SetState("Idle");
         }
         else

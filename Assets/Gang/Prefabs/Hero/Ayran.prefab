@@ -187,6 +187,7 @@ MonoBehaviour:
   shootPrefab: {fileID: 0}
   startShoot: {fileID: 0}
   m_Position: {x: 0, y: 0, z: 0}
+  isMovePoint: 0
   target: {fileID: 0}
   isInvincibility: 0
   isShield: 0
@@ -308,7 +309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5048889430539319573, guid: 9e050586c2f02be4ea677046398728f7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.897
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5048889430539319573, guid: 9e050586c2f02be4ea677046398728f7, type: 3}
       propertyPath: m_LocalRotation.w

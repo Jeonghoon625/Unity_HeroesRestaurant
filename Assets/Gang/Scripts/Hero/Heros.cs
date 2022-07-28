@@ -60,6 +60,7 @@ public class Heros : MonoBehaviour
     public GameObject startShoot;                               // 투사체 발사 위치
 
     public Vector3 m_Position;                                  // 목표 이동지점
+    public bool isMovePoint;
     public GameObject target;                                   // 공격 대상
     /******************************************
      * 스킬
@@ -124,23 +125,23 @@ public class Heros : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !doneControll)
-        {
-            target = null;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100f))
-            {
-                if (hit.transform.tag == "Monster")
-                {
-                    // 타겟팅
-                    target = hit.transform.gameObject;
-                }
-                // 이동
-                m_Position = hit.point;
-                SetState("Run");
-            }
-        }
+        //if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && !doneControll)
+        //{
+        //    target = null;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(ray, out hit, 100f))
+        //    {
+        //        if (hit.transform.tag == "Monster")
+        //        {
+        //            // 타겟팅
+        //            target = hit.transform.gameObject;
+        //        }
+        //        // 이동
+        //        m_Position = hit.point;
+        //        SetState("Run");
+        //    }
+        //}
 
         currentState.IUpdate();
     }

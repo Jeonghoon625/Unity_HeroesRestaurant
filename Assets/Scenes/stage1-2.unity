@@ -188,6 +188,7 @@ MonoBehaviour:
   enemyList: []
   stageNumber: 1
   clearReward: 120
+  flagPrefab: {fileID: 3045982219621374105, guid: 225c7bf45fdfa6b42897d7c7628df118, type: 3}
 --- !u!1001 &392356168
 PrefabInstance:
   m_ObjectHideFlags: 0

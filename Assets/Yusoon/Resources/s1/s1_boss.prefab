@@ -164,7 +164,7 @@ MonoBehaviour:
   dmg: 10
   attackAreaX: 4
   attackArea: {x: 4, y: 0, z: 0}
-  hp: 250
+  hp: 150
   maxHp: 0
   attackCool: 2
   target: {fileID: 0}
@@ -205,6 +205,7 @@ MonoBehaviour:
   - {x: 6.5, y: 0, z: 0}
   - {x: 6, y: 0, z: 0}
   boarPrefab: {fileID: 4087794226412669592, guid: 51380bce7655278489d3927ea9e6594f, type: 3}
+  boarList: []
 --- !u!114 &8228499766595779555
 MonoBehaviour:
   m_ObjectHideFlags: 0

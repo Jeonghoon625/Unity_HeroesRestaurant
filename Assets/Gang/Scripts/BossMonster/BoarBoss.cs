@@ -29,7 +29,7 @@ public class BoarBoss : MonoBehaviour
     [SerializeField]
     private GameObject boarPrefab;
 
-    private List<GameObject> boarList = new List<GameObject>();
+    public List<GameObject> boarList = new List<GameObject>();
     private void Start()
     {
         stageManager = Board.stageManager;
@@ -97,13 +97,6 @@ public class BoarBoss : MonoBehaviour
         foreach(var pos in spawnPoint)
         {
             boarList.Add(Instantiate(boarPrefab, pos, rot));
-        }
-    }
-    void BossDead()
-    {
-        foreach (var pos in boarList)
-        {
-            pos.GetComponent<Enemy>().Dead();
         }
     }
 }
