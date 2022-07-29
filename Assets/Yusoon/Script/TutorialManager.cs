@@ -11,7 +11,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        ShowUI();
+        Invoke("ShowUI1", 2.5f);
     }
     private void Update()
     {
@@ -20,31 +20,12 @@ public class TutorialManager : MonoBehaviour
             Time.timeScale = 1f;
             tutorials[idx].gameObject.SetActive(false);
             idx++;
-            //ShowUI();
-            //tutorials[1].gameObject.SetActive(true);
+
+            ShowUI1();
         }
-
-        //Time.timeScale = 0f;
-        //tutorials[2].gameObject.SetActive(true);
-
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    Time.timeScale = 1f;
-        //}
-
-        //Time.timeScale = 0f;
-        //tutorials[3].gameObject.SetActive(true);
-
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    Time.timeScale = 1f;
-        //}
-
-        //tutorials[4].gameObject.SetActive(true);
-        //tutorials[5].gameObject.SetActive(true);
     }
 
-    public void ShowUI()
+    public void ShowUI1()
     {
         tutorials[idx].gameObject.SetActive(true);
         Time.timeScale = 0f;
