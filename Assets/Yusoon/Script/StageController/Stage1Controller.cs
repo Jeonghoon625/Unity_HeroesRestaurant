@@ -21,6 +21,9 @@ public class Stage1Controller : MonoBehaviour
     {
         herolist.isSellect[2] = false;
         herolist.isSellect[3] = false;
+
+        heroPrefab[2].SetActive(false);
+        heroPrefab[3].SetActive(false);
     }
     public void Update()
     {
@@ -81,8 +84,13 @@ public class Stage1Controller : MonoBehaviour
     public void CannotSelect()
     {
         cannotSelect.gameObject.SetActive(true);
+        Invoke("UnActive", 1f);
     }
 
+    public void UnActive()
+    {
+        cannotSelect.gameObject.SetActive(false);
+    }
     public void exitBtn()
     {
         gameObject.SetActive(false);
