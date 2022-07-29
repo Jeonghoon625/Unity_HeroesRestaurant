@@ -16,15 +16,17 @@ public class Serialization<T>
 [System.Serializable]
 public class BuildingInfo
 {
-    public BuildingInfo(int _activIndex, float _positionX, bool _Istrue)
+    //BuildingInfo(ModelsInfo.modelIndex, pos.x, ModelsInfo.curModelNum, ModelsInfo.buyModelNum
+    public BuildingInfo(int _activIndex, Vector3 _positionX)
     {
         activIndex = _activIndex;
-        positionX = _positionX;
-        Istrue = _Istrue;
+        position = _positionX;
+        //curNum = _curNum;
+        //buyNum = _buyNum;
     }
     public int activIndex;
-    public float positionX;
-    public bool Istrue;
+    public Vector3 position;
+
 }
 
 [System.Serializable]
@@ -91,14 +93,18 @@ public class GameDataManager : MonoBehaviour
     public Button[] slotbu;
 
 
-
-
-
     //건물위치, 상태값 저장
     public List<BuildingInfo> buildingInfoList = new List<BuildingInfo>();
+    public List<int> curbuildNum = new List<int>();
+    public List<int> buybuildNum = new List<int>();
 
+    private Vector3 currentScreenSpace;
+    private List<GameObject> buildList = new List<GameObject>();
+    private GameObject prevCook;
     private void Start()
     {
+        //prevCook 설치된 finish 태크 붙은 저장 정보 넣어줘야됨 
+        
         checkbtn = ExplainPanel.transform.Find("ClickBuilding").GetComponent<Button>();
 
         int startIndex = 0;
@@ -115,9 +121,9 @@ public class GameDataManager : MonoBehaviour
         filepath = Application.persistentDataPath + "/MyItemText.txt";
         filepath2 = Application.persistentDataPath + "/PositionData.txt";
         Debug.Log(filepath);
-
+   
         Load();
-    
+
         PointerClick(0); //기본 첫번째 디테일 메뉴가 뜨도록
 
         for (var i = 0; i < AllModels.Length; ++i)
@@ -147,7 +153,7 @@ public class GameDataManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isMouseDragging = false;
-           
+
 
         }
         if (isMouseDragging)
@@ -164,7 +170,7 @@ public class GameDataManager : MonoBehaviour
             else if (selectionIndex > 17 && selectionIndex < 38) z = frontZ;
             else z = backz;
 
-            Vector3 currentScreenSpace = new Vector3(x, 0f, z);
+            currentScreenSpace = new Vector3(x, 0f, z);
             AllModels[selectionIndex].transform.position = currentScreenSpace;
         }
     }
@@ -173,22 +179,32 @@ public class GameDataManager : MonoBehaviour
     public void GetItemClick()
     {
         //Item curItem = MyItemList.Find(x => x.Name == Slot.text);
-        
+
         //선택아이템 -> 노랑클릭 true될때
         IsMove = true;
         Item curItem = CurItemList.Find(x => x.isUsing == true);
         if (curItem != null)
         {
-            Save();
+            //Save();
         }
         selectionIndex = int.Parse(curItem.Index);
         AllModels[selectionIndex].SetActive(true);
         buildingWoodMoney = int.Parse(curItem.WoodMoney);
-        enhance=float.Parse(curItem.SpecOfEnhance);
+        enhance = float.Parse(curItem.SpecOfEnhance);
+
         if (AllModels[selectionIndex].tag == "Finish")
         {
             AllModels[fixPosition].SetActive(false);
             fixPosition = selectionIndex;
+            foreach (var i in buildList)
+            {
+                if (i.tag == "Finish")
+                {
+                    prevCook = i;
+                    i.SetActive(false);
+                    break;
+                }
+            }
         }
 
         if (AllModels[selectionIndex] != null)
@@ -204,7 +220,6 @@ public class GameDataManager : MonoBehaviour
         }
         main.BuildingOnMain();
 
-
     }
     //배치완료됐을때
     public void NoDrag()
@@ -212,15 +227,25 @@ public class GameDataManager : MonoBehaviour
         // woodmoney 깎이고, 강화정보 전투에 넘겨줘야함
         main.OnClickBuildingBack();
         GameManager.Instance.goodsManager.wood -= buildingWoodMoney;
-        selectionIndex = beforeSelect;
         GameManager.Instance.goodsManager.enhance += enhance;
         Debug.Log("All Enhance: " + GameManager.Instance.goodsManager.enhance);
 
         //AllModels[selectionIndex].gameObject.GetComponent<Renderer>().material.color = new Color(233, 79, 55);
+        var bild = Instantiate(AllModels[selectionIndex]);// AllModels[selectionIndex].transform.position = currentScreenSpace;
+        bild.transform.position = currentScreenSpace;
+        buildList.Add(bild);
+        AllModels[selectionIndex].SetActive(false);
+        if (bild.tag == "Finish")
+        {
+            // prevCook
+            buildList.Remove(prevCook);
+            Destroy(prevCook);
+        }
 
 
         IsMove = false;
         Save();
+        selectionIndex = beforeSelect;
     }
 
     //배치취소(돌아가기버튼 눌렀을때)
@@ -232,7 +257,7 @@ public class GameDataManager : MonoBehaviour
         AllModels[selectionIndex].SetActive(false);
 
     }
-  
+
 
     public void SlotClick(int slotNum)
     {
@@ -267,16 +292,15 @@ public class GameDataManager : MonoBehaviour
                 UsingImage[i].SetActive(CurItemList[i].isUsing);
             }
         }
-      
-        int tabNum = 0;
-        switch (tapName)
-        {
-            case "Building": tabNum = 0;  break;
-            case "FrontFurniture": tabNum = 1;  break;
-            case "BackFurniture": tabNum = 2;  break;
 
+        //int tabNum = 0;
+        //switch (tapName)
+        //{
+        //    case "Building": tabNum = 0; break;
+        //    case "FrontFurniture": tabNum = 1; break;
+        //    case "BackFurniture": tabNum = 2; break;
 
-        }
+        //}
 
 
         // 탭 이미지 교환
@@ -295,7 +319,7 @@ public class GameDataManager : MonoBehaviour
     {
         buildingWoodMoney = int.Parse(CurItemList[slotNum].WoodMoney);
 
-        if(buildingWoodMoney > GameManager.Instance.goodsManager.wood)
+        if (buildingWoodMoney > GameManager.Instance.goodsManager.wood)
         {
             checkbtn.interactable = false;
         }
@@ -305,7 +329,7 @@ public class GameDataManager : MonoBehaviour
         }
 
         //checkbtn.GetComponent<TextMeshProUGUI>().text = 
-        
+
         wood.SetActive(true);
 
         ExplainPanel.GetComponentInChildren<TextMeshProUGUI>().text = CurItemList[slotNum].Explain;
@@ -319,17 +343,18 @@ public class GameDataManager : MonoBehaviour
 
     void Save()
     {
-     
+
         string jdata = JsonUtility.ToJson(new Serialization<Item>(AllItemList));
         File.WriteAllText(filepath, jdata); //text 저장
 
-      
+
         buildingInfoList.Clear();
-        for (var i = 0; i < AllModels.Length; ++i)
+   
+        foreach (var i in buildList)
         {
-            var pos = AllModels[i].transform.position;
-            bool active = AllModels[i].activeSelf;
-            buildingInfoList.Add(new BuildingInfo(i, pos.x, active));
+            //var info = i.GetComponent<ModelsInfo>();
+            //buildingInfoList.Add(new BuildingInfo(info.modelIndex, i.transform.position, info.curModelNum, info.buyModelNum));
+            buildingInfoList.Add(new BuildingInfo(selectionIndex, i.transform.position));
         }
 
         string bdata = JsonUtility.ToJson(new Serialization<BuildingInfo>(buildingInfoList));
@@ -340,7 +365,7 @@ public class GameDataManager : MonoBehaviour
 
     void Load()
     {
-        if(!File.Exists(filepath))
+        if (!File.Exists(filepath))
         {
             Save();
             return;
@@ -355,20 +380,22 @@ public class GameDataManager : MonoBehaviour
         }
         else
         {
+            //데이터가 없으면 1번 오브젝트만 true되도록
             buildingInfoList.Clear();
             for (int i = 0; i < AllModels.Length; i++)
             {
-                buildingInfoList.Add(new BuildingInfo(i, 0f, false));
+                //   buildingInfoList.Add(new BuildingInfo(i, 0f));
             }
-            buildingInfoList[0].Istrue = true;
+            // buildingInfoList[0].Istrue = true;
         }
         TapClick(curType);
+
         for (var i = 0; i < buildingInfoList.Count; ++i)
         {
-            AllModels[i].SetActive(buildingInfoList[i].Istrue);
-            var pos = AllModels[i].transform.position;
-            pos.x = buildingInfoList[i].positionX;
-            AllModels[i].transform.position = pos;
+            var models = Instantiate(AllModels[buildingInfoList[i].activIndex]);
+            models.transform.position = buildingInfoList[i].position;
+            models.SetActive(true);
+            buildList.Add(models);
         }
 
     }
