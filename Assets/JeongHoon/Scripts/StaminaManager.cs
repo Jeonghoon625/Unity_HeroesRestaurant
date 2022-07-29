@@ -26,6 +26,16 @@ public class StaminaManager : MonoBehaviour
     private System.DateTime StartTime;
     private System.DateTime CurrentTime;
 
+    public TextMeshProUGUI coolTimeText;
+    public TextMeshProUGUI maxStaminaLVText;
+    public TextMeshProUGUI coolTimeStaminaLVText;
+    public TextMeshProUGUI maxStaminaCostText; //비용 텍스트
+    public TextMeshProUGUI coolTimeStaminaCostText; //비용 텍스트
+    public TextMeshProUGUI currentMaxStaminaLVInfoText;
+    public TextMeshProUGUI nextMaxStaminaLVInfoText; 
+    public TextMeshProUGUI currentCoolTimeStaminaInfoText; //이전 업글 정보
+    public TextMeshProUGUI nextCoolTimeStaminaInfoText; //다음 업글 정보
+
 
     public void Show()
     {
@@ -36,8 +46,9 @@ public class StaminaManager : MonoBehaviour
     public void TimeStamina(double times)
     {
         maxStamina = GameManager.Instance.goodsManager.maxStaminaLV * 12;
-        coolTime = coolTime - coolTime / 10 * (GameManager.Instance.goodsManager.coolTimeStaminaLV - 1);
-        
+        coolTime = 30 - 3 * (GameManager.Instance.goodsManager.coolTimeStaminaLV - 1);
+        coolTimeText.text = coolTime.ToString() + "당 1회복";
+
         int sum = (int)(times / coolTime);
         remainTime = times % coolTime;
 
@@ -53,6 +64,21 @@ public class StaminaManager : MonoBehaviour
                 GameManager.Instance.goodsManager.stamina += sum;
             }
         }
+
+        int cost = 50 * GameManager.Instance.goodsManager.maxStaminaLV;
+
+        maxStaminaLVText.text = "LV." + GameManager.Instance.goodsManager.maxStaminaLV;
+        maxStaminaCostText.text = cost.ToString();
+        currentMaxStaminaLVInfoText.text = "스태미나 최대 보유량 " + (100 * (GameManager.Instance.goodsManager.maxStaminaLV - 1)).ToString() + "%" + "증가";
+        nextMaxStaminaLVInfoText.text = "다음 : " + "스태미나 최대 보유량 " + (100 * (GameManager.Instance.goodsManager.maxStaminaLV)).ToString() + "%" + "증가";
+
+        cost = 50 * GameManager.Instance.goodsManager.coolTimeStaminaLV;
+
+        coolTimeText.text = coolTime.ToString() + "당 1회복";
+        coolTimeStaminaLVText.text = "LV." + GameManager.Instance.goodsManager.coolTimeStaminaLV;
+        coolTimeStaminaCostText.text = cost.ToString();
+        currentCoolTimeStaminaInfoText.text = "스태미나 충전속도 " + (100 * (GameManager.Instance.goodsManager.coolTimeStaminaLV - 1)).ToString() + "%" + "증가";
+        nextCoolTimeStaminaInfoText.text = "다음 : " + "스태미나 충전속도 " + (100 * (GameManager.Instance.goodsManager.coolTimeStaminaLV)).ToString() + "%" + "증가";
 
         Show();
 
@@ -109,5 +135,47 @@ public class StaminaManager : MonoBehaviour
         timer = 0;
         remainTime = 0;
         StartTime = System.DateTime.Now;
+    }
+
+    public void UpgradeMaxStamina()
+    {
+        int cost = 50 * GameManager.Instance.goodsManager.maxStaminaLV;
+
+        if(GameManager.Instance.goodsManager.gold >= cost && GameManager.Instance.goodsManager.maxStaminaLV < 10)
+        {
+            GameManager.Instance.goodsManager.gold -= cost;
+            GameManager.Instance.goodsManager.maxStaminaLV += 1;
+            maxStamina = GameManager.Instance.goodsManager.maxStaminaLV * 12;
+            maxStaminaLVText.text = "LV." + GameManager.Instance.goodsManager.maxStaminaLV;
+            maxStaminaCostText.text = cost.ToString();
+            currentMaxStaminaLVInfoText.text = "스태미나 최대 보유량 " + (100 * (GameManager.Instance.goodsManager.maxStaminaLV - 1)).ToString() + "%" + "증가";
+            nextMaxStaminaLVInfoText.text = "다음 : " + "스태미나 최대 보유량 " + (100 * (GameManager.Instance.goodsManager.maxStaminaLV)).ToString() + "%" + "증가";
+            Show();
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    public void UpgradeStaminaCoolTime()
+    {
+        int cost = 50 * GameManager.Instance.goodsManager.coolTimeStaminaLV;
+
+        if (GameManager.Instance.goodsManager.gold >= cost && GameManager.Instance.goodsManager.coolTimeStaminaLV < 5)
+        {
+            GameManager.Instance.goodsManager.gold -= cost;
+            GameManager.Instance.goodsManager.coolTimeStaminaLV += 1;
+            coolTime = 30 - 3 * (GameManager.Instance.goodsManager.coolTimeStaminaLV - 1);
+            coolTimeText.text = coolTime.ToString() + "당 1회복";
+            coolTimeStaminaLVText.text = "LV." + GameManager.Instance.goodsManager.coolTimeStaminaLV;
+            coolTimeStaminaCostText.text = cost.ToString();
+            currentCoolTimeStaminaInfoText.text = "스태미나 충전속도 " + (100 * (GameManager.Instance.goodsManager.coolTimeStaminaLV - 1)).ToString() + "%" + "증가";
+            nextCoolTimeStaminaInfoText.text = "다음 : " + "스태미나 충전속도 " + (100 * (GameManager.Instance.goodsManager.coolTimeStaminaLV)).ToString() + "%" + "증가";
+        }
+        else
+        {
+            return;
+        }
     }
 }

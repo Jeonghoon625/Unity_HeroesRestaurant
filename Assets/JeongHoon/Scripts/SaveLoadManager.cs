@@ -292,7 +292,7 @@ public class SaveLoadManager
 
         if (!fileInfo.Exists)
         {
-            GameManager.Instance.goodsManager.gold = 1000;
+            GameManager.Instance.goodsManager.gold = 10000;
             var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.gold);
             File.WriteAllText(path, setJson);
         }
