@@ -5,8 +5,9 @@ using UnityEngine;
 
 public enum DamageType
 {
-    Basic,
-    Splash,
+    CoqauVin,
+    Fondue,
+    Limu,
 }
 public class ShootableObject : MonoBehaviour
 {
@@ -24,27 +25,43 @@ public class ShootableObject : MonoBehaviour
     private float duration = 3f;
     private Vector3 dir = Vector3.zero;
     public Vector3 splashRange = Vector3.zero;
-  
+    private Vector3 hitPos = new Vector3(0f, 1f, 1f);
+
     private void Update()
     {
-        dir.y = Mathf.Sin(Time.time *curveSpeed) * curveHeight;
+        dir.y = Mathf.Sin(Time.time * curveSpeed) * curveHeight;
         transform.position += dir * speed * Time.deltaTime;
-        
+
         var cols = Physics.OverlapBox(transform.position, Vector3.zero);
         foreach (var col in cols)
         {
             if (col.transform.tag == "Monster")
             {
-                switch(damageType)
+                GameObject hiteff;
+                switch (damageType)
                 {
-                    case DamageType.Basic:
-                        col.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg);
+                    case DamageType.CoqauVin:
+                        //col.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg);
+                        hiteff = MultipleObjectPooling.instance.GetPooledObject("HitEffect_N");
+                        hiteff.SetActive(true);
+                        hiteff.transform.position = col.transform.position + hitPos;
                         break;
-                    case DamageType.Splash:
+                    case DamageType.Fondue:
+                        //col.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg);
+                        hiteff = MultipleObjectPooling.instance.GetPooledObject("HitEffect_L");
+                        hiteff.SetActive(true);
+                        hiteff.transform.position = col.transform.position + hitPos;
+                        break;
+                    case DamageType.Limu:
                         SplashDamage(col);
+                        hiteff = MultipleObjectPooling.instance.GetPooledObject("HitEffect_W");
+                        hiteff.SetActive(true);
+                        hiteff.transform.position = col.transform.position + hitPos;
                         break;
                 }
+                col.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg);
                 Destroy(gameObject);
+                //Debug.Log(Vector3.up);
             }
         }
     }
@@ -56,9 +73,10 @@ public class ShootableObject : MonoBehaviour
         {
             if (hit.transform.tag == "Monster")
             {
-                if(col.gameObject == hit.gameObject)
+                if (col.gameObject == hit.gameObject)
                 {
-                    col.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg);
+                    //col.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg);
+                    continue;
                 }
                 else
                 {

@@ -88,13 +88,21 @@ public class StageManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if(stageEnd)
+            if (stageEnd)
             {
                 GameManager.Instance.ChanageScene("Main01");
                 return;
             }
 
+#if UNITY_EDITOR_WIN
+            //Debug.Log("에디터 빌드");
             if(!EventSystem.current.IsPointerOverGameObject())
+#endif
+#if UNITY_ANDROID_API
+            //Debug.Log("안드로이드 빌드");
+            //Touch touch = Input.touches[0];
+            //if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+#endif
             {
                 //flag.SetActive(false);
                 foreach (var hero in herosList)
@@ -200,7 +208,7 @@ public class StageManager : MonoBehaviour
      * ************************************************/
     public void Victory()
     {
-        
+
         var reward = Instantiate(VictoryUI);
         reward.transform.SetParent(GameObject.Find("Canvas").transform, false);
         stageEnd = true;
@@ -214,9 +222,9 @@ public class StageManager : MonoBehaviour
 
         // GameManager에게 보상 전달
         var gameManager = GameManager.Instance;
-        if(stageNumber == 1)
+        if (stageNumber == 1)
         {
-            if(clearReward == 120)
+            if (clearReward == 120)
             {
                 gameManager.masterStage++;
             }
@@ -260,7 +268,7 @@ public class StageManager : MonoBehaviour
      * ************************************************/
     public void FlagDel()
     {
-        foreach(var hero in herosList)
+        foreach (var hero in herosList)
         {
             var heroScript = hero.GetComponent<Heros>();
             if (heroScript.isMovePoint)

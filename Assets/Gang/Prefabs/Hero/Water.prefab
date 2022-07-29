@@ -122,7 +122,7 @@ MonoBehaviour:
   speed: 8
   curveSpeed: 0
   curveHeight: 0
-  damageType: 0
+  damageType: 1
   splashRange: {x: 0, y: 0, z: 0}
 --- !u!1 &8187196697815975971
 GameObject:

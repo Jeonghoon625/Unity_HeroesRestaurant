@@ -12,8 +12,9 @@ public class CookManager : MonoBehaviour
 
     public SellManager sellManager;
 
-    public void Init()
+    public StaminaManager staminaManager;
 
+    public void Init()
     {
         if(!GameManager.Instance.isCookInit)
         {
@@ -26,12 +27,19 @@ public class CookManager : MonoBehaviour
         //uiManager.UpdateStageState();
 
         System.DateTime StartDate = System.DateTime.Now;
-        Debug.Log(StartDate);
         System.DateTime EndDate = GameManager.Instance.saveLoadManager.LoadTime();
-        Debug.Log(EndDate);
         System.TimeSpan timeCal = StartDate - EndDate;
-        Debug.Log(timeCal);
-        sellManager.TimeSell(timeCal.TotalSeconds);
+
+        if(timeCal.TotalSeconds <= 0)
+        {
+            sellManager.TimeSell(0);
+            staminaManager.TimeStamina(0);
+        }
+        else
+        {
+            sellManager.TimeSell(timeCal.TotalSeconds);
+            staminaManager.TimeStamina(timeCal.TotalSeconds);
+        }
     }
 
     private void Start()

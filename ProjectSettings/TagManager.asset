@@ -12,6 +12,7 @@ TagManager:
   - Monster
   - Hero
   - HeroSellect
+  - BlockGround
   layers:
   - Default
   - TransparentFX

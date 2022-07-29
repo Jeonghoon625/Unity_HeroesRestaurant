@@ -11,35 +11,35 @@ public class MultipleObjectPooling : MonoBehaviour
 
     private Dictionary<object, List<GameObject>> pooledObjects = new Dictionary<object, List<GameObject>>();
 
-    //private void Start()
-    //{
-    //    if (instance == null)
-    //    {
-    //        instance = this;
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //    // ¿µ¿õ ¼ÒÈ¯
-    //    var heroList = GameManager.Instance.heroSellectManager.heroList;
-    //    var heroPrefab = heroList.heroPrefab;
-    //    var isSellect = heroList.isSellect;
-    //    var ren = heroList.heroPrefab.Length;
-    //    for (int i = 0; i < ren; i++)
-    //    {
-    //        if (isSellect[i] == true)
-    //        {
-    //            var hero = heroPrefab[i].GetComponent<Heros>();
-    //            if(hero.AttackType == AttackTypes.Range)
-    //            {
-    //                poolPrefabs.Add(hero.shootPrefab);
-    //            }
-    //        }
-    //    }
+    private void Start()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        //// ¿µ¿õ ¼ÒÈ¯
+        //var heroList = GameManager.Instance.heroSellectManager.heroList;
+        //var heroPrefab = heroList.heroPrefab;
+        //var isSellect = heroList.isSellect;
+        //var ren = heroList.heroPrefab.Length;
+        //for (int i = 0; i < ren; i++)
+        //{
+        //    if (isSellect[i] == true)
+        //    {
+        //        var hero = heroPrefab[i].GetComponent<Heros>();
+        //        if(hero.AttackType == AttackTypes.Range)
+        //        {
+        //            poolPrefabs.Add(hero.shootPrefab);
+        //        }
+        //    }
+        //}
 
-    //    CreateMultiplePoolObjects();
-    //}
+        CreateMultiplePoolObjects();
+    }
     public void Test()
     {
         if (instance == null)
