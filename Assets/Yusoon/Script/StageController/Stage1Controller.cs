@@ -15,6 +15,16 @@ public class Stage1Controller : MonoBehaviour
     public CharacterSelectController characterSelectController;
     public HeroList herolist;
 
+    public GameObject cannotSelect;
+
+    private void OnEnable()
+    {
+        herolist.isSellect[2] = false;
+        herolist.isSellect[3] = false;
+
+        heroPrefab[2].SetActive(false);
+        heroPrefab[3].SetActive(false);
+    }
     public void Update()
     {
         for (int i = 0; i < characterSelectController.heroList.isSellect.Length; i++)
@@ -80,6 +90,16 @@ public class Stage1Controller : MonoBehaviour
         }
     }
 
+    public void CannotSelect()
+    {
+        cannotSelect.gameObject.SetActive(true);
+        Invoke("UnActive", 1.5f);
+    }
+
+    public void UnActive()
+    {
+        cannotSelect.gameObject.SetActive(false);
+    }
     public void exitBtn()
     {
         gameObject.SetActive(false);

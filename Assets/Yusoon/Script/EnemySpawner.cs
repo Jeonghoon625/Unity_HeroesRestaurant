@@ -15,26 +15,13 @@ public class EnemySpawner : MonoBehaviour
 
     private float startWaitTime = 4f;
     private float waveWaitTime = 1.5f;
-    private float timer;
 
     private StageManager stageManager;
     private void Start()
     {
-        timer = startWaitTime;
         StartCoroutine(NextWave(startWaitTime));
 
         stageManager = GameObject.FindWithTag("GameController").GetComponent<StageManager>();
-    }
-    private void Update()
-    {
-        if (timer > 0f)
-        {
-            timer -= Time.deltaTime;
-            if (timer <= 0f)
-            {
-                timer = waveWaitTime;
-            }
-        }
     }
     private void OnEnemyDeath()
     {
