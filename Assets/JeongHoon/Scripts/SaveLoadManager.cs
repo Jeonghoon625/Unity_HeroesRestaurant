@@ -188,7 +188,7 @@ public class SaveLoadManager
         {
             int currencyId = i;
 
-            GameManager.Instance.goodsManager.currencyReserve.Insert(currencyId, 999);
+            GameManager.Instance.goodsManager.currencyReserve.Insert(currencyId, 333);
         }
 
         var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.currencyReserve);

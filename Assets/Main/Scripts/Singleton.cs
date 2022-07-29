@@ -18,4 +18,9 @@ public class Singleton<T> where T : class, new()
             return instance;
         }
     }
+
+    public void Clear()
+    {
+        instance = new T();
+    }
 }
