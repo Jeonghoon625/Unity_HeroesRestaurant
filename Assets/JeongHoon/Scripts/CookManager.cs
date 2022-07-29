@@ -15,7 +15,6 @@ public class CookManager : MonoBehaviour
     public StaminaManager staminaManager;
 
     public void Init()
-
     {
         if(!GameManager.Instance.isCookInit)
         {
@@ -31,8 +30,16 @@ public class CookManager : MonoBehaviour
         System.DateTime EndDate = GameManager.Instance.saveLoadManager.LoadTime();
         System.TimeSpan timeCal = StartDate - EndDate;
 
-        sellManager.TimeSell(timeCal.TotalSeconds);
-        staminaManager.TimeStamina(timeCal.TotalSeconds);
+        if(timeCal.TotalSeconds <= 0)
+        {
+            sellManager.TimeSell(0);
+            staminaManager.TimeStamina(0);
+        }
+        else
+        {
+            sellManager.TimeSell(timeCal.TotalSeconds);
+            staminaManager.TimeStamina(timeCal.TotalSeconds);
+        }
     }
 
     private void Start()

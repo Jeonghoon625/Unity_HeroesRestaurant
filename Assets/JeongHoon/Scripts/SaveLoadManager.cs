@@ -15,7 +15,7 @@ public class SaveLoadManager
 
     public void Save()
     {
-        Debug.Log("SaveData");
+        //Debug.Log("SaveData");
         SaveReserve();
         SaveGold();
         SaveWood();
@@ -34,7 +34,7 @@ public class SaveLoadManager
         LoadStageInfo();
         LoadStamina();
         LoadMaxStamina();
-        LoadCollTimeStamina();
+        LoadCoolTimeStamina();
         isInit = true;
     }
 
@@ -52,7 +52,7 @@ public class SaveLoadManager
 
     public void SaveCoolTimeStamina()
     {
-        Debug.Log("스태미너 쿨타임 저장");
+        //Debug.Log("스태미너 쿨타임 레벨 저장");
         string fileName = "CoolTimeStamina";
         string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
@@ -60,9 +60,9 @@ public class SaveLoadManager
         File.WriteAllText(path, setJson);
     }
 
-    public void LoadCollTimeStamina()
+    public void LoadCoolTimeStamina()
     {
-        Debug.Log("스태미너 쿨타임 로드");
+        //Debug.Log("스태미너 쿨타임 레벨 로드");
 
         string fileName = "CoolTimeStamina";
         string path = Application.persistentDataPath + "/" + fileName + ".Json";
@@ -83,7 +83,7 @@ public class SaveLoadManager
 
     public void SaveMaxStamina()
     {
-        Debug.Log("스태미너 최대 보유량 저장");
+        //Debug.Log("스태미너 최대 보유량 레벨 저장");
         string fileName = "MaxStamina";
         string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
@@ -93,7 +93,7 @@ public class SaveLoadManager
 
     public void LoadMaxStamina()
     {
-        Debug.Log("스태미너 최대 보유량 로드");
+        //Debug.Log("스태미너 최대 보유량 레벨 로드");
 
         string fileName = "MaxStamina";
         string path = Application.persistentDataPath + "/" + fileName + ".Json";
@@ -114,7 +114,7 @@ public class SaveLoadManager
 
     public void SaveStamina()
     {
-        Debug.Log("스태미너 저장");
+        //Debug.Log("스태미너 저장");
         string fileName = "Stamina";
         string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
@@ -124,7 +124,7 @@ public class SaveLoadManager
 
     public void LoadStamina()
     {
-        Debug.Log("스태미너 로드");
+        //Debug.Log("스태미너 로드");
 
         string fileName = "Stamina";
         string path = Application.persistentDataPath + "/" + fileName + ".Json";
@@ -133,7 +133,7 @@ public class SaveLoadManager
 
         if (!fileInfo.Exists)
         {
-            GameManager.Instance.goodsManager.stamina = 10;
+            GameManager.Instance.goodsManager.stamina = 4;
             SaveStamina();
         }
         else
@@ -145,7 +145,7 @@ public class SaveLoadManager
 
     public void SaveTime()
     {
-        Debug.Log("시간 저장");
+        //Debug.Log("시간 저장");
         string fileName = "Time";
         string path = Application.persistentDataPath + "/" + fileName + ".Json";
 
@@ -155,7 +155,7 @@ public class SaveLoadManager
 
     public System.DateTime LoadTime()
     {
-        Debug.Log("시간 로드");
+       // Debug.Log("시간 로드");
 
         string fileName = "Time";
         string path = Application.persistentDataPath + "/" + fileName + ".Json";
@@ -175,30 +175,10 @@ public class SaveLoadManager
         }
     }
 
-    /*
-    public void GenerateDefaultProduceTime()
-    {
-        Debug.Log($"초기 제작 시간 생성");
-
-        //Currency 보유량
-        string fileName = "ProduceTime";
-        string path = Application.dataPath + fileName + ".Json";
-
-        for (var i = 0; i < GameManager.Instance.resourceManager.currencyData.Count; i++)
-        {
-            int currencyId = i;
-
-            GameManager.Instance.goodsManager.currencyReserve.Insert(currencyId, 999);
-        }
-
-        var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.currencyReserve);
-        File.WriteAllText(path, setJson);
-    }
-    */
-
+ 
     public void GenerateDefaultCurrencyReserve()
     {
-        Debug.Log($"초기 재료 보유량 데이터 생성");
+        //Debug.Log($"초기 재료 보유량 데이터 생성");
 
         //Currency 보유량
         string fileName = "CurrencyReserve";
@@ -217,7 +197,7 @@ public class SaveLoadManager
 
     public void GenerateDefaultFoodReserve()
     {
-        Debug.Log($"초기 음식 보유량 데이터 생성");
+        //Debug.Log($"초기 음식 보유량 데이터 생성");
 
         //Food 보유량
         string fileName = "FoodReserve";
@@ -235,7 +215,7 @@ public class SaveLoadManager
 
     public void LoadFoodReserve()
     {
-        Debug.Log("음식 보유량 로드");
+        //Debug.Log("음식 보유량 로드");
 
         string fileName = "FoodReserve";
         string path = Application.persistentDataPath + "/" + fileName + ".Json";
@@ -255,7 +235,7 @@ public class SaveLoadManager
 
     public void LoadCurrencyReserve()
     {
-        Debug.Log("재료 보유량 로드");
+       // Debug.Log("재료 보유량 로드");
 
         string fileName = "CurrencyReserve";
         string path = Application.persistentDataPath + "/" + fileName + ".Json";
@@ -380,4 +360,26 @@ public class SaveLoadManager
             GameManager.Instance.masterStage = JsonConvert.DeserializeObject<int>(json);
         }
     }
+
+    /*
+     public void GenerateDefaultProduceTime()
+     {
+         Debug.Log($"초기 제작 시간 생성");
+
+         //Currency 보유량
+         string fileName = "ProduceTime";
+         string path = Application.dataPath + fileName + ".Json";
+
+         for (var i = 0; i < GameManager.Instance.resourceManager.currencyData.Count; i++)
+         {
+             int currencyId = i;
+
+             GameManager.Instance.goodsManager.currencyReserve.Insert(currencyId, 999);
+         }
+
+         var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.currencyReserve);
+         File.WriteAllText(path, setJson);
+     }
+     */
+
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,13 @@ public class StaminaManager : MonoBehaviour
 
     private float coolTime = 30f;
 
-    private float timer = 0;
+    private double timer = 0;
+
+    private double remainTime = 0;
+
+    private System.DateTime StartTime;
+    private System.DateTime CurrentTime;
+
 
     public void Show()
     {
@@ -30,13 +37,16 @@ public class StaminaManager : MonoBehaviour
     {
         maxStamina = GameManager.Instance.goodsManager.maxStaminaLV * 12;
         coolTime = coolTime - coolTime / 10 * (GameManager.Instance.goodsManager.coolTimeStaminaLV - 1);
-        int sum = (int)(times / coolTime);
         
-        if(sum >= 1)
+        int sum = (int)(times / coolTime);
+        remainTime = times % coolTime;
+
+        if (sum >= 1)
         {
             if (sum + GameManager.Instance.goodsManager.stamina >= maxStamina)
             {
                 GameManager.Instance.goodsManager.stamina = maxStamina;
+                remainTime = 0;
             }
             else
             {
@@ -45,15 +55,37 @@ public class StaminaManager : MonoBehaviour
         }
 
         Show();
+
+        StartTime = System.DateTime.Now;
+
         isInit = true;
     }
 
     public void Update()
     {
-        if(isInit)
+        if (isInit)
         {
-            timer += Time.deltaTime;
-            timeText.text = "Time : " + (coolTime * maxStamina - (int)timer).ToString() + "s";
+            CurrentTime = System.DateTime.Now;
+            System.TimeSpan timeCal = CurrentTime - StartTime;
+
+            timer = timeCal.TotalSeconds;
+
+            if (remainTime > 0)
+            {
+                timer += remainTime;
+            }
+
+            if (maxStamina != GameManager.Instance.goodsManager.stamina)
+            {
+                fulltimeText.text = "Time : " + (coolTime * (maxStamina - GameManager.Instance.goodsManager.stamina) - (int)timer).ToString() + "s";
+                timeText.text = "개당 남은 시간 : " + (coolTime - (int)timer).ToString() + "s";
+            }
+            else
+            {
+                fulltimeText.text = "Full Charge";
+                timeText.text = "";
+                ResetTimer();
+            }
 
             if (timer > coolTime)
             {
@@ -67,8 +99,15 @@ public class StaminaManager : MonoBehaviour
                 }
 
                 Show();
-                timer = 0;
+                ResetTimer();
             }
         }
+    }
+
+    private void ResetTimer()
+    {
+        timer = 0;
+        remainTime = 0;
+        StartTime = System.DateTime.Now;
     }
 }
