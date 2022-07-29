@@ -4371,6 +4371,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 550422709}
     m_Modifications:
     - target: {fileID: 6419503250326583087, guid: 09d6df338b612cb42b8d0ff5cef24743, type: 3}
+      propertyPath: heroPrefab.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419503250326583087, guid: 09d6df338b612cb42b8d0ff5cef24743, type: 3}
+      propertyPath: heroPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 840529341734535348, guid: 15e161c6e25932c4c87c6d4991b3c14e, type: 3}
+    - target: {fileID: 6419503250326583087, guid: 09d6df338b612cb42b8d0ff5cef24743, type: 3}
+      propertyPath: heroPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 2523126368104362071, guid: 49b383b50f4d60646b7a21d6d1a1391a, type: 3}
+    - target: {fileID: 6419503250326583087, guid: 09d6df338b612cb42b8d0ff5cef24743, type: 3}
       propertyPath: characterSelectController
       value: 
       objectReference: {fileID: 1435446394}
