@@ -62,6 +62,8 @@ public class Heros : MonoBehaviour
     public Vector3 m_Position;                                  // 목표 이동지점
     public bool isMovePoint;
     public GameObject target;                                   // 공격 대상
+
+    private Vector3 hitPos = new Vector3(0f, 1f, 1f);
     /******************************************
      * 스킬
      * ***************************************/
@@ -182,6 +184,9 @@ public class Heros : MonoBehaviour
                 RangeAttack(monsterStat);
                 break;
             case AttackTypes.Melee:
+                var hiteff = MultipleObjectPooling.instance.GetPooledObject("HitEffect_N");
+                hiteff.SetActive(true);
+                hiteff.transform.position = target.transform.position + hitPos;
                 MelleAttack(monsterStat);
                 break;
         }
@@ -293,5 +298,11 @@ public class Heros : MonoBehaviour
     public void EndStun()
     {
         Destroy(stunObj);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("BlockGround"))
+            Debug.Log("벽 부딪힘");
     }
 }

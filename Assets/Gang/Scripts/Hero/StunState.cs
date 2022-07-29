@@ -31,7 +31,12 @@ public class StunState : IState
 
     public void IUpdate()
     {
+        var prevPos = hero.transform.position;
         hero.transform.position = Vector3.Lerp(hero.transform.position, dir, 10f * Time.deltaTime);
+        if(hero.transform.position.x > 9.5f || hero.transform.position.x < -9.5f)
+        {
+            hero.transform.position = prevPos;
+        }
         timer += Time.deltaTime;
         if(timer > stunTime)
         {
