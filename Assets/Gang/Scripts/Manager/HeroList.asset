@@ -17,4 +17,4 @@ MonoBehaviour:
   - {fileID: 3371376095778415760, guid: 55a6032e69a4e8d4eb1566fd5a2536e5, type: 3}
   - {fileID: 4521901471334446279, guid: 668c8f4abd3204f4e8a2673d79b93565, type: 3}
   - {fileID: 9110276075606207487, guid: 323b7c999f1cd424390e941e8373014e, type: 3}
-  isSellect: 01000000
+  isSellect: 01010000
