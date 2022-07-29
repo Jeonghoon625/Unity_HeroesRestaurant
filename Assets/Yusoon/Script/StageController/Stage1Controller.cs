@@ -84,7 +84,7 @@ public class Stage1Controller : MonoBehaviour
     public void CannotSelect()
     {
         cannotSelect.gameObject.SetActive(true);
-        Invoke("UnActive", 1f);
+        Invoke("UnActive", 1.5f);
     }
 
     public void UnActive()
