@@ -95,13 +95,13 @@ public class StageManager : MonoBehaviour
             }
 
 #if UNITY_EDITOR_WIN
-            Debug.Log("에디터 빌드");
+            //Debug.Log("에디터 빌드");
             if(!EventSystem.current.IsPointerOverGameObject())
 #endif
 #if UNITY_ANDROID_API
-            Debug.Log("안드로이드 빌드");
-            Touch touch = Input.touches[0];
-            if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+            //Debug.Log("안드로이드 빌드");
+            //Touch touch = Input.touches[0];
+            //if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId))
 #endif
             {
                 //flag.SetActive(false);
