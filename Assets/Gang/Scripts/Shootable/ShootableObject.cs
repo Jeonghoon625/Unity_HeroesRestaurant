@@ -25,7 +25,7 @@ public class ShootableObject : MonoBehaviour
     private float duration = 3f;
     private Vector3 dir = Vector3.zero;
     public Vector3 splashRange = Vector3.zero;
-    private Vector3 hitPos = new Vector3(0f, 1f, 1f);
+    private Vector3 hitPos = new Vector3(0f, 0f, 1f);
 
     private void Update()
     {
@@ -37,11 +37,22 @@ public class ShootableObject : MonoBehaviour
         {
             if (col.transform.tag == "Monster")
             {
+                float height = 0f;
+                var temp = col.gameObject.GetComponent<MeshFilter>().mesh.vertices;
+                foreach (var i in temp)
+                {
+                    var pos = transform.TransformPoint(i);
+                    if (pos.y > height)
+                    {
+                        height = pos.y;
+                    }
+                }
+                hitPos.y = height / Random.Range(2f, 2.5f);
                 GameObject hiteff;
                 switch (damageType)
                 {
                     case DamageType.CoqauVin:
-                        //col.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg);
+                        //col.transform.GetComponent<Enemy>().OnHit(hero, hero.Dmg);                        
                         hiteff = MultipleObjectPooling.instance.GetPooledObject("HitEffect_N");
                         hiteff.SetActive(true);
                         hiteff.transform.position = col.transform.position + hitPos;

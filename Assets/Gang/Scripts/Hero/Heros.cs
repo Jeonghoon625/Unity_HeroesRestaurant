@@ -63,7 +63,7 @@ public class Heros : MonoBehaviour
     public bool isMovePoint;
     public GameObject target;                                   // °ø°Ý ´ë»ó
 
-    private Vector3 hitPos = new Vector3(0f, 1f, 1f);
+    private Vector3 hitPos = new Vector3(0f, 0f, 1f);
     /******************************************
      * ½ºÅ³
      * ***************************************/
@@ -210,6 +210,17 @@ public class Heros : MonoBehaviour
     {
         if (monster != null)
         {
+            float height = 0f;
+            var temp = monster.gameObject.GetComponent<MeshFilter>().mesh.vertices;
+            foreach (var i in temp)
+            {
+                var pos = transform.TransformPoint(i);
+                if (pos.y > height)
+                {
+                    height = pos.y;
+                }
+            }
+            hitPos.y = height / Random.Range(2f, 2.5f);
             monster.OnHit(this, Dmg);
         }
     }
@@ -298,11 +309,5 @@ public class Heros : MonoBehaviour
     public void EndStun()
     {
         Destroy(stunObj);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("BlockGround"))
-            Debug.Log("º® ºÎµúÈû");
     }
 }
