@@ -153,8 +153,6 @@ public class GameDataManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isMouseDragging = false;
-
-
         }
         if (isMouseDragging)
         {
@@ -257,6 +255,7 @@ public class GameDataManager : MonoBehaviour
         AllModels[selectionIndex].SetActive(false);
 
     }
+
 
 
     public void SlotClick(int slotNum)
