@@ -40,6 +40,7 @@ public class SkillManager : MonoBehaviour
             hero.isInvincibility = true;
             var pos = hero.transform.position;
             pos.y += yPosUp;
+            pos.z += 0.2f;
             Instantiate(heroSkills[(int)SkillParticle.Ayran], pos, hero.transform.rotation).transform.parent = hero.transform;
         }
     }
@@ -152,6 +153,7 @@ public class SkillManager : MonoBehaviour
             hero.hpBar.GetComponent<HpBar>().OnShield();
             var pos = hero.transform.position;
             pos.y += yPosUp;
+            pos.z += 0.2f;
             Instantiate(heroSkills[(int)SkillParticle.Limu], pos, hero.transform.rotation).transform.parent = hero.transform;
         }
     }
