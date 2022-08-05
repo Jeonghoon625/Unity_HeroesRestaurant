@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class CameraMoveDrag : MonoBehaviour
 {
     public static float xmove = 0f;
-    private float movespeed = 0.01f;
+    private float movespeed = 0.005f;
     private float wheelspeed = 0.2f;
 
     private float limitY = 0.02f;
@@ -26,16 +26,27 @@ public class CameraMoveDrag : MonoBehaviour
     }
     void Update()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if(Input.touchCount > 0)
         {
-            DragMouseMove();
-            ZoomMouseMove();
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Moved && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                DragMouseMove();
+            }
         }
+        else if (Input.GetMouseButton(0))
+        {
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                DragMouseMove();
+            }
+        }
+        ZoomMouseMove();
     }
 
     public void DragMouseMove()
     {
-        if (Input.GetMouseButton(0))
+        //if (Input.GetMouseButton(0))
         {
             xmove -= Input.GetAxis("Mouse X") * movespeed;
         }
