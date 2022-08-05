@@ -140,8 +140,6 @@ public class SellManager : MonoBehaviour
                     GameManager.Instance.goodsManager.foodReserve[foodId] = 0;
                    
                     cookManager.uiManager.informationPanel.UpdateReserve();
-
-                    cookManager.uiManager.foodSlots[foodId].currentSellingTime = (float)(times % sellTime);
                 }
             }
         }
