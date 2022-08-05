@@ -11769,6 +11769,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1702052583346156310, guid: 21da4cc46dfb0124da6870abf6322377, type: 3}
   m_PrefabInstance: {fileID: 1553223122}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &728377677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7702346560744786891, guid: c722a4e81cb788247ab7f0c6e0fe1a0e, type: 3}
+  m_PrefabInstance: {fileID: 1895753642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &733465341
 GameObject:
   m_ObjectHideFlags: 0
@@ -30240,6 +30245,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2686434830415250392, guid: c722a4e81cb788247ab7f0c6e0fe1a0e, type: 3}
   m_PrefabInstance: {fileID: 1895753642}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1831733917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728377677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 1
 --- !u!1 &1836226805
 GameObject:
   m_ObjectHideFlags: 0
@@ -31589,6 +31608,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2002127794}
     m_Modifications:
+    - target: {fileID: 2686434830415250392, guid: c722a4e81cb788247ab7f0c6e0fe1a0e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -217.77802
+      objectReference: {fileID: 0}
     - target: {fileID: 4586338736587746808, guid: c722a4e81cb788247ab7f0c6e0fe1a0e, type: 3}
       propertyPath: m_Name
       value: AutoSell
