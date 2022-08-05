@@ -188,7 +188,7 @@ public class SaveLoadManager
         {
             int currencyId = i;
 
-            GameManager.Instance.goodsManager.currencyReserve.Insert(currencyId, 333);
+            GameManager.Instance.goodsManager.currencyReserve.Insert(currencyId, 100);
         }
 
         var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.currencyReserve);
@@ -292,7 +292,7 @@ public class SaveLoadManager
 
         if (!fileInfo.Exists)
         {
-            GameManager.Instance.goodsManager.gold = 10000;
+            GameManager.Instance.goodsManager.gold = 99999;
             var setJson = JsonConvert.SerializeObject(GameManager.Instance.goodsManager.gold);
             File.WriteAllText(path, setJson);
         }
